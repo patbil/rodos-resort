@@ -1,22 +1,27 @@
-// RODOS — main stylesheet entry
-// Compiled by Live Sass Compiler (VSCode) → ../css/styles.css
+// RODOS — main stylesheet entry. Compile: `npm run build:css`.
 
-@use "variables";
-@use "base";
-@use "typography";
-@use "buttons";
-@use "loader";
-@use "nav";
-@use "hero";
-@use "about";
-@use "gallery";
-@use "lightbox";
-@use "rooms";
-@use "attractions";
-@use "pricing";
-@use "info";
-@use "contact";
-@use "flatpickr";
-@use "footer";
-@use "reveals";
-@use "responsive";
+@use "abstracts/variables";
+
+@use "base/base";
+@use "base/typography";
+
+@use "components/buttons";
+@use "components/loader";
+@use "components/lightbox";
+@use "components/flatpickr";
+
+@use "layout/nav";
+@use "layout/footer";
+
+@use "sections/hero";
+@use "sections/about";
+@use "sections/gallery";
+@use "sections/rooms";
+@use "sections/attractions";
+@use "sections/pricing";
+@use "sections/info";
+@use "sections/contact";
+
+@use "utilities/reveals";
+
+@use "layout/responsive";

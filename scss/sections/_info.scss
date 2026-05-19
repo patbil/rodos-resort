@@ -1,0 +1,95 @@
+@use "../abstracts/variables" as *;
+
+#info {
+  background: $sand;
+  padding: 5.5rem 3rem;
+}
+
+.info-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.info-header {
+  margin-bottom: 3rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: #fff;
+  padding: 2rem 2.2rem;
+  border-left: 3px solid transparent;
+  transition:
+    border-color 0.3s,
+    transform 0.3s,
+    box-shadow 0.3s;
+
+  &:hover {
+    border-left-color: $gold;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px -12px rgba(14, 61, 92, 0.12);
+  }
+}
+
+.info-card-icon {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($gold, 0.12);
+  color: $gold;
+  margin-bottom: 1rem;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.info-card-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.28rem;
+  color: $ocean;
+  margin-bottom: 0.9rem;
+}
+
+.info-card-body {
+  font-size: 0.87rem;
+  line-height: 1.82;
+  color: $text-mid;
+
+  strong {
+    color: $text;
+    font-weight: 600;
+  }
+
+  ul {
+    margin-left: 1.1rem;
+    margin-top: 0.45rem;
+  }
+
+  li {
+    margin-bottom: 0.3rem;
+  }
+}
+
+.tag {
+  display: inline-block;
+  background: $sand-dark;
+  color: $text-mid;
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  padding: 0.2rem 0.65rem;
+  margin: 0.2rem 0.1rem;
+}

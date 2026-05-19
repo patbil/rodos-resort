@@ -1,0 +1,43 @@
+@use "../abstracts/variables" as *;
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.in,
+.reveal-left.in {
+  opacity: 1;
+  transform: none;
+}
+
+// Staggered entrance delays — generated, no manual nth-child blocks
+@for $i from 1 through 3 {
+  .rooms .room-card:nth-child(#{$i}),
+  .pricing-cards .pricing-card:nth-child(#{$i}) {
+    transition-delay: #{($i - 1) * 0.15}s;
+  }
+}
+
+@for $i from 1 through 9 {
+  .attractions-grid .attraction-card:nth-child(#{$i}) {
+    transition-delay: #{$i * 0.05}s;
+  }
+}
+
+@for $i from 1 through 6 {
+  .info-grid .info-card:nth-child(#{$i}) {
+    transition-delay: #{$i * 0.05}s;
+  }
+}

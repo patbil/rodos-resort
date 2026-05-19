@@ -1,0 +1,204 @@
+@use "../abstracts/variables" as *;
+
+#pricing {
+  background: linear-gradient(135deg, $darker 0%, #0a2538 100%);
+  padding: 5.5rem 3rem;
+}
+
+.pricing-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .section-heading {
+    color: #fff;
+  }
+
+  .section-paragraph {
+    color: rgba(#fff, 0.46);
+    margin: 0.7rem auto 0;
+    max-width: 500px;
+  }
+}
+
+.season-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.season-tab {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.52rem 1.6rem;
+  border: 1.5px solid rgba(#fff, 0.14);
+  color: rgba(#fff, 0.48);
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+  }
+
+  &.active {
+    background: $gold;
+    color: $dark;
+    border-color: $gold;
+  }
+}
+
+.pricing-pane {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.pricing-pane-intro {
+  text-align: center;
+  color: $text-light;
+  font-size: 0.85rem;
+  margin-bottom: 1.4rem;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.pricing-card {
+  background: rgba(#fff, 0.04);
+  border: 1px solid rgba(#fff, 0.1);
+  padding: 2.4rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.3s,
+    transform 0.35s,
+    box-shadow 0.35s;
+
+  > a {
+    margin-top: auto;
+    text-align: center;
+  }
+
+  &.featured {
+    background: rgba($gold, 0.07);
+    border-color: $gold;
+  }
+
+  &:hover {
+    border-color: rgba($gold, 0.55);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-outline,
+  .btn-primary {
+    font-size: 0.7rem;
+    padding: 0.62rem 1.5rem;
+    display: inline-block;
+  }
+}
+
+.pricing-card-ribbon {
+  position: absolute;
+  top: -1px;
+  right: 2rem;
+  background: $gold;
+  color: $dark;
+  font-size: 0.57rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.26rem 0.85rem;
+}
+
+.pricing-card-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 0.4rem;
+}
+
+.pricing-card-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(#fff, 0.07);
+}
+
+.pricing-card-amount {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.9rem;
+  color: #fff;
+  line-height: 1;
+
+  sup {
+    font-size: 1.2rem;
+    vertical-align: top;
+    margin-top: 0.45rem;
+  }
+
+  sub {
+    font-size: 0.8rem;
+    color: rgba(#fff, 0.38);
+    font-weight: 300;
+  }
+}
+
+.pricing-card-note {
+  font-size: 0.72rem;
+  color: rgba(#fff, 0.32);
+  margin: 0.35rem 0 1.4rem;
+}
+
+.pricing-card-list {
+  list-style: none;
+  margin-bottom: 1.8rem;
+
+  li {
+    font-size: 0.84rem;
+    color: rgba(#fff, 0.58);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(#fff, 0.05);
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+
+    &::before {
+      content: "✓";
+      color: $gold;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.pricing-notes {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.76rem;
+  color: rgba(#fff, 0.28);
+  line-height: 2.2;
+
+  a {
+    color: $gold-light;
+  }
+}

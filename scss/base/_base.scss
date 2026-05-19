@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+#about {
+  scroll-margin-top: 72px;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: $sand-light;
+  color: $text;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid $gold;
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: $dark;
+}
+::-webkit-scrollbar-thumb {
+  background: $gold;
+}

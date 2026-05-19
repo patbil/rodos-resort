@@ -1,5 +1,6 @@
 // RODOS — entry point (ES module). Loaded with <script type="module">.
-import { initI18n } from "./i18n.js";
+import { renderSections } from "./modules/render.js";
+import { initI18n } from "./modules/i18n.js";
 import {
   initLoader,
   initParticles,
@@ -7,12 +8,17 @@ import {
   initNav,
   initScrollSpy,
   initYear,
-} from "./ui.js";
-import { initGalleryTabs, initLightbox, initSeasonTabs } from "./gallery.js";
-import { initDatepicker, initForm } from "./form.js";
+} from "./modules/ui.js";
+import {
+  initGalleryTabs,
+  initLightbox,
+  initSeasonTabs,
+} from "./modules/gallery.js";
+import { initDatepicker, initForm } from "./modules/form.js";
 
-function start() {
-  initI18n();
+async function start() {
+  renderSections();
+  await initI18n();
   initLoader();
   initParticles();
   initYear();

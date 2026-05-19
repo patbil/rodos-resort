@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.eyebrow {
+  @include uppercase-label(0.66rem, 0.32em, 500);
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.section-heading {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: $ocean;
+  line-height: 1.18;
+
+  em {
+    font-style: italic;
+    color: $gold;
+  }
+}
+
+.section-paragraph {
+  font-size: 0.93rem;
+  line-height: 1.88;
+  color: $text-mid;
+  font-weight: 300;
+
+  &-mt {
+    margin-top: 0.8rem;
+  }
+}

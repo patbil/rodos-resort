@@ -1,0 +1,76 @@
+@use "../abstracts/variables" as *;
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: $darker;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.loader-crest {
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid $gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: $gold;
+  letter-spacing: 0.05em;
+  animation: cbreath 1.6s ease-in-out infinite;
+}
+
+@keyframes cbreath {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.loader-bar {
+  width: 160px;
+  height: 2px;
+  background: rgba($gold, 0.18);
+  overflow: hidden;
+  position: relative;
+
+  span {
+    position: absolute;
+    inset: 0;
+    background: $gold;
+    transform: translateX(-100%);
+    animation: lbar 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes lbar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

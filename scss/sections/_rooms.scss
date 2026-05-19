@@ -1,0 +1,152 @@
+@use "../abstracts/variables" as *;
+
+#rooms {
+  background: $dark;
+  padding: 5.5rem 3rem;
+}
+
+.rooms-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+
+  .section-heading {
+    color: #fff;
+  }
+
+  .section-paragraph {
+    color: rgba(#fff, 0.48);
+    margin: 0.7rem auto 0;
+    max-width: 500px;
+  }
+}
+
+.rooms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.room-card {
+  background: rgba(#fff, 0.04);
+  border: 1px solid rgba(#fff, 0.08);
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    transform 0.35s;
+
+  &:hover {
+    border-color: $gold;
+    transform: translateY(-8px);
+
+    .room-card-img img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.room-card-img {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+}
+
+.room-card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: $gold;
+  color: $dark;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.28rem 0.8rem;
+
+  &.is-ocean {
+    background: $ocean;
+    color: #fff;
+  }
+
+  &.is-teal {
+    background: $teal;
+    color: #fff;
+  }
+}
+
+.room-card-body {
+  padding: 1.8rem;
+}
+
+.room-card-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 0.4rem;
+}
+
+.room-card-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.55rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.room-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.room-feature {
+  font-size: 0.65rem;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid rgba(#fff, 0.14);
+  color: rgba(#fff, 0.52);
+  letter-spacing: 0.06em;
+}
+
+.room-card-desc {
+  font-size: 0.83rem;
+  color: rgba(#fff, 0.45);
+  line-height: 1.72;
+  margin-bottom: 1.5rem;
+}
+
+.room-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(#fff, 0.07);
+}
+
+.room-price-from {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(#fff, 0.3);
+}
+
+.room-price-value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.1rem;
+  color: $gold-light;
+  line-height: 1;
+}
+
+.room-price-unit {
+  font-size: 0.7rem;
+  color: rgba(#fff, 0.3);
+}

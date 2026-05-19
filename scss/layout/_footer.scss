@@ -1,0 +1,129 @@
+@use "../abstracts/variables" as *;
+
+footer {
+  background: $darker;
+  color: rgba(#fff, 0.26);
+  padding: 3.5rem 3rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand p {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(#fff, 0.26);
+  max-width: 300px;
+  margin-top: 0.8rem;
+}
+
+.footer-col {
+  h4 {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: $gold;
+    margin-bottom: 1rem;
+  }
+
+  h4 + ul + h4 {
+    margin-top: 1.4rem;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: 0.45rem;
+
+      a {
+        font-size: 0.8rem;
+        color: rgba(#fff, 0.32);
+        transition: color 0.2s;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+
+  li {
+    margin-bottom: 0 !important;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(#fff, 0.14);
+    border-radius: 50%;
+    color: rgba(#fff, 0.5);
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      background 0.2s;
+
+    &:hover {
+      color: $dark;
+      border-color: $gold;
+      background: $gold;
+    }
+
+    i {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.footer-bar {
+  max-width: 1150px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(#fff, 0.06);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.7rem;
+  color: rgba(#fff, 0.18);
+
+  span {
+    color: $gold;
+  }
+}
+
+.footer-brand-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 0.4rem;
+
+  em {
+    color: $gold;
+    font-style: normal;
+  }
+}
+
+.footer-brand-tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(#fff, 0.28);
+  margin-bottom: 0.8rem;
+}

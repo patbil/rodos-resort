@@ -1,0 +1,73 @@
+@use "../abstracts/variables" as *;
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(4, 15, 23, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  &.open {
+    display: flex;
+  }
+
+  img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+  }
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: rgba(#fff, 0.5);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+.lightbox-close {
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.8rem;
+  padding: 0.8rem;
+}
+
+.lightbox-prev {
+  left: 1rem;
+}
+
+.lightbox-next {
+  right: 1rem;
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(#fff, 0.4);
+}

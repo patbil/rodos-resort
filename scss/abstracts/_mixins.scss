@@ -1,0 +1,30 @@
+@use "variables" as *;
+
+// Small uppercase letter-spaced label — recurs in eyebrows, tags, tab buttons,
+// nav links, stat labels, ribbon, hero scroll indicator.
+@mixin uppercase-label(
+  $size: 0.66rem,
+  $tracking: 0.18em,
+  $weight: 600,
+  $color: $gold
+) {
+  font-size: $size;
+  letter-spacing: $tracking;
+  text-transform: uppercase;
+  font-weight: $weight;
+  color: $color;
+}
+
+// Card hover effect: subtle lift + soft shadow. Used on rooms, attractions,
+// info, pricing cards.
+@mixin card-lift($y: 4px, $shadow: 0 24px 50px -18px rgba($dark, 0.3)) {
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+
+  &:hover {
+    transform: translateY(-$y);
+    box-shadow: $shadow;
+  }
+}
