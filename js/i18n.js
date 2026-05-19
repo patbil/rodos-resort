@@ -1,661 +1,93 @@
-/* RODOS — i18n (PL/EN/DE) */
-(function () {
-  const SUPPORTED = ["pl", "en", "de"];
-  const DEFAULT = "pl";
-  const STORAGE_KEY = "rodos-lang";
+// RODOS — i18n via i18next (ESM CDN, no bundler)
+import i18next from "https://esm.sh/i18next@23";
+import resources from "./locales.js";
 
-  const TRANSLATIONS = {
-    pl: {
-      "meta.title": "Ośrodek Wypoczynkowy RODOS – Domki i Apartamenty w Rowach",
-      "meta.description": "RODOS Rowy – komfortowe domki i apartamenty blisko morza. Idealne miejsce na rodzinne wakacje w Rowach. Spokojna okolica, blisko plaży.",
-      "nav.sub": "Rowy nad Bałtykiem",
-      "nav.start": "Start",
-      "nav.gallery": "Galeria",
-      "nav.rooms": "Noclegi",
-      "nav.attractions": "Atrakcje",
-      "nav.pricing": "Cennik",
-      "nav.info": "Informacje",
-      "nav.contact": "Kontakt",
-      "nav.book": "Rezerwuj pobyt",
-      "hero.tag": "Ośrodek Wypoczynkowy&nbsp;·&nbsp;Rowy, Pomorze",
-      "hero.title.small": "Witaj w",
-      "hero.title.big": "Rodos",
-      "hero.desc": "Komfortowe domki oraz apartamenty w samym sercu Rowów — tam, gdzie szum sosnowego lasu spotyka się z dźwiękiem fal Bałtyku, a spokój znajdziesz w krokach od plaży.",
-      "hero.btnBook": "Zarezerwuj pobyt",
-      "hero.btnDiscover": "Odkryj ośrodek",
-      "hero.scroll": "scroll",
-      "about.eyebrow": "O ośrodku",
-      "about.title": "Twoje miejsce<br />nad <em>Bałtykiem</em>",
-      "about.desc": "Cisza i spokój to coś, co cenicie sobie najbardziej? Jednak nie chcielibyście, jadąc na wakacje, nocować kilka kilometrów od morza? Jeśli dotąd myśleliście, że nie da się połączyć mieszkania w samym centrum z odpoczynkiem przy szumie drzew i dźwiękach mew, to byliście w błędzie. Pozwól oprowadzić się po naszej stronie, a pokażemy Ci, jakie uroki skrywają Rowy.",
-      "about.stat.types": "Typy noclegów",
-      "about.stat.guests": "Maks. w apartamencie",
-      "about.stat.area": "Apartament rodzinny",
-      "about.stat.reviews": "Opinie Google",
-      "gallery.eyebrow": "Galeria",
-      "gallery.title": "Poczuj klimat <em>Rodos</em>",
-      "gallery.desc": "Ośrodek otoczony gęstym lasem, komfortowe apartamenty, urokliwe domki letniskowe i plac zabaw dla najmłodszych — zajrzyj do każdego zakątka.",
-      "gallery.tab.0": "Ośrodek",
-      "gallery.tab.1": "Domki RODOS",
-      "gallery.tab.2": "Apartamenty 5-os.",
-      "gallery.tab.3": "Apartamenty 8-os.",
-      "gallery.tab.4": "Plac zabaw",
-      "gallery.label.0": "Ośrodek",
-      "gallery.label.1": "Domki RODOS",
-      "gallery.label.2": "Apartament 5-osobowy",
-      "gallery.label.3": "Apartament 8-osobowy",
-      "gallery.label.4": "Plac zabaw",
-      "rooms.eyebrow": "Noclegi",
-      "rooms.title": "Wybierz swój <em>komfort</em>",
-      "rooms.desc": "Trzy rodzaje zakwaterowania dopasowane do potrzeb rodzin i grup — od przytulnych domków po przestronne apartamenty do 8 osób.",
-      "rooms.type": "Zakwaterowanie",
-      "rooms.from": "od",
-      "rooms.priceUnit": "zł / doba",
-      "rooms.c0.badge": "Najpopularniejsze",
-      "rooms.c0.name": "Domki RODOS",
-      "rooms.c0.f0": "3–4 osoby",
-      "rooms.c0.f1": "Aneks kuchenny",
-      "rooms.c0.f2": "Łazienka",
-      "rooms.c0.f3": "Parking",
-      "rooms.c0.desc": "Urokliwe domki letniskowe ukryte wśród sosen — idealne dla par i małych rodzin szukających ciszy, prywatności i bliskości natury.",
-      "rooms.c1.badge": "Dla rodziny",
-      "rooms.c1.name": "Apartamenty 5-osobowe",
-      "rooms.c1.f0": "4–5 osób",
-      "rooms.c1.f1": "30 m²",
-      "rooms.c1.f2": "Aneks kuchenny",
-      "rooms.c1.f3": "Łazienka",
-      "rooms.c1.f4": "Parking",
-      "rooms.c1.desc": "Komfortowe apartamenty o powierzchni 30 m² — przestrzeń dla maksymalnie 5 osób, wyposażone w nowoczesne udogodnienia i wszystko, czego potrzebujesz na udane wakacje.",
-      "rooms.c2.badge": "Dla grup",
-      "rooms.c2.name": "Apartamenty 8-osobowe",
-      "rooms.c2.f0": "5–8 osób",
-      "rooms.c2.f1": "60 m²",
-      "rooms.c2.f2": "Pełny aneks kuchenny",
-      "rooms.c2.f3": "Łazienka",
-      "rooms.c2.f4": "Parking",
-      "rooms.c2.desc": "Przestronne apartamenty 60 m² dla maksymalnie 8 osób — idealne dla dużych rodzin i grup przyjaciół, którzy chcą spędzić wakacje razem.",
-      "atr.eyebrow": "Atrakcje",
-      "atr.title": "Atrakcje w <em>Rowach</em> i okolicach",
-      "atr.desc": "Niezapomniana przygoda, malownicze spacery, aktywności na świeżym powietrzu i ekscytujące wycieczki — niezależnie od tego, czy szukasz spokoju, czy adrenaliny, nasza oferta spełni Twoje oczekiwania.",
-      "atr.c1.title": "Słowiński Park Narodowy",
-      "atr.c1.desc": "Unikalne w skali Europy miejsce z ruchomymi wydmami, tworzącymi niemal pustynny krajobraz. Idealne na długie spacery, wycieczki rowerowe i obserwację dzikiej przyrody.",
-      "atr.c2.title": "Jezioro Gardno",
-      "atr.c2.desc": "Jedno z większych jezior przybrzeżnych w Polsce. Idealne miejsce do windsurfingu, kajakarstwa i żeglarstwa, a jego okolice przyciągają miłośników ptaków i fotografii.",
-      "atr.c3.title": "Góra Rowokół",
-      "atr.c3.desc": "Wzgórze morenowe 115 m n.p.m. z punktem widokowym na Słowiński Park Narodowy i okoliczne jeziora. Popularny cel wycieczek pieszych i rowerowych, owiany lokalnymi legendami.",
-      "atr.c4.title": "Skansen w Klukach",
-      "atr.c4.desc": "Muzeum na wolnym powietrzu prezentujące tradycyjną wieś słowińską — oryginalne chaty, warsztaty rzemieślnicze i żywa historia regionu. Podróż w czasie dla całej rodziny.",
-      "atr.c5.title": "Latarnia Morska Czołpino",
-      "atr.c5.desc": "Zbudowana w 1875 roku, 25-metrowa latarnia to jeden z najbardziej malowniczych punktów wybrzeża Bałtyku. Z jej szczytu rozciąga się niesamowity widok na morze i lasy.",
-      "atr.c6.title": "Łeba",
-      "atr.c6.desc": "Jedno z najpopularniejszych miejsc wypoczynkowych w Polsce, położone między jeziorami Łebsko i Sarbsko. Zachwyca szerokimi, czystymi plażami i bliskością Słowińskiego Parku Narodowego.",
-      "atr.c7.title": "Ustka",
-      "atr.c7.desc": "Popularne uzdrowisko u ujścia Słupi. Zdrowy klimat, czyste plaże, lasy nadmorskie, port, promenada i zabytkowa latarnia morska — według legendy zamieszkiwana przez ducha latarnika.",
-      "atr.c8.title": "Poddąbie",
-      "atr.c8.desc": "Małe letnisko nad Bałtykiem, między Ustką a Rowami, otoczone lasami. Brzeg wykończony wysokim klifem, czysta piaszczysta plaża i klimat spokojnego, zielonego kurortu.",
-      "atr.c9.title": "Trasa rowerowa R10",
-      "atr.c9.desc": "Popularny szlak wzdłuż polskiego wybrzeża przebiegający przez Rowy. Piękne widoki, bliskość Słowińskiego Parku Narodowego i wygodne ścieżki przez nadmorskie lasy i plaże.",
-      "cn.eyebrow": "Cennik",
-      "cn.title": "Przejrzyste <em>ceny</em>",
-      "cn.desc": "Ze względów logistycznych preferujemy pobyty od soboty do soboty lub od niedzieli do niedzieli. Ceny mogą się różnić w zależności od długości pobytu i liczby osób.",
-      "cn.tab.0": "Sezon niski",
-      "cn.tab.1": "Sezon średni",
-      "cn.tab.2": "Sezon wysoki",
-      "cn.intro.0": "Terminy: <strong>30.05 – 27.06</strong> oraz <strong>22.08 – 05.09</strong>",
-      "cn.intro.1": "Terminy: <strong>27.06 – 11.07</strong> oraz <strong>15.08 – 22.08</strong>",
-      "cn.intro.2": "Termin: <strong>11.07 – 15.08</strong>",
-      "cn.from": "od ",
-      "cn.unit": " zł/doba",
-      "cn.reserve": "Rezerwuj",
-      "cn.eye.cottages": "Domki",
-      "cn.eye.apart": "Apartamenty",
-      "cn.card.cottages.name": "Domki RODOS",
-      "cn.card.cottages.note": "3–4 osoby",
-      "cn.card.apart5.name": "Apartamenty 5-osobowe",
-      "cn.card.apart5.note": "4–5 osób · 30 m²",
-      "cn.card.apart5.rib": "Dla rodziny",
-      "cn.card.apart8.name": "Apartamenty 8-osobowe",
-      "cn.card.apart8.note": "5–8 osób · 60 m²",
-      "cn.li.kitchen": "Aneks kuchenny",
-      "cn.li.kitchenFull": "Pełny aneks kuchenny",
-      "cn.li.bath": "Łazienka",
-      "cn.li.parking": "Jedno miejsce parkingowe",
-      "cn.li.area30": "Powierzchnia 30 m²",
-      "cn.li.area60": "Powierzchnia 60 m²",
-      "cn.notes": "Ceny brutto · Wystawiamy faktury VAT · Do cen należy doliczyć opłatę klimatyczną · Dopłata za dodatkową osobę: 50 zł/doba · Przyjazd po 21:00 — dopłata 150 zł<br /><a href=\"#kontakt\">Skontaktuj się z nami</a> w sprawie rezerwacji i indywidualnych pytań",
-      "inf.eyebrow": "Ważne informacje",
-      "inf.title": "Zanim <em>przyjedziesz</em>",
-      "inf.desc": "Wszystko, co warto wiedzieć przed przyjazdem do RODOSU — zameldowanie, rezerwacja, zasady pobytu i praktyczne wskazówki.",
-      "inf.c1.title": "Zameldowanie i wymeldowanie",
-      "inf.c1.body": "<strong>Check-in:</strong> <strong>15:00 – 18:00</strong> w pierwszym dniu pobytu<br /><strong>Check-out:</strong> do godziny <strong>10:00</strong><br /><br />Prosimy o informację telefoniczną, gdyby planowali Państwo przyjechać później. Wjazd na parking możliwy od godziny <strong>12:00</strong> w dniu przyjazdu.<br /><br />Przyjazd po godzinie <strong>21:00</strong> skutkuje dopłatą w wysokości <strong>150 zł</strong>.",
-      "inf.c2.title": "Rezerwacja i zaliczka",
-      "inf.c2.body": "Po wstępnej rezerwacji, w ciągu <strong>3 dni roboczych</strong> należy dokonać przelewu zaliczki w wysokości <strong>30%</strong> wartości pobytu.<br /><br /><strong>Pozostała kwota:</strong> gotówką w dniu przyjazdu przy wydaniu kluczy lub przelewem dzień wcześniej.<br /><br />Zaliczka <strong>nie podlega zwrotowi</strong> w przypadku rezygnacji — prosimy o wcześniejsze rozważenie terminu.",
-      "inf.c3.title": "Numer konta bankowego",
-      "inf.c3.body": "Wpłaty zaliczek oraz pozostałej kwoty prosimy kierować na poniższy rachunek:<br /><br /><strong class=\"bank-num\">79 1020 4317 0000 5902 0135 2244</strong><span class=\"bank-owner\">Właściciel: <strong>Piotr Wachnicki</strong></span><br /><br />W tytule przelewu prosimy podać imię i nazwisko oraz termin pobytu.",
-      "inf.c4.title": "Preferowane pobyty",
-      "inf.c4.body": "Ze względów logistycznych preferujemy pobyty:<br /><strong>sobota – sobota</strong><br /><strong>niedziela – niedziela</strong><br /><br />Dłuższe pobyty w sezonie wysokim (11.07 – 15.08) mogą być obowiązkowe — prosimy o kontakt w sprawie dostępnych terminów.",
-      "inf.c5.title": "Zwierzęta domowe",
-      "inf.c5.body": "<strong>Zapraszamy gości bez zwierząt domowych.</strong><br /><br />Ze względu na komfort wszystkich Gości oraz charakter ośrodka, nie przyjmujemy zwierząt w żadnym z domków ani apartamentów.<br /><br />Dziękujemy za zrozumienie.",
-      "inf.c6.title": "Parking i dojazd",
-      "inf.c6.body": "<strong>Adres:</strong> ul. Wczasowa 2, 76-212 Rowy<br /><br />Do każdego domku lub apartamentu oferujemy <strong>jedno miejsce parkingowe</strong>.<br />Dodatkowe miejsce: <strong>30 zł / doba</strong> — wyłącznie po uzgodnieniu z właścicielem.<br /><br />Wjazd na parking od godziny <strong>12:00</strong> w dniu przyjazdu.",
-      "inf.c7.title": "Dodatkowe opłaty",
-      "inf.c7.body": "<strong>Opłata klimatyczna</strong> — zgodnie ze stawką gminy<br /><strong>Dodatkowa osoba:</strong> 50 zł / doba<br /><strong>Późny przyjazd (po 21:00):</strong> 150 zł<br /><strong>Dodatkowy parking:</strong> 30 zł / doba<br /><br />Ceny brutto. Wystawiamy faktury VAT na życzenie.",
-      "inf.c8.title": "Co warto wiedzieć?",
-      "inf.c8.body": "<span class=\"tag\">Pościel w cenie</span><span class=\"tag\">Parking</span><span class=\"tag\">Plac zabaw</span><span class=\"tag\">Blisko plaży</span><span class=\"tag\">W sosnowym lesie</span><br /><br /><strong>Uwaga:</strong> w wyposażeniu <strong>nie ma ręczników</strong> — prosimy zabrać swoje.<br />Wynajmujący nie ponosi odpowiedzialności za przedmioty wartościowe pozostawione w lokalu.",
-      "inf.c9.title": "Dla gości",
-      "inf.c9.body": "Istnieje możliwość wypożyczenia <strong>krzesełek plażowych</strong> oraz <strong>parawanów</strong>.<br /><br />W sezonie organizujemy <strong>integracyjne ogniska</strong>, a dla dzieci występy klaunów, animacje oraz dostęp do <strong>domku zabaw</strong> i placu zabaw.<br /><br /><strong>Płatności:</strong> gotówka lub przelew bankowy.",
-      "ko.eyebrow": "Kontakt",
-      "ko.title": "Skontaktuj się <em>z nami</em>",
-      "ko.desc": "Masz pytania? Napisz do nas lub zadzwoń — odpowiemy tak szybko, jak to możliwe i pomożemy zaplanować wymarzony urlop w Rowach.",
-      "ko.addr.lbl": "Adres",
-      "ko.addr.val": "ul. Wczasowa 2<br />76-212 Rowy, woj. pomorskie",
-      "ko.tel.lbl": "Telefon — rezerwacja",
-      "ko.email.lbl": "E-mail",
-      "ko.mapTitle": "Mapa – Ośrodek RODOS, ul. Wczasowa 2, Rowy",
-      "ko.foot.checkin.lbl": "Zameldowanie",
-      "ko.foot.checkin.val": "15:00–18:00 · wymeldowanie do 10:00",
-      "ko.foot.pay.lbl": "Płatność",
-      "ko.foot.pay.val": "Gotówka · Przelew bankowy",
-      "form.title": "Wyślij zapytanie rezerwacyjne",
-      "form.name": "Imię i nazwisko",
-      "form.name.ph": "Jan Kowalski",
-      "form.email": "E-mail",
-      "form.email.ph": "jan@example.com",
-      "form.tel": "Telefon",
-      "form.tel.ph": "+48 600 000 000",
-      "form.type": "Rodzaj zakwaterowania",
-      "form.type.opt.none": "— wybierz —",
-      "form.type.opt.cottage": "Domek letniskowy (do 4 os.)",
-      "form.type.opt.apt5": "Apartament 5-osobowy",
-      "form.type.opt.apt8": "Apartament 8-osobowy",
-      "form.dateIn": "Data przyjazdu",
-      "form.dateOut": "Data wyjazdu",
-      "form.date.ph": "Wybierz datę",
-      "form.adults": "Liczba dorosłych",
-      "form.children": "Liczba dzieci",
-      "form.pets": "Zwierzęta domowe",
-      "form.pets.no": "Nie",
-      "form.pets.yes": "Tak (pies/kot)",
-      "form.source": "Jak nas znalazłeś?",
-      "form.source.opt.none": "— opcjonalnie —",
-      "form.source.opt.recommend": "Polecenie znajomych",
-      "form.source.opt.other": "Inne",
-      "form.message": "Wiadomość / życzenia specjalne",
-      "form.message.ph": "Dodatkowe informacje, życzenia, pytania...",
-      "form.submit": "Wyślij zapytanie",
-      "form.submit.sending": "Wysyłanie...",
-      "form.submit.sent": "Wysłano — odpiszemy wkrótce",
-      "form.note": "Odpowiadamy w ciągu 24 godzin. Dane przetwarzamy zgodnie z RODO i nie udostępniamy ich osobom trzecim.",
-      "foot.desc": "Komfortowe domki i apartamenty w Rowach — cisza, sosnowy las i bliskość Bałtyku oraz Słowińskiego Parku Narodowego.",
-      "foot.col.nav": "Nawigacja",
-      "foot.col.book": "Rezerwacja",
-      "foot.col.social": "Media społecznościowe",
-      "foot.copy": "© <span id=\"year\">2025</span> Ośrodek Wypoczynkowy <span>RODOS</span> · Rowy, Polska · Wszelkie prawa zastrzeżone",
-      "foot.privacy": "Polityka prywatności · RODO",
-    },
+const SUPPORTED = ["pl", "en", "de"];
+const DEFAULT_LANG = "pl";
+const STORAGE_KEY = "rodos-lang";
 
-    en: {
-      "meta.title": "RODOS Resort – Cottages and Apartments in Rowy, Poland",
-      "meta.description": "RODOS Rowy – comfortable cottages and apartments close to the sea. The perfect place for a family holiday in Rowy. Quiet surroundings, near the beach.",
-      "nav.sub": "Rowy on the Baltic Sea",
-      "nav.start": "Home",
-      "nav.gallery": "Gallery",
-      "nav.rooms": "Accommodation",
-      "nav.attractions": "Attractions",
-      "nav.pricing": "Pricing",
-      "nav.info": "Info",
-      "nav.contact": "Contact",
-      "nav.book": "Book your stay",
-      "hero.tag": "Holiday Resort&nbsp;·&nbsp;Rowy, Pomerania",
-      "hero.title.small": "Welcome to",
-      "hero.title.big": "Rodos",
-      "hero.desc": "Comfortable cottages and apartments in the heart of Rowy — where the whisper of the pine forest meets the sound of Baltic waves, and peace is just steps from the beach.",
-      "hero.btnBook": "Book now",
-      "hero.btnDiscover": "Discover the resort",
-      "hero.scroll": "scroll",
-      "about.eyebrow": "About us",
-      "about.title": "Your place<br />by the <em>Baltic Sea</em>",
-      "about.desc": "Do you value peace and quiet above all? Yet you don't want to stay kilometres away from the sea on holiday? If you thought you couldn't combine a central location with rest among the whisper of trees and the calls of seagulls, you were wrong. Let us show you the charms of Rowy.",
-      "about.stat.types": "Types of accommodation",
-      "about.stat.guests": "Max. per apartment",
-      "about.stat.area": "Family apartment",
-      "about.stat.reviews": "Google reviews",
-      "gallery.eyebrow": "Gallery",
-      "gallery.title": "Feel the <em>Rodos</em> atmosphere",
-      "gallery.desc": "A resort surrounded by a dense forest, comfortable apartments, charming holiday cottages and a playground for kids — explore every corner.",
-      "gallery.tab.0": "Resort",
-      "gallery.tab.1": "RODOS Cottages",
-      "gallery.tab.2": "5-person Apartments",
-      "gallery.tab.3": "8-person Apartments",
-      "gallery.tab.4": "Playground",
-      "gallery.label.0": "Resort",
-      "gallery.label.1": "RODOS Cottage",
-      "gallery.label.2": "5-person Apartment",
-      "gallery.label.3": "8-person Apartment",
-      "gallery.label.4": "Playground",
-      "rooms.eyebrow": "Accommodation",
-      "rooms.title": "Choose your <em>comfort</em>",
-      "rooms.desc": "Three types of accommodation tailored to families and groups — from cozy cottages to spacious apartments for up to 8 people.",
-      "rooms.type": "Accommodation",
-      "rooms.from": "from",
-      "rooms.priceUnit": "PLN / night",
-      "rooms.c0.badge": "Most popular",
-      "rooms.c0.name": "RODOS Cottages",
-      "rooms.c0.f0": "3–4 guests",
-      "rooms.c0.f1": "Kitchenette",
-      "rooms.c0.f2": "Bathroom",
-      "rooms.c0.f3": "Parking",
-      "rooms.c0.desc": "Charming holiday cottages hidden among pines — ideal for couples and small families looking for silence, privacy and closeness to nature.",
-      "rooms.c1.badge": "For families",
-      "rooms.c1.name": "5-person Apartments",
-      "rooms.c1.f0": "4–5 guests",
-      "rooms.c1.f1": "30 m²",
-      "rooms.c1.f2": "Kitchenette",
-      "rooms.c1.f3": "Bathroom",
-      "rooms.c1.f4": "Parking",
-      "rooms.c1.desc": "Comfortable 30 m² apartments — space for up to 5 guests, with modern amenities and everything you need for a great holiday.",
-      "rooms.c2.badge": "For groups",
-      "rooms.c2.name": "8-person Apartments",
-      "rooms.c2.f0": "5–8 guests",
-      "rooms.c2.f1": "60 m²",
-      "rooms.c2.f2": "Full kitchen",
-      "rooms.c2.f3": "Bathroom",
-      "rooms.c2.f4": "Parking",
-      "rooms.c2.desc": "Spacious 60 m² apartments for up to 8 guests — ideal for large families and groups of friends who want to spend their holiday together.",
-      "atr.eyebrow": "Attractions",
-      "atr.title": "Things to do in <em>Rowy</em> and around",
-      "atr.desc": "Unforgettable adventures, scenic walks, outdoor activities and exciting trips — whether you're after calm or adrenaline, our recommendations will meet your expectations.",
-      "atr.c1.title": "Słowiński National Park",
-      "atr.c1.desc": "A place unique in Europe with shifting dunes that form an almost desert-like landscape. Perfect for long walks, cycling tours and wildlife watching.",
-      "atr.c2.title": "Lake Gardno",
-      "atr.c2.desc": "One of the largest coastal lakes in Poland. An ideal spot for windsurfing, kayaking and sailing, with surroundings that attract bird-watchers and photographers.",
-      "atr.c3.title": "Mount Rowokół",
-      "atr.c3.desc": "A moraine hill 115 m above sea level with a viewpoint over Słowiński National Park and nearby lakes. A popular destination for hikes and bike rides, wrapped in local legends.",
-      "atr.c4.title": "Kluki Open-Air Museum",
-      "atr.c4.desc": "An open-air museum showcasing a traditional Slovincian village — original cottages, craft workshops and living history of the region. A journey through time for the whole family.",
-      "atr.c5.title": "Czołpino Lighthouse",
-      "atr.c5.desc": "Built in 1875, this 25-metre lighthouse is one of the most picturesque spots on the Baltic coast. From its top you can enjoy an amazing view of the sea and forests.",
-      "atr.c6.title": "Łeba",
-      "atr.c6.desc": "One of the most popular seaside resorts in Poland, located between Lake Łebsko and Lake Sarbsko. It delights with wide, clean beaches and proximity to the Słowiński National Park.",
-      "atr.c7.title": "Ustka",
-      "atr.c7.desc": "A popular spa town at the mouth of the Słupia river. Healthy climate, clean beaches, coastal forests, the port, the promenade and a historic lighthouse — said to be inhabited by the spirit of the keeper.",
-      "atr.c8.title": "Poddąbie",
-      "atr.c8.desc": "A small seaside village on the Baltic between Ustka and Rowy, surrounded by forests. High cliffs along the shore, a clean sandy beach and the atmosphere of a calm, green resort.",
-      "atr.c9.title": "R10 Cycling Route",
-      "atr.c9.desc": "A popular trail along the Polish coast that passes through Rowy. Beautiful views, proximity to the Słowiński National Park and comfortable paths through coastal forests and beaches.",
-      "cn.eyebrow": "Pricing",
-      "cn.title": "Transparent <em>prices</em>",
-      "cn.desc": "For logistical reasons we prefer stays from Saturday to Saturday or Sunday to Sunday. Prices may vary depending on the length of stay and the number of guests.",
-      "cn.tab.0": "Low season",
-      "cn.tab.1": "Mid season",
-      "cn.tab.2": "High season",
-      "cn.intro.0": "Dates: <strong>30.05 – 27.06</strong> and <strong>22.08 – 05.09</strong>",
-      "cn.intro.1": "Dates: <strong>27.06 – 11.07</strong> and <strong>15.08 – 22.08</strong>",
-      "cn.intro.2": "Dates: <strong>11.07 – 15.08</strong>",
-      "cn.from": "from ",
-      "cn.unit": " PLN/night",
-      "cn.reserve": "Book",
-      "cn.eye.cottages": "Cottages",
-      "cn.eye.apart": "Apartments",
-      "cn.card.cottages.name": "RODOS Cottages",
-      "cn.card.cottages.note": "3–4 guests",
-      "cn.card.apart5.name": "5-person Apartments",
-      "cn.card.apart5.note": "4–5 guests · 30 m²",
-      "cn.card.apart5.rib": "For families",
-      "cn.card.apart8.name": "8-person Apartments",
-      "cn.card.apart8.note": "5–8 guests · 60 m²",
-      "cn.li.kitchen": "Kitchenette",
-      "cn.li.kitchenFull": "Full kitchen",
-      "cn.li.bath": "Bathroom",
-      "cn.li.parking": "One parking space",
-      "cn.li.area30": "Area 30 m²",
-      "cn.li.area60": "Area 60 m²",
-      "cn.notes": "Gross prices · VAT invoices issued · Tourist tax to be added · Surcharge for an additional guest: 50 PLN/night · Arrival after 21:00 — 150 PLN surcharge<br /><a href=\"#kontakt\">Contact us</a> for bookings and individual enquiries",
-      "inf.eyebrow": "Good to know",
-      "inf.title": "Before you <em>arrive</em>",
-      "inf.desc": "Everything worth knowing before arriving at RODOS — check-in, booking, house rules and practical tips.",
-      "inf.c1.title": "Check-in and check-out",
-      "inf.c1.body": "<strong>Check-in:</strong> <strong>15:00 – 18:00</strong> on the first day of your stay<br /><strong>Check-out:</strong> by <strong>10:00</strong><br /><br />Please let us know by phone if you plan to arrive later. Parking access is available from <strong>12:00</strong> on the day of arrival.<br /><br />Arrival after <strong>21:00</strong> is subject to an additional <strong>150 PLN</strong> fee.",
-      "inf.c2.title": "Booking and deposit",
-      "inf.c2.body": "After your initial booking, within <strong>3 business days</strong> please transfer a deposit of <strong>30%</strong> of the total stay value.<br /><br /><strong>The remaining amount:</strong> in cash on the day of arrival upon key handover, or by transfer the day before.<br /><br />The deposit is <strong>non-refundable</strong> in case of cancellation — please consider your booking carefully.",
-      "inf.c3.title": "Bank account number",
-      "inf.c3.body": "Please send the deposit and remaining payments to the following account:<br /><br /><strong class=\"bank-num\">79 1020 4317 0000 5902 0135 2244</strong><span class=\"bank-owner\">Owner: <strong>Piotr Wachnicki</strong></span><br /><br />In the transfer title please include your full name and the dates of your stay.",
-      "inf.c4.title": "Preferred stays",
-      "inf.c4.body": "For logistical reasons we prefer stays:<br /><strong>Saturday – Saturday</strong><br /><strong>Sunday – Sunday</strong><br /><br />Longer stays in the high season (11.07 – 15.08) may be required — please contact us about available dates.",
-      "inf.c5.title": "Pets",
-      "inf.c5.body": "<strong>We welcome guests without pets.</strong><br /><br />For the comfort of all our Guests and the nature of the resort, we do not accept animals in any cottage or apartment.<br /><br />Thank you for your understanding.",
-      "inf.c6.title": "Parking and directions",
-      "inf.c6.body": "<strong>Address:</strong> ul. Wczasowa 2, 76-212 Rowy, Poland<br /><br />Each cottage or apartment comes with <strong>one parking space</strong>.<br />Additional space: <strong>30 PLN / night</strong> — only after agreement with the owner.<br /><br />Parking access from <strong>12:00</strong> on the day of arrival.",
-      "inf.c7.title": "Additional fees",
-      "inf.c7.body": "<strong>Tourist tax</strong> — according to the municipal rate<br /><strong>Additional guest:</strong> 50 PLN / night<br /><strong>Late arrival (after 21:00):</strong> 150 PLN<br /><strong>Additional parking:</strong> 30 PLN / night<br /><br />Gross prices. VAT invoices available on request.",
-      "inf.c8.title": "Good to know",
-      "inf.c8.body": "<span class=\"tag\">Linen included</span><span class=\"tag\">Parking</span><span class=\"tag\">Playground</span><span class=\"tag\">Near the beach</span><span class=\"tag\">In a pine forest</span><br /><br /><strong>Please note:</strong> <strong>towels are not provided</strong> — please bring your own.<br />The landlord is not liable for valuables left in the premises.",
-      "inf.c9.title": "For our guests",
-      "inf.c9.body": "You can rent <strong>beach chairs</strong> and <strong>windbreaks</strong>.<br /><br />In high season we host <strong>social bonfires</strong>, clown shows and animations for children, plus access to the <strong>play cottage</strong> and the playground.<br /><br /><strong>Payments:</strong> cash or bank transfer.",
-      "ko.eyebrow": "Contact",
-      "ko.title": "Get in <em>touch</em>",
-      "ko.desc": "Got questions? Write to us or call — we'll reply as quickly as we can and help you plan your dream holiday in Rowy.",
-      "ko.addr.lbl": "Address",
-      "ko.addr.val": "ul. Wczasowa 2<br />76-212 Rowy, Pomerania, Poland",
-      "ko.tel.lbl": "Phone — reservations",
-      "ko.email.lbl": "E-mail",
-      "ko.mapTitle": "Map – RODOS Resort, ul. Wczasowa 2, Rowy",
-      "ko.foot.checkin.lbl": "Check-in",
-      "ko.foot.checkin.val": "15:00–18:00 · check-out by 10:00",
-      "ko.foot.pay.lbl": "Payment",
-      "ko.foot.pay.val": "Cash · Bank transfer",
-      "form.title": "Send a booking enquiry",
-      "form.name": "Full name",
-      "form.name.ph": "John Smith",
-      "form.email": "E-mail",
-      "form.email.ph": "john@example.com",
-      "form.tel": "Phone",
-      "form.tel.ph": "+48 600 000 000",
-      "form.type": "Accommodation type",
-      "form.type.opt.none": "— select —",
-      "form.type.opt.cottage": "Holiday cottage (up to 4 guests)",
-      "form.type.opt.apt5": "5-person Apartment",
-      "form.type.opt.apt8": "8-person Apartment",
-      "form.dateIn": "Arrival date",
-      "form.dateOut": "Departure date",
-      "form.date.ph": "Select a date",
-      "form.adults": "Adults",
-      "form.children": "Children",
-      "form.pets": "Pets",
-      "form.pets.no": "No",
-      "form.pets.yes": "Yes (dog/cat)",
-      "form.source": "How did you find us?",
-      "form.source.opt.none": "— optional —",
-      "form.source.opt.recommend": "Word of mouth",
-      "form.source.opt.other": "Other",
-      "form.message": "Message / special requests",
-      "form.message.ph": "Additional info, requests, questions...",
-      "form.submit": "Send enquiry",
-      "form.submit.sending": "Sending...",
-      "form.submit.sent": "Sent — we'll reply soon",
-      "form.note": "We reply within 24 hours. Your data is processed under GDPR and never shared with third parties.",
-      "foot.desc": "Comfortable cottages and apartments in Rowy — silence, a pine forest and proximity to the Baltic Sea and the Słowiński National Park.",
-      "foot.col.nav": "Navigation",
-      "foot.col.book": "Booking",
-      "foot.col.social": "Social media",
-      "foot.copy": "© <span id=\"year\">2025</span> RODOS Holiday Resort <span>·</span> Rowy, Poland · All rights reserved",
-      "foot.privacy": "Privacy policy · GDPR",
-    },
+function detectLang() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved && SUPPORTED.includes(saved)) return saved;
+  const browser = (navigator.language || DEFAULT_LANG).slice(0, 2).toLowerCase();
+  return SUPPORTED.includes(browser) ? browser : DEFAULT_LANG;
+}
 
-    de: {
-      "meta.title": "RODOS Ferienresort – Häuschen und Apartments in Rowy, Polen",
-      "meta.description": "RODOS Rowy – komfortable Häuschen und Apartments in Meeresnähe. Der perfekte Ort für einen Familienurlaub in Rowy. Ruhige Umgebung, nah am Strand.",
-      "nav.sub": "Rowy an der Ostsee",
-      "nav.start": "Start",
-      "nav.gallery": "Galerie",
-      "nav.rooms": "Unterkünfte",
-      "nav.attractions": "Ausflüge",
-      "nav.pricing": "Preise",
-      "nav.info": "Infos",
-      "nav.contact": "Kontakt",
-      "nav.book": "Aufenthalt buchen",
-      "hero.tag": "Ferienresort&nbsp;·&nbsp;Rowy, Pommern",
-      "hero.title.small": "Willkommen in",
-      "hero.title.big": "Rodos",
-      "hero.desc": "Komfortable Häuschen und Apartments im Herzen von Rowy — dort, wo das Rauschen des Kiefernwalds auf die Ostseewellen trifft und die Ruhe nur Schritte vom Strand entfernt ist.",
-      "hero.btnBook": "Jetzt buchen",
-      "hero.btnDiscover": "Resort entdecken",
-      "hero.scroll": "scroll",
-      "about.eyebrow": "Über das Resort",
-      "about.title": "Ihr Platz<br />an der <em>Ostsee</em>",
-      "about.desc": "Schätzen Sie Ruhe und Stille über alles? Möchten aber im Urlaub nicht kilometerweit vom Meer entfernt übernachten? Wenn Sie bisher dachten, zentrale Lage und Erholung im Rauschen der Bäume und im Ruf der Möwen ließen sich nicht vereinen, lagen Sie falsch. Lassen Sie uns Ihnen zeigen, welche Reize Rowy verbirgt.",
-      "about.stat.types": "Unterkunftstypen",
-      "about.stat.guests": "Max. pro Apartment",
-      "about.stat.area": "Familienapartment",
-      "about.stat.reviews": "Google-Bewertungen",
-      "gallery.eyebrow": "Galerie",
-      "gallery.title": "Erleben Sie das <em>Rodos</em>-Gefühl",
-      "gallery.desc": "Ein Resort, umgeben von dichtem Wald, komfortable Apartments, charmante Ferienhäuschen und ein Spielplatz für die Kleinsten — entdecken Sie jeden Winkel.",
-      "gallery.tab.0": "Resort",
-      "gallery.tab.1": "RODOS Häuschen",
-      "gallery.tab.2": "5-Personen-Apartments",
-      "gallery.tab.3": "8-Personen-Apartments",
-      "gallery.tab.4": "Spielplatz",
-      "gallery.label.0": "Resort",
-      "gallery.label.1": "RODOS Häuschen",
-      "gallery.label.2": "5-Personen-Apartment",
-      "gallery.label.3": "8-Personen-Apartment",
-      "gallery.label.4": "Spielplatz",
-      "rooms.eyebrow": "Unterkünfte",
-      "rooms.title": "Wählen Sie Ihren <em>Komfort</em>",
-      "rooms.desc": "Drei Arten von Unterkünften, abgestimmt auf Familien und Gruppen — von gemütlichen Häuschen bis zu geräumigen Apartments für bis zu 8 Personen.",
-      "rooms.type": "Unterkunft",
-      "rooms.from": "ab",
-      "rooms.priceUnit": "PLN / Nacht",
-      "rooms.c0.badge": "Am beliebtesten",
-      "rooms.c0.name": "RODOS Häuschen",
-      "rooms.c0.f0": "3–4 Personen",
-      "rooms.c0.f1": "Küchenzeile",
-      "rooms.c0.f2": "Badezimmer",
-      "rooms.c0.f3": "Parkplatz",
-      "rooms.c0.desc": "Charmante Ferienhäuschen, versteckt zwischen Kiefern — ideal für Paare und kleine Familien, die Ruhe, Privatsphäre und Nähe zur Natur suchen.",
-      "rooms.c1.badge": "Für Familien",
-      "rooms.c1.name": "5-Personen-Apartments",
-      "rooms.c1.f0": "4–5 Personen",
-      "rooms.c1.f1": "30 m²",
-      "rooms.c1.f2": "Küchenzeile",
-      "rooms.c1.f3": "Badezimmer",
-      "rooms.c1.f4": "Parkplatz",
-      "rooms.c1.desc": "Komfortable 30 m² Apartments — Platz für bis zu 5 Personen, mit moderner Ausstattung und allem, was Sie für einen gelungenen Urlaub brauchen.",
-      "rooms.c2.badge": "Für Gruppen",
-      "rooms.c2.name": "8-Personen-Apartments",
-      "rooms.c2.f0": "5–8 Personen",
-      "rooms.c2.f1": "60 m²",
-      "rooms.c2.f2": "Vollküche",
-      "rooms.c2.f3": "Badezimmer",
-      "rooms.c2.f4": "Parkplatz",
-      "rooms.c2.desc": "Geräumige 60 m² Apartments für bis zu 8 Personen — ideal für Großfamilien und Freundesgruppen, die ihren Urlaub gemeinsam verbringen möchten.",
-      "atr.eyebrow": "Ausflüge",
-      "atr.title": "Ausflüge in <em>Rowy</em> und Umgebung",
-      "atr.desc": "Unvergessliche Abenteuer, malerische Spaziergänge, Outdoor-Aktivitäten und spannende Ausflüge — ob Sie Ruhe oder Adrenalin suchen, unser Angebot erfüllt Ihre Erwartungen.",
-      "atr.c1.title": "Slowinzischer Nationalpark",
-      "atr.c1.desc": "Ein europaweit einzigartiger Ort mit Wanderdünen, die eine fast wüstenartige Landschaft bilden. Perfekt für lange Spaziergänge, Radtouren und Naturbeobachtung.",
-      "atr.c2.title": "Gardno-See",
-      "atr.c2.desc": "Einer der größten Küstenseen Polens. Ein idealer Ort für Windsurfen, Kajakfahren und Segeln, dessen Umgebung Vogelfreunde und Fotografen anzieht.",
-      "atr.c3.title": "Rowokół-Berg",
-      "atr.c3.desc": "Ein 115 m hoher Moränenhügel mit Aussichtspunkt auf den Slowinzischen Nationalpark und die umliegenden Seen. Beliebtes Ziel für Wanderungen und Radtouren, umrankt von lokalen Legenden.",
-      "atr.c4.title": "Freilichtmuseum Kluki",
-      "atr.c4.desc": "Ein Freilichtmuseum, das ein traditionelles slowinzisches Dorf zeigt — originale Häuser, Handwerksstätten und lebendige Regionalgeschichte. Eine Zeitreise für die ganze Familie.",
-      "atr.c5.title": "Leuchtturm Czołpino",
-      "atr.c5.desc": "Erbaut 1875, ist dieser 25 Meter hohe Leuchtturm einer der malerischsten Punkte der Ostseeküste. Von seiner Spitze bietet sich ein unglaublicher Blick auf Meer und Wälder.",
-      "atr.c6.title": "Łeba",
-      "atr.c6.desc": "Einer der beliebtesten Ferienorte Polens, zwischen Łebsko- und Sarbsko-See gelegen. Beeindruckt mit breiten, sauberen Stränden und der Nähe zum Slowinzischen Nationalpark.",
-      "atr.c7.title": "Ustka",
-      "atr.c7.desc": "Ein beliebter Kurort an der Mündung der Słupia. Gesundes Klima, saubere Strände, Küstenwälder, Hafen, Promenade und ein historischer Leuchtturm — der Legende nach vom Geist des Leuchtturmwärters bewohnt.",
-      "atr.c8.title": "Poddąbie",
-      "atr.c8.desc": "Ein kleines Seebad an der Ostsee zwischen Ustka und Rowy, umgeben von Wäldern. Steile Klippen entlang der Küste, ein sauberer Sandstrand und die Atmosphäre eines ruhigen, grünen Kurorts.",
-      "atr.c9.title": "Radweg R10",
-      "atr.c9.desc": "Ein beliebter Weg entlang der polnischen Küste, der durch Rowy führt. Wunderschöne Ausblicke, Nähe zum Slowinzischen Nationalpark und bequeme Pfade durch Küstenwälder und Strände.",
-      "cn.eyebrow": "Preise",
-      "cn.title": "Transparente <em>Preise</em>",
-      "cn.desc": "Aus logistischen Gründen bevorzugen wir Aufenthalte von Samstag bis Samstag oder von Sonntag bis Sonntag. Preise können je nach Aufenthaltsdauer und Personenzahl variieren.",
-      "cn.tab.0": "Nebensaison",
-      "cn.tab.1": "Zwischensaison",
-      "cn.tab.2": "Hauptsaison",
-      "cn.intro.0": "Termine: <strong>30.05. – 27.06.</strong> und <strong>22.08. – 05.09.</strong>",
-      "cn.intro.1": "Termine: <strong>27.06. – 11.07.</strong> und <strong>15.08. – 22.08.</strong>",
-      "cn.intro.2": "Termin: <strong>11.07. – 15.08.</strong>",
-      "cn.from": "ab ",
-      "cn.unit": " PLN/Nacht",
-      "cn.reserve": "Buchen",
-      "cn.eye.cottages": "Häuschen",
-      "cn.eye.apart": "Apartments",
-      "cn.card.cottages.name": "RODOS Häuschen",
-      "cn.card.cottages.note": "3–4 Personen",
-      "cn.card.apart5.name": "5-Personen-Apartments",
-      "cn.card.apart5.note": "4–5 Personen · 30 m²",
-      "cn.card.apart5.rib": "Für Familien",
-      "cn.card.apart8.name": "8-Personen-Apartments",
-      "cn.card.apart8.note": "5–8 Personen · 60 m²",
-      "cn.li.kitchen": "Küchenzeile",
-      "cn.li.kitchenFull": "Vollküche",
-      "cn.li.bath": "Badezimmer",
-      "cn.li.parking": "Ein Parkplatz",
-      "cn.li.area30": "Fläche 30 m²",
-      "cn.li.area60": "Fläche 60 m²",
-      "cn.notes": "Bruttopreise · Wir stellen MwSt.-Rechnungen aus · Kurtaxe kommt hinzu · Zuschlag für eine zusätzliche Person: 50 PLN/Nacht · Anreise nach 21:00 — Zuschlag 150 PLN<br /><a href=\"#kontakt\">Kontaktieren Sie uns</a> für Buchungen und individuelle Fragen",
-      "inf.eyebrow": "Wichtige Infos",
-      "inf.title": "Vor Ihrer <em>Anreise</em>",
-      "inf.desc": "Alles, was Sie vor Ihrer Ankunft im RODOS wissen sollten — Check-in, Buchung, Hausordnung und praktische Hinweise.",
-      "inf.c1.title": "Check-in und Check-out",
-      "inf.c1.body": "<strong>Check-in:</strong> <strong>15:00 – 18:00</strong> am ersten Aufenthaltstag<br /><strong>Check-out:</strong> bis <strong>10:00</strong> Uhr<br /><br />Bitte informieren Sie uns telefonisch, falls Sie später anreisen möchten. Zufahrt zum Parkplatz ab <strong>12:00</strong> Uhr am Anreisetag möglich.<br /><br />Anreise nach <strong>21:00</strong> Uhr führt zu einem Aufschlag von <strong>150 PLN</strong>.",
-      "inf.c2.title": "Buchung und Anzahlung",
-      "inf.c2.body": "Nach der Vorbuchung ist innerhalb von <strong>3 Werktagen</strong> eine Anzahlung in Höhe von <strong>30%</strong> des Aufenthaltswerts zu überweisen.<br /><br /><strong>Restbetrag:</strong> bar am Anreisetag bei der Schlüsselübergabe oder per Überweisung am Vortag.<br /><br />Die Anzahlung ist im Falle einer Stornierung <strong>nicht erstattungsfähig</strong> — bitte überlegen Sie Ihren Termin im Voraus.",
-      "inf.c3.title": "Bankverbindung",
-      "inf.c3.body": "Bitte überweisen Sie die Anzahlung und den Restbetrag auf folgendes Konto:<br /><br /><strong class=\"bank-num\">79 1020 4317 0000 5902 0135 2244</strong><span class=\"bank-owner\">Inhaber: <strong>Piotr Wachnicki</strong></span><br /><br />Im Verwendungszweck geben Sie bitte Vor- und Nachnamen sowie den Aufenthaltszeitraum an.",
-      "inf.c4.title": "Bevorzugte Aufenthalte",
-      "inf.c4.body": "Aus logistischen Gründen bevorzugen wir Aufenthalte:<br /><strong>Samstag – Samstag</strong><br /><strong>Sonntag – Sonntag</strong><br /><br />Längere Aufenthalte in der Hauptsaison (11.07. – 15.08.) können erforderlich sein — bitte kontaktieren Sie uns für verfügbare Termine.",
-      "inf.c5.title": "Haustiere",
-      "inf.c5.body": "<strong>Wir empfangen Gäste ohne Haustiere.</strong><br /><br />Aus Rücksicht auf alle Gäste und den Charakter des Resorts nehmen wir in keinem Häuschen oder Apartment Tiere auf.<br /><br />Danke für Ihr Verständnis.",
-      "inf.c6.title": "Parken und Anfahrt",
-      "inf.c6.body": "<strong>Adresse:</strong> ul. Wczasowa 2, 76-212 Rowy, Polen<br /><br />Zu jedem Häuschen oder Apartment gehört <strong>ein Parkplatz</strong>.<br />Zusätzlicher Stellplatz: <strong>30 PLN / Nacht</strong> — nur nach Absprache mit dem Eigentümer.<br /><br />Zufahrt zum Parkplatz ab <strong>12:00</strong> Uhr am Anreisetag.",
-      "inf.c7.title": "Zusätzliche Gebühren",
-      "inf.c7.body": "<strong>Kurtaxe</strong> — gemäß Gemeindetarif<br /><strong>Zusätzliche Person:</strong> 50 PLN / Nacht<br /><strong>Späte Anreise (nach 21:00):</strong> 150 PLN<br /><strong>Zusätzlicher Parkplatz:</strong> 30 PLN / Nacht<br /><br />Bruttopreise. MwSt.-Rechnungen auf Wunsch.",
-      "inf.c8.title": "Wissenswertes",
-      "inf.c8.body": "<span class=\"tag\">Bettwäsche inklusive</span><span class=\"tag\">Parkplatz</span><span class=\"tag\">Spielplatz</span><span class=\"tag\">Strandnah</span><span class=\"tag\">Im Kiefernwald</span><br /><br /><strong>Hinweis:</strong> <strong>Handtücher sind nicht vorhanden</strong> — bitte selbst mitbringen.<br />Der Vermieter haftet nicht für in der Unterkunft zurückgelassene Wertsachen.",
-      "inf.c9.title": "Für unsere Gäste",
-      "inf.c9.body": "Sie können <strong>Strandstühle</strong> und <strong>Windschutze</strong> ausleihen.<br /><br />In der Saison organisieren wir <strong>gesellige Lagerfeuer</strong>, Clown-Auftritte und Animationen für Kinder sowie Zugang zum <strong>Spielhaus</strong> und zum Spielplatz.<br /><br /><strong>Zahlungen:</strong> bar oder per Überweisung.",
-      "ko.eyebrow": "Kontakt",
-      "ko.title": "Kontaktieren Sie <em>uns</em>",
-      "ko.desc": "Haben Sie Fragen? Schreiben Sie uns oder rufen Sie an — wir antworten so schnell wie möglich und helfen Ihnen, Ihren Traumurlaub in Rowy zu planen.",
-      "ko.addr.lbl": "Adresse",
-      "ko.addr.val": "ul. Wczasowa 2<br />76-212 Rowy, Pommern, Polen",
-      "ko.tel.lbl": "Telefon — Reservierungen",
-      "ko.email.lbl": "E-Mail",
-      "ko.mapTitle": "Karte – RODOS Resort, ul. Wczasowa 2, Rowy",
-      "ko.foot.checkin.lbl": "Check-in",
-      "ko.foot.checkin.val": "15:00–18:00 · Check-out bis 10:00",
-      "ko.foot.pay.lbl": "Zahlung",
-      "ko.foot.pay.val": "Bargeld · Überweisung",
-      "form.title": "Buchungsanfrage senden",
-      "form.name": "Vor- und Nachname",
-      "form.name.ph": "Max Mustermann",
-      "form.email": "E-Mail",
-      "form.email.ph": "max@beispiel.de",
-      "form.tel": "Telefon",
-      "form.tel.ph": "+49 151 000 000",
-      "form.type": "Unterkunftsart",
-      "form.type.opt.none": "— auswählen —",
-      "form.type.opt.cottage": "Ferienhäuschen (bis zu 4 Pers.)",
-      "form.type.opt.apt5": "5-Personen-Apartment",
-      "form.type.opt.apt8": "8-Personen-Apartment",
-      "form.dateIn": "Anreisedatum",
-      "form.dateOut": "Abreisedatum",
-      "form.date.ph": "Datum wählen",
-      "form.adults": "Erwachsene",
-      "form.children": "Kinder",
-      "form.pets": "Haustiere",
-      "form.pets.no": "Nein",
-      "form.pets.yes": "Ja (Hund/Katze)",
-      "form.source": "Wie haben Sie uns gefunden?",
-      "form.source.opt.none": "— optional —",
-      "form.source.opt.recommend": "Empfehlung",
-      "form.source.opt.other": "Sonstiges",
-      "form.message": "Nachricht / Sonderwünsche",
-      "form.message.ph": "Zusätzliche Infos, Wünsche, Fragen...",
-      "form.submit": "Anfrage senden",
-      "form.submit.sending": "Wird gesendet...",
-      "form.submit.sent": "Gesendet — wir antworten in Kürze",
-      "form.note": "Wir antworten innerhalb von 24 Stunden. Ihre Daten werden gemäß DSGVO verarbeitet und nicht an Dritte weitergegeben.",
-      "foot.desc": "Komfortable Häuschen und Apartments in Rowy — Ruhe, Kiefernwald und Nähe zur Ostsee und zum Slowinzischen Nationalpark.",
-      "foot.col.nav": "Navigation",
-      "foot.col.book": "Reservierung",
-      "foot.col.social": "Social Media",
-      "foot.copy": "© <span id=\"year\">2025</span> RODOS Ferienresort <span>·</span> Rowy, Polen · Alle Rechte vorbehalten",
-      "foot.privacy": "Datenschutz · DSGVO",
-    },
-  };
+await i18next.init({
+  lng: detectLang(),
+  fallbackLng: DEFAULT_LANG,
+  supportedLngs: SUPPORTED,
+  keySeparator: false,
+  nsSeparator: false,
+  interpolation: { escapeValue: false },
+  resources: Object.fromEntries(
+    SUPPORTED.map((lng) => [lng, { translation: resources[lng] }]),
+  ),
+});
 
-  function detectLang() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && SUPPORTED.includes(saved)) return saved;
-    const browser = (navigator.language || navigator.userLanguage || DEFAULT)
-      .slice(0, 2)
-      .toLowerCase();
-    return SUPPORTED.includes(browser) ? browser : DEFAULT;
-  }
+export function t(key) {
+  return i18next.t(key);
+}
 
-  function t(key, lang) {
-    return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS[DEFAULT][key] || key;
-  }
+export function getLang() {
+  return i18next.language;
+}
 
-  function apply(lang) {
-    const dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT];
-    document.documentElement.setAttribute("lang", lang);
+function applyDom() {
+  const lang = i18next.language;
+  document.documentElement.setAttribute("lang", lang);
 
-    // textContent
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const k = el.getAttribute("data-i18n");
-      if (dict[k] != null) el.textContent = dict[k];
-    });
-    // innerHTML
-    document.querySelectorAll("[data-i18n-html]").forEach((el) => {
-      const k = el.getAttribute("data-i18n-html");
-      if (dict[k] != null) el.innerHTML = dict[k];
-    });
-    // placeholder
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-      const k = el.getAttribute("data-i18n-placeholder");
-      if (dict[k] != null) el.setAttribute("placeholder", dict[k]);
-    });
-    // title attr
-    document.querySelectorAll("[data-i18n-title]").forEach((el) => {
-      const k = el.getAttribute("data-i18n-title");
-      if (dict[k] != null) el.setAttribute("title", dict[k]);
-    });
-    // <title> + meta description
-    if (dict["meta.title"]) document.title = dict["meta.title"];
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && dict["meta.description"])
-      metaDesc.setAttribute("content", dict["meta.description"]);
-
-    // sync select value
-    const sel = document.getElementById("langSelect");
-    if (sel && sel.value !== lang) sel.value = lang;
-
-    // restore dynamic year after foot.copy innerHTML replacement
-    const y = document.getElementById("year");
-    if (y) y.textContent = new Date().getFullYear();
-
-    // flatpickr locale update if initialized
-    if (window.flatpickr && window._fpInstances) {
-      const fp = window.flatpickr;
-      const localeObj =
-        (lang === "pl" && fp.l10ns.pl) ||
-        (lang === "de" && fp.l10ns.de) ||
-        fp.l10ns.default;
-      window._fpInstances.forEach((inst) => {
-        try {
-          inst.set("locale", localeObj);
-        } catch (_) {}
-      });
-    }
-  }
-
-  function setLang(lang) {
-    if (!SUPPORTED.includes(lang)) return;
-    localStorage.setItem(STORAGE_KEY, lang);
-    apply(lang);
-  }
-
-  // expose
-  window.i18n = {
-    apply,
-    setLang,
-    detectLang,
-    t,
-    getLang: () => localStorage.getItem(STORAGE_KEY) || detectLang(),
-    SUPPORTED,
-  };
-
-  // auto-init on DOM ready
-  document.addEventListener("DOMContentLoaded", () => {
-    apply(detectLang());
-    const sel = document.getElementById("langSelect");
-    if (sel) sel.addEventListener("change", (e) => setLang(e.target.value));
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = i18next.t(el.dataset.i18n);
   });
-})();
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    el.innerHTML = i18next.t(el.dataset.i18nHtml);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    el.setAttribute("placeholder", i18next.t(el.dataset.i18nPlaceholder));
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    el.setAttribute("title", i18next.t(el.dataset.i18nTitle));
+  });
+
+  const metaTitle = i18next.t("meta.title");
+  if (metaTitle) document.title = metaTitle;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  const descTr = i18next.t("meta.description");
+  if (metaDesc && descTr) metaDesc.setAttribute("content", descTr);
+
+  const sel = document.getElementById("langSelect");
+  if (sel && sel.value !== lang) sel.value = lang;
+
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  updateFlatpickrLocale(lang);
+}
+
+function updateFlatpickrLocale(lang) {
+  if (!window.flatpickr || !window._fpInstances) return;
+  const fp = window.flatpickr;
+  const locale =
+    (lang === "pl" && fp.l10ns.pl) ||
+    (lang === "de" && fp.l10ns.de) ||
+    fp.l10ns.default;
+  window._fpInstances.forEach((inst) => {
+    try {
+      inst.set("locale", locale);
+    } catch {}
+  });
+}
+
+export async function setLang(lang) {
+  if (!SUPPORTED.includes(lang)) return;
+  localStorage.setItem(STORAGE_KEY, lang);
+  await i18next.changeLanguage(lang);
+  applyDom();
+}
+
+export function initI18n() {
+  applyDom();
+  const sel = document.getElementById("langSelect");
+  if (sel) sel.addEventListener("change", (e) => setLang(e.target.value));
+}

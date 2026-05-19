@@ -1,0 +1,141 @@
+@media (max-width: 1100px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  #nav {
+    padding: 0 1.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(8, 24, 36, 0.98);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+
+    &.open {
+      display: flex;
+    }
+  }
+
+  .nav-book,
+  .nav-booking {
+    display: none;
+  }
+
+  .lang-select {
+    font-size: 0.6rem;
+    padding: 0.32rem 1.2rem 0.32rem 0.55rem;
+  }
+
+  .nav-right {
+    gap: 0.7rem;
+  }
+
+  #about {
+    grid-template-columns: 1fr;
+  }
+
+  .ab-img {
+    height: 320px;
+    min-height: 0;
+  }
+
+  .ab-txt {
+    padding: 3rem 1.5rem;
+  }
+
+  .rooms,
+  .pcards,
+  .info-grid,
+  .atr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ko-grid,
+  .foot-inner {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 2.8rem 1.5rem 1.4rem;
+  }
+
+  .foot-inner {
+    gap: 1.8rem;
+  }
+
+  .foot-bar {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+  }
+
+  .cform {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .co-foot {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .fr2 {
+    grid-template-columns: 1fr;
+  }
+
+  #galeria,
+  #noclegi,
+  #atrakcje,
+  #cennik,
+  #informacje,
+  #kontakt {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .gal-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: 8px;
+  }
+
+  .hero-feats {
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gal-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .s-tabs {
+    gap: 0.35rem;
+  }
+
+  .s-tab {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.6rem;
+  }
+}

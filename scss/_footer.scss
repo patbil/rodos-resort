@@ -1,0 +1,92 @@
+footer {
+  background: var(--darker);
+  color: rgba(255, 255, 255, 0.26);
+  padding: 3.5rem 3rem 2rem;
+}
+
+.foot-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.foot-brand p {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.26);
+  max-width: 300px;
+  margin-top: 0.8rem;
+}
+
+.foot-col {
+  h4 {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  h4 + ul + h4 {
+    margin-top: 1.4rem;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: 0.45rem;
+
+      a {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.32);
+        transition: color 0.2s;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.foot-bar {
+  max-width: 1150px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.18);
+
+  span {
+    color: var(--gold);
+  }
+}
+
+.fb-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 0.4rem;
+
+  em {
+    color: var(--gold);
+    font-style: normal;
+  }
+}
+
+.fb-tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 0.8rem;
+}

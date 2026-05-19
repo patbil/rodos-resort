@@ -1,0 +1,41 @@
+.rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.rvl {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.rv.in,
+.rvl.in {
+  opacity: 1;
+  transform: none;
+}
+
+// Staggered entrance delays — generated, no manual nth-child blocks
+@for $i from 1 through 3 {
+  .rooms .rc:nth-child(#{$i}),
+  .pcards .pcard:nth-child(#{$i}) {
+    transition-delay: #{($i - 1) * 0.15}s;
+  }
+}
+
+@for $i from 1 through 9 {
+  .atr-grid .ac:nth-child(#{$i}) {
+    transition-delay: #{$i * 0.05}s;
+  }
+}
+
+@for $i from 1 through 6 {
+  .info-grid .icard:nth-child(#{$i}) {
+    transition-delay: #{$i * 0.05}s;
+  }
+}

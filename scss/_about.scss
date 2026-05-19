@@ -1,0 +1,86 @@
+#about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--dark);
+  align-items: stretch;
+}
+
+.ab-img {
+  width: 100%;
+  min-height: 540px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.82);
+    transition: transform 8s;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.ab-txt {
+  padding: 5rem;
+
+  .sh {
+    color: #fff;
+  }
+
+  .sp {
+    color: rgba(255, 255, 255, 0.54);
+    max-width: 460px;
+  }
+}
+
+.ab-divider {
+  width: 50px;
+  height: 1.5px;
+  background: var(--gold);
+  margin: 1.8rem 0;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.st-num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1;
+
+  sup {
+    font-size: 1.1rem;
+    vertical-align: top;
+    margin-top: 0.3rem;
+  }
+}
+
+.st-lbl {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  margin-top: 0.2rem;
+}
+
+.st-unit {
+  font-size: 0.5em;
+}
+
+.st-star {
+  font-size: 0.55em;
+  color: var(--gold);
+  margin-left: 0.08em;
+}

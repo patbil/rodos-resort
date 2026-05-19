@@ -1,0 +1,137 @@
+.flatpickr-calendar {
+  background: #fff;
+  border: 1px solid rgba(14, 61, 92, 0.12);
+  border-radius: 2px;
+  box-shadow: 0 24px 60px -18px rgba(14, 61, 92, 0.28);
+  font-family: "DM Sans", sans-serif;
+  width: 320px;
+  padding: 0.6rem 0.4rem 0.8rem;
+
+  &.arrowTop::before,
+  &.arrowTop::after {
+    border-bottom-color: #fff;
+  }
+}
+
+.flatpickr-months {
+  padding: 0.4rem 0.2rem 0.6rem;
+  align-items: center;
+
+  .flatpickr-month {
+    color: var(--ocean);
+    height: 38px;
+    overflow: visible;
+  }
+
+  .flatpickr-prev-month,
+  .flatpickr-next-month {
+    color: var(--gold);
+    fill: var(--gold);
+    padding: 10px;
+    height: 38px;
+
+    &:hover svg {
+      fill: var(--ocean);
+    }
+  }
+}
+
+.flatpickr-current-month {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ocean);
+  padding: 0;
+  height: 38px;
+  line-height: 38px;
+
+  .flatpickr-monthDropdown-months {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ocean);
+    background: transparent;
+  }
+
+  input.cur-year {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ocean);
+  }
+}
+
+.flatpickr-weekdays {
+  height: 32px;
+  padding: 0 0.2rem;
+}
+
+span.flatpickr-weekday {
+  color: var(--text-mid);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.flatpickr-days {
+  padding: 0.2rem;
+  width: 100%;
+}
+
+.dayContainer {
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.flatpickr-day {
+  color: var(--text);
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  max-width: 40px;
+  height: 38px;
+  line-height: 38px;
+
+  &:hover {
+    background: rgba(184, 136, 58, 0.1);
+    border-color: rgba(184, 136, 58, 0.25);
+    color: var(--ocean);
+  }
+
+  &.today {
+    border-color: var(--gold);
+    color: var(--ocean);
+    background: transparent;
+
+    &:hover {
+      background: rgba(184, 136, 58, 0.12);
+      color: var(--ocean);
+    }
+  }
+
+  &.selected,
+  &.selected:hover,
+  &.startRange,
+  &.endRange {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+  }
+
+  &.flatpickr-disabled,
+  &.flatpickr-disabled:hover,
+  &.prevMonthDay,
+  &.nextMonthDay {
+    color: rgba(30, 45, 58, 0.28);
+    background: transparent;
+    border-color: transparent;
+  }
+
+  &.flatpickr-disabled:hover {
+    cursor: not-allowed;
+  }
+}

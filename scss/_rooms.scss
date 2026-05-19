@@ -1,0 +1,150 @@
+#noclegi {
+  background: var(--dark);
+  padding: 5.5rem 3rem;
+}
+
+.noc-hdr {
+  text-align: center;
+  margin-bottom: 3.5rem;
+
+  .sh {
+    color: #fff;
+  }
+
+  .sp {
+    color: rgba(255, 255, 255, 0.48);
+    margin: 0.7rem auto 0;
+    max-width: 500px;
+  }
+}
+
+.rooms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.rc {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    transform 0.35s;
+
+  &:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+
+    .rc-img img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.rc-img {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+}
+
+.rc-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.28rem 0.8rem;
+
+  &.is-ocean {
+    background: var(--ocean);
+    color: #fff;
+  }
+
+  &.is-teal {
+    background: var(--teal);
+    color: #fff;
+  }
+}
+
+.rc-body {
+  padding: 1.8rem;
+}
+
+.rc-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.rc-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.55rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.rc-feats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.rf {
+  font-size: 0.65rem;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.06em;
+}
+
+.rc-desc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.72;
+  margin-bottom: 1.5rem;
+}
+
+.rc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.rp-from {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.rp-val {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.1rem;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.rp-unit {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+}

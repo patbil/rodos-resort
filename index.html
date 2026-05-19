@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RODOS – Rowy</title>
-    <meta name="description" content="" />
+    <meta
+      name="description"
+      content="RODOS Rowy – komfortowe domki i apartamenty blisko morza. Idealne miejsce na rodzinne wakacje w Rowach. Spokojna okolica, blisko plaży."
+    />
     <meta
       name="keywords"
       content="RODOS Rowy, domki Rowy, apartamenty Rowy, noclegi Rowy, wakacje Rowy, wynajem domków Rowy, Morze Bałtyckie, Słowiński Park Narodowy"
@@ -39,6 +42,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#start" data-i18n="nav.start">Start</a></li>
         <li><a href="#galeria" data-i18n="nav.gallery">Galeria</a></li>
+        <li><a href="#noclegi" data-i18n="nav.rooms">Noclegi</a></li>
         <li><a href="#atrakcje" data-i18n="nav.attractions">Atrakcje</a></li>
         <li><a href="#cennik" data-i18n="nav.pricing">Cennik</a></li>
         <li><a href="#informacje" data-i18n="nav.info">Informacje</a></li>
@@ -50,20 +54,17 @@
           <option value="en">EN</option>
           <option value="de">DE</option>
         </select>
-        <button
-          class="nav-book"
-          data-i18n="nav.book"
-          onclick="
-            document
-              .getElementById('kontakt')
-              .scrollIntoView({ behavior: 'smooth' })
-          "
-        >
-          Rezerwuj pobyt
-        </button>
-        <div class="hamburger" id="hamburger">
+        <a
+          class="nav-booking"
+          href="https://www.booking.com/"
+          target="_blank"
+          rel="noopener"
+          data-i18n="nav.booking"
+        >Booking.com</a>
+        <a class="nav-book" href="#kontakt" data-i18n="nav.book">Rezerwuj pobyt</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
           <span></span><span></span><span></span>
-        </div>
+        </button>
       </div>
     </nav>
 
@@ -107,7 +108,7 @@
     </section>
 
     <!-- ══ ABOUT ══ -->
-    <div id="about">
+    <section id="about">
       <div class="ab-img">
         <img src="./img/cottages.jpg" alt="Domki RODOS w Rowach" />
       </div>
@@ -117,13 +118,8 @@
           Twoje miejsce<br />nad <em>Bałtykiem</em>
         </h2>
         <div class="ab-divider"></div>
-        <p class="sp" data-i18n="about.desc">
-          Cisza i spokój to coś, co cenicie sobie najbardziej? Jednak nie
-          chcielibyście, jadąc na wakacje, nocować kilka kilometrów od morza?
-          Jeśli dotąd myśleliście, że nie da się połączyć mieszkania w samym
-          centrum z odpoczynkiem przy szumie drzew i dźwiękach mew, to byliście
-          w błędzie. Pozwól oprowadzić się po naszej stronie, a pokażemy Ci,
-          jakie uroki skrywają Rowy.
+        <p class="sp" data-i18n-html="about.desc">
+          Cisza i spokój to coś, co cenicie sobie najbardziej?
         </p>
         <div class="stats-row">
           <div>
@@ -144,7 +140,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- ══ GALERIA ══ -->
     <section id="galeria">
@@ -166,7 +162,7 @@
       </div>
       <div class="gal-wrap">
         <!-- 0: OŚRODEK -->
-        <div class="gal-grid gl0 active" id="gal-0" data-label="Ośrodek">
+        <div class="gal-grid active" id="gal-0">
           <div class="gi"><img src="./img/gallery/resort/1.jpg" alt="Ośrodek RODOS" /><div class="ov"><span>Ośrodek — 01</span></div></div>
           <div class="gi"><img src="./img/gallery/resort/2.jpg" alt="Ośrodek RODOS" /><div class="ov"><span>Ośrodek — 02</span></div></div>
           <div class="gi"><img src="./img/gallery/resort/3.jpg" alt="Ośrodek RODOS" /><div class="ov"><span>Ośrodek — 03</span></div></div>
@@ -177,7 +173,7 @@
           <div class="gi"><img src="./img/gallery/resort/8.jpg" alt="Ośrodek RODOS" /><div class="ov"><span>Ośrodek — 08</span></div></div>
         </div>
         <!-- 1: DOMKI -->
-        <div class="gal-grid gl1" id="gal-1" data-label="Domki RODOS">
+        <div class="gal-grid" id="gal-1">
           <div class="gi"><img src="./img/gallery/cottages/1.jpg" alt="Domek RODOS" /><div class="ov"><span>Domki RODOS — 01</span></div></div>
           <div class="gi"><img src="./img/gallery/cottages/2.jpg" alt="Domek RODOS" /><div class="ov"><span>Domki RODOS — 02</span></div></div>
           <div class="gi"><img src="./img/gallery/cottages/3.jpg" alt="Domek RODOS" /><div class="ov"><span>Domki RODOS — 03</span></div></div>
@@ -192,7 +188,7 @@
           <div class="gi"><img src="./img/gallery/cottages/12.jpg" alt="Domek RODOS" /><div class="ov"><span>Domki RODOS — 12</span></div></div>
         </div>
         <!-- 2: APT 5 -->
-        <div class="gal-grid gl2" id="gal-2" data-label="Apartament 5-osobowy">
+        <div class="gal-grid" id="gal-2">
           <div class="gi"><img src="./img/gallery/apartaments/1.jpg" alt="Apartament 5-osobowy" /><div class="ov"><span>Apartament 5-os. — 01</span></div></div>
           <div class="gi"><img src="./img/gallery/apartaments/2.jpg" alt="Apartament 5-osobowy" /><div class="ov"><span>Apartament 5-os. — 02</span></div></div>
           <div class="gi"><img src="./img/gallery/apartaments/3.jpg" alt="Apartament 5-osobowy" /><div class="ov"><span>Apartament 5-os. — 03</span></div></div>
@@ -204,7 +200,7 @@
           <div class="gi"><img src="./img/gallery/apartaments/9.jpg" alt="Apartament 5-osobowy" /><div class="ov"><span>Apartament 5-os. — 09</span></div></div>
         </div>
         <!-- 3: APT 8 -->
-        <div class="gal-grid gl3" id="gal-3" data-label="Apartament 8-osobowy">
+        <div class="gal-grid" id="gal-3">
           <div class="gi"><img src="./img/gallery/apartaments_big/1.jpg" alt="Apartament 8-osobowy" /><div class="ov"><span>Apartament 8-os. — 01</span></div></div>
           <div class="gi"><img src="./img/gallery/apartaments_big/2.jpg" alt="Apartament 8-osobowy" /><div class="ov"><span>Apartament 8-os. — 02</span></div></div>
           <div class="gi"><img src="./img/gallery/apartaments_big/3.jpg" alt="Apartament 8-osobowy" /><div class="ov"><span>Apartament 8-os. — 03</span></div></div>
@@ -216,7 +212,7 @@
           <div class="gi"><img src="./img/gallery/apartaments_big/9.jpg" alt="Apartament 8-osobowy" /><div class="ov"><span>Apartament 8-os. — 09</span></div></div>
         </div>
         <!-- 4: PLAC ZABAW -->
-        <div class="gal-grid gl4" id="gal-4" data-label="Plac zabaw">
+        <div class="gal-grid" id="gal-4">
           <div class="gi"><img src="./img/gallery/playground/1.jpg" alt="Plac zabaw" /><div class="ov"><span>Plac zabaw — 01</span></div></div>
           <div class="gi"><img src="./img/gallery/playground/2.jpg" alt="Plac zabaw" /><div class="ov"><span>Plac zabaw — 02</span></div></div>
           <div class="gi"><img src="./img/gallery/playground/3.jpg" alt="Plac zabaw" /><div class="ov"><span>Plac zabaw — 03</span></div></div>
@@ -671,8 +667,7 @@
               <strong>Check-out:</strong> do godziny
               <strong>10:00</strong><br /><br />
               Prosimy o informację telefoniczną, gdyby planowali Państwo
-              przyjechać później. Wjazd na parking możliwy od godziny
-              <strong>12:00</strong> w dniu przyjazdu.<br /><br />
+              przyjechać później.<br /><br />
               Przyjazd po godzinie <strong>21:00</strong> skutkuje dopłatą w
               wysokości <strong>150 zł</strong>.
             </div>
@@ -720,22 +715,10 @@
           </div>
           <div class="icard rv">
             <div class="ic-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="4.5" r="2"/><circle cx="18" cy="8.5" r="2"/><circle cx="4.5" cy="10" r="2"/><path d="M9.5 10a5 5 0 0 1 5 5v3.5a3 3 0 0 1-5.8 1.05C7.45 17.4 6 17 4 17a2.5 2.5 0 0 1-.5-5Z"/></svg>
-            </div>
-            <h3 class="ic-title" data-i18n="inf.c5.title">Zwierzęta domowe</h3>
-            <div class="ic-body" data-i18n-html="inf.c5.body">
-              <strong>Zapraszamy gości bez zwierząt domowych.</strong><br /><br />
-              Ze względu na komfort wszystkich Gości oraz charakter ośrodka,
-              nie przyjmujemy zwierząt w żadnym z domków ani apartamentów.<br /><br />
-              Dziękujemy za zrozumienie.
-            </div>
-          </div>
-          <div class="icard rv">
-            <div class="ic-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V15h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
             </div>
-            <h3 class="ic-title" data-i18n="inf.c6.title">Parking i dojazd</h3>
-            <div class="ic-body" data-i18n-html="inf.c6.body">
+            <h3 class="ic-title" data-i18n="inf.c5.title">Parking i dojazd</h3>
+            <div class="ic-body" data-i18n-html="inf.c5.body">
               <strong>Adres:</strong> ul. Wczasowa 2, 76-212 Rowy<br /><br />
               Do każdego domku lub apartamentu oferujemy
               <strong>jedno miejsce parkingowe</strong>.<br />
@@ -747,47 +730,23 @@
           </div>
           <div class="icard rv">
             <div class="ic-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <h3 class="ic-title" data-i18n="inf.c7.title">Dodatkowe opłaty</h3>
-            <div class="ic-body" data-i18n-html="inf.c7.body">
-              <strong>Opłata klimatyczna</strong> — zgodnie ze stawką gminy<br />
-              <strong>Dodatkowa osoba:</strong> 50 zł / doba<br />
-              <strong>Późny przyjazd (po 21:00):</strong> 150 zł<br />
-              <strong>Dodatkowy parking:</strong> 30 zł / doba<br /><br />
-              Ceny brutto. Wystawiamy faktury VAT na życzenie.
-            </div>
-          </div>
-          <div class="icard rv">
-            <div class="ic-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.8" fill="currentColor" stroke="none"/></svg>
             </div>
-            <h3 class="ic-title" data-i18n="inf.c8.title">Co warto wiedzieć?</h3>
-            <div class="ic-body" data-i18n-html="inf.c8.body">
+            <h3 class="ic-title" data-i18n="inf.c6.title">Co warto wiedzieć</h3>
+            <div class="ic-body" data-i18n-html="inf.c6.body">
               <span class="tag">Pościel w cenie</span>
               <span class="tag">Parking</span>
               <span class="tag">Plac zabaw</span>
               <span class="tag">Blisko plaży</span>
               <span class="tag">W sosnowym lesie</span><br /><br />
+              <strong>Zapraszamy gości bez zwierząt domowych</strong> —
+              dziękujemy za zrozumienie.<br /><br />
               <strong>Uwaga:</strong> w wyposażeniu
-              <strong>nie ma ręczników</strong> — prosimy zabrać swoje.<br />
-              Wynajmujący nie ponosi odpowiedzialności za przedmioty
-              wartościowe pozostawione w lokalu.
-            </div>
-          </div>
-          <div class="icard rv">
-            <div class="ic-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.5" y1="4.5" x2="5.9" y2="5.9"/><line x1="18.1" y1="18.1" x2="19.5" y2="19.5"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.5" y1="19.5" x2="5.9" y2="18.1"/><line x1="18.1" y1="5.9" x2="19.5" y2="4.5"/></svg>
-            </div>
-            <h3 class="ic-title" data-i18n="inf.c9.title">Dla gości</h3>
-            <div class="ic-body" data-i18n-html="inf.c9.body">
-              Istnieje możliwość wypożyczenia
-              <strong>krzesełek plażowych</strong> oraz
-              <strong>parawanów</strong>.<br /><br />
-              W sezonie organizujemy <strong>integracyjne ogniska</strong>,
-              a dla dzieci występy klaunów, animacje oraz dostęp do
-              <strong>domku zabaw</strong> i placu zabaw.<br /><br />
-              <strong>Płatności:</strong> gotówka lub przelew bankowy.
+              <strong>nie ma ręczników</strong> — prosimy zabrać swoje.<br /><br />
+              Możliwość wypożyczenia <strong>krzesełek plażowych</strong>
+              i <strong>parawanów</strong>. W sezonie organizujemy
+              <strong>integracyjne ogniska</strong> oraz animacje dla dzieci.
+              Płatność: gotówka lub przelew bankowy.
             </div>
           </div>
         </div>
@@ -856,13 +815,6 @@
             </div>
             <div class="co-foot">
               <div class="cf-item">
-                <svg class="cf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <div>
-                  <div class="cf-lbl" data-i18n="ko.foot.checkin.lbl">Zameldowanie</div>
-                  <div class="cf-val" data-i18n="ko.foot.checkin.val">15:00–18:00 · wymeldowanie do 10:00</div>
-                </div>
-              </div>
-              <div class="cf-item">
                 <svg class="cf-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
                 <div>
                   <div class="cf-lbl" data-i18n="ko.foot.pay.lbl">Płatność</div>
@@ -873,26 +825,26 @@
           </div>
           <!-- RIGHT: FORM -->
           <div class="rv">
-            <div class="cform">
+            <form class="cform" id="bookingForm" novalidate>
               <div class="ctitle" data-i18n="form.title">Wyślij zapytanie rezerwacyjne</div>
               <div class="fr2">
                 <div class="fg">
-                  <label data-i18n="form.name">Imię i nazwisko</label
-                  ><input type="text" data-i18n-placeholder="form.name.ph" placeholder="Jan Kowalski" />
+                  <label for="f-name" data-i18n="form.name">Imię i nazwisko</label>
+                  <input id="f-name" name="name" type="text" data-i18n-placeholder="form.name.ph" placeholder="Jan Kowalski" />
                 </div>
                 <div class="fg">
-                  <label data-i18n="form.email">E-mail</label
-                  ><input type="email" data-i18n-placeholder="form.email.ph" placeholder="jan@example.com" />
+                  <label for="f-email" data-i18n="form.email">E-mail</label>
+                  <input id="f-email" name="email" type="email" data-i18n-placeholder="form.email.ph" placeholder="jan@example.com" />
                 </div>
               </div>
               <div class="fr2">
                 <div class="fg">
-                  <label data-i18n="form.tel">Telefon</label
-                  ><input type="tel" data-i18n-placeholder="form.tel.ph" placeholder="+48 600 000 000" />
+                  <label for="f-tel" data-i18n="form.tel">Telefon</label>
+                  <input id="f-tel" name="tel" type="tel" data-i18n-placeholder="form.tel.ph" placeholder="+48 600 000 000" />
                 </div>
                 <div class="fg">
-                  <label data-i18n="form.type">Rodzaj zakwaterowania</label>
-                  <select>
+                  <label for="f-type" data-i18n="form.type">Rodzaj zakwaterowania</label>
+                  <select id="f-type" name="type">
                     <option value="" data-i18n="form.type.opt.none">— wybierz —</option>
                     <option data-i18n="form.type.opt.cottage">Domek letniskowy (do 4 os.)</option>
                     <option data-i18n="form.type.opt.apt5">Apartament 5-osobowy</option>
@@ -902,35 +854,35 @@
               </div>
               <div class="fr2">
                 <div class="fg">
-                  <label data-i18n="form.dateIn">Data przyjazdu</label
-                  ><input type="text" class="fp-date" id="dateIn" data-i18n-placeholder="form.date.ph" placeholder="Wybierz datę" readonly />
+                  <label for="dateIn" data-i18n="form.dateIn">Data przyjazdu</label>
+                  <input type="text" class="fp-date" id="dateIn" name="dateIn" data-i18n-placeholder="form.date.ph" placeholder="Wybierz datę" readonly />
                 </div>
                 <div class="fg">
-                  <label data-i18n="form.dateOut">Data wyjazdu</label
-                  ><input type="text" class="fp-date" id="dateOut" data-i18n-placeholder="form.date.ph" placeholder="Wybierz datę" readonly />
-                </div>
-              </div>
-              <div class="fr2">
-                <div class="fg">
-                  <label data-i18n="form.adults">Liczba dorosłych</label
-                  ><input type="number" min="1" max="8" placeholder="2" />
-                </div>
-                <div class="fg">
-                  <label data-i18n="form.children">Liczba dzieci</label
-                  ><input type="number" min="0" max="6" placeholder="0" />
+                  <label for="dateOut" data-i18n="form.dateOut">Data wyjazdu</label>
+                  <input type="text" class="fp-date" id="dateOut" name="dateOut" data-i18n-placeholder="form.date.ph" placeholder="Wybierz datę" readonly />
                 </div>
               </div>
               <div class="fr2">
                 <div class="fg">
-                  <label data-i18n="form.pets">Zwierzęta domowe</label>
-                  <select>
+                  <label for="f-adults" data-i18n="form.adults">Liczba dorosłych</label>
+                  <input id="f-adults" name="adults" type="number" min="1" max="8" placeholder="2" />
+                </div>
+                <div class="fg">
+                  <label for="f-children" data-i18n="form.children">Liczba dzieci</label>
+                  <input id="f-children" name="children" type="number" min="0" max="6" placeholder="0" />
+                </div>
+              </div>
+              <div class="fr2">
+                <div class="fg">
+                  <label for="f-pets" data-i18n="form.pets">Zwierzęta domowe</label>
+                  <select id="f-pets" name="pets">
                     <option value="nie" data-i18n="form.pets.no">Nie</option>
                     <option value="tak" data-i18n="form.pets.yes">Tak (pies/kot)</option>
                   </select>
                 </div>
                 <div class="fg">
-                  <label data-i18n="form.source">Jak nas znalazłeś?</label>
-                  <select>
+                  <label for="f-source" data-i18n="form.source">Jak nas znalazłeś?</label>
+                  <select id="f-source" name="source">
                     <option value="" data-i18n="form.source.opt.none">— opcjonalnie —</option>
                     <option>Google</option>
                     <option>Facebook</option>
@@ -941,26 +893,23 @@
                 </div>
               </div>
               <div class="fg">
-                <label data-i18n="form.message">Wiadomość / życzenia specjalne</label
-                ><textarea
+                <label for="f-message" data-i18n="form.message">Wiadomość / życzenia specjalne</label>
+                <textarea
+                  id="f-message"
+                  name="message"
                   rows="4"
                   data-i18n-placeholder="form.message.ph"
                   placeholder="Dodatkowe informacje, życzenia, pytania..."
                 ></textarea>
               </div>
-              <button
-                class="btn-p fsub"
-                id="submitBtn"
-                data-i18n="form.submit"
-                onclick="sendForm(event)"
-              >
+              <button type="submit" class="btn-p fsub" id="submitBtn" data-i18n="form.submit">
                 Wyślij zapytanie
               </button>
               <p class="cform-note" data-i18n="form.note">
                 Odpowiadamy w ciągu 24 godzin. Dane przetwarzamy zgodnie z RODO
                 i nie udostępniamy ich osobom trzecim.
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -996,6 +945,14 @@
             <li><a href="tel:+48505816638">+48 505 816 638</a></li>
             <li>
               <a href="mailto:info@rodos-rowy.pl">info@rodos-rowy.pl</a>
+            </li>
+            <li>
+              <a
+                href="https://www.booking.com/"
+                target="_blank"
+                rel="noopener"
+                data-i18n="foot.booking"
+              >Rezerwuj na Booking.com</a>
             </li>
           </ul>
           <h4 data-i18n="foot.col.social">Media społecznościowe</h4>
@@ -1048,7 +1005,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/de.js"></script>
-    <script src="./js/i18n.js"></script>
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
