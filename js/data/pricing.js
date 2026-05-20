@@ -9,7 +9,6 @@ const rooms = [
     id: "cottages",
     eyeKey: "cn.eye.cottages",
     nameKey: "cn.card.cottages.name",
-    noteKey: "cn.card.cottages.note",
     features: ["cn.li.kitchen", "cn.li.bath", "cn.li.parking"],
     featured: false,
   },
@@ -17,7 +16,6 @@ const rooms = [
     id: "apt5",
     eyeKey: "cn.eye.apart",
     nameKey: "cn.card.apart5.name",
-    noteKey: "cn.card.apart5.note",
     ribbonKey: "cn.card.apart5.rib",
     features: ["cn.li.area30", "cn.li.kitchen", "cn.li.bath", "cn.li.parking"],
     featured: true,
@@ -26,7 +24,6 @@ const rooms = [
     id: "apt8",
     eyeKey: "cn.eye.apart",
     nameKey: "cn.card.apart8.name",
-    noteKey: "cn.card.apart8.note",
     features: [
       "cn.li.area60",
       "cn.li.kitchenFull",

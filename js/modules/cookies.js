@@ -1,46 +1,48 @@
-const STORAGE_KEY = "rodos-consent";
+import config from "../config.js";
+import { storage } from "../utils/storage.js";
+import { byId, qs, show, hide } from "../utils/dom.js";
 
-const readConsent = () => {
-  try {
-    return localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-};
-
-const saveConsent = (value) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, value);
-  } catch {}
-};
+let banner = null;
 
 function loadMap() {
-  const iframe = document.querySelector(".map-wrap iframe[data-src]");
-  if (iframe && !iframe.src) iframe.src = iframe.dataset.src;
-  const placeholder = document.getElementById("map-placeholder");
-  if (placeholder) placeholder.hidden = true;
+  const iframe = qs(".map-wrap iframe[data-src]");
+  if (iframe && !iframe.src) {
+    iframe.src = iframe.dataset.src;
+    hide(byId("map-placeholder"));
+  }
+}
+
+function handleAccept() {
+  storage.set(config.COOKIES_STORAGE_KEY, config.CONSENT_ACCEPTED);
+  hide(banner);
+  loadMap();
+}
+
+function handleDecline() {
+  storage.set(config.COOKIES_STORAGE_KEY, config.CONSENT_DECLINED);
+  hide(banner);
+}
+
+function bindEvents() {
+  byId("cookie-accept")?.addEventListener("click", handleAccept);
+  byId("map-consent-btn")?.addEventListener("click", handleAccept);
+  byId("cookie-decline")?.addEventListener("click", handleDecline);
 }
 
 function init() {
-  const banner = document.getElementById("cookie-banner");
-  const consent = readConsent();
+  const consent = storage.get(config.COOKIES_STORAGE_KEY);
 
-  if (consent === "accepted") loadMap();
-  else if (banner && !consent) banner.hidden = false;
-
-  const accept = () => {
-    saveConsent("accepted");
-    if (banner) banner.hidden = true;
+  if (consent === config.CONSENT_ACCEPTED) {
     loadMap();
-  };
-  const decline = () => {
-    saveConsent("declined");
-    if (banner) banner.hidden = true;
-  };
+    return;
+  }
 
-  document.getElementById("cookie-accept")?.addEventListener("click", accept);
-  document.getElementById("map-consent-btn")?.addEventListener("click", accept);
-  document.getElementById("cookie-decline")?.addEventListener("click", decline);
+  banner = byId("cookie-banner");
+
+  if (!consent && banner) {
+    show(banner);
+    bindEvents();
+  }
 }
 
 export default { init };

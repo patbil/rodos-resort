@@ -1,21 +1,16 @@
-const byId = (id) => document.getElementById(id);
+import { byId, qsa, toggleActive } from "../utils/dom.js";
 
-const markActive = (selector, isActive) =>
-  document
-    .querySelectorAll(selector)
-    .forEach((el) => el.classList.toggle("active", isActive(el)));
-
-function initGalleryTabs() {
-  byId("gallery-tabs")?.addEventListener("click", (e) => {
-    const tab = e.target.closest(".gallery-tab");
+function setupTabs() {
+  byId("gallery-tabs")?.addEventListener("click", (event) => {
+    const tab = event.target.closest(".gallery-tab");
     if (!tab) return;
-    const category = tab.dataset.cat;
-    markActive(".gallery-tab", (el) => el === tab);
-    markActive(".gallery-grid", (el) => el.dataset.cat === category);
+    const { cat } = tab.dataset;
+    toggleActive(".gallery-tab", (el) => el === tab);
+    toggleActive(".gallery-grid", (el) => el.dataset.cat === cat);
   });
 }
 
-function initLightbox() {
+function setupLightbox() {
   const lightbox = byId("lightbox");
   if (!lightbox) return;
   const image = byId("lightbox-image");
@@ -26,6 +21,8 @@ function initLightbox() {
   const show = () => {
     image.src = images[current].src;
     caption.textContent = images[current].alt;
+  };
+  const open = () => {
     lightbox.classList.add("open");
     document.body.style.overflow = "hidden";
   };
@@ -33,60 +30,41 @@ function initLightbox() {
     lightbox.classList.remove("open");
     document.body.style.overflow = "";
   };
-  const go = (step) => {
+  const move = (step) => {
     current = (current + step + images.length) % images.length;
     show();
   };
 
-  document.querySelectorAll(".gallery-item").forEach((item) => {
+  qsa(".gallery-item").forEach((item) => {
     item.addEventListener("click", () => {
-      const siblings = [...item.closest(".gallery-grid").querySelectorAll(".gallery-item")];
+      const siblings = qsa(".gallery-item", item.closest(".gallery-grid"));
       images = siblings.map((el) => {
         const img = el.querySelector("img");
         return { src: img.src, alt: img.alt };
       });
       current = siblings.indexOf(item);
       show();
+      open();
     });
   });
 
   byId("lightbox-close").addEventListener("click", close);
-  byId("lightbox-prev").addEventListener("click", () => go(-1));
-  byId("lightbox-next").addEventListener("click", () => go(1));
-  lightbox.addEventListener("click", (e) => e.target === lightbox && close());
-  document.addEventListener("keydown", (e) => {
+  byId("lightbox-prev").addEventListener("click", () => move(-1));
+  byId("lightbox-next").addEventListener("click", () => move(1));
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) close();
+  });
+  document.addEventListener("keydown", (event) => {
     if (!lightbox.classList.contains("open")) return;
-    if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") go(-1);
-    if (e.key === "ArrowRight") go(1);
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") move(-1);
+    if (event.key === "ArrowRight") move(1);
   });
-}
-
-function initSeasonTabs() {
-  byId("season-tabs")?.addEventListener("click", (e) => {
-    const tab = e.target.closest(".season-tab");
-    if (!tab) return;
-    const season = tab.dataset.season;
-    markActive(".season-tab", (el) => el === tab);
-    markActive(".pricing-pane", (el) => el.dataset.season === season);
-    replayReveals(`.pricing-pane[data-season="${season}"]`);
-  });
-}
-
-function replayReveals(paneSelector) {
-  document
-    .querySelector(paneSelector)
-    ?.querySelectorAll(".reveal")
-    .forEach((el) => {
-      el.classList.remove("in");
-      requestAnimationFrame(() => el.classList.add("in"));
-    });
 }
 
 function init() {
-  initGalleryTabs();
-  initLightbox();
-  initSeasonTabs();
+  setupTabs();
+  setupLightbox();
 }
 
 export default { init };

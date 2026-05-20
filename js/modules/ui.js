@@ -1,6 +1,16 @@
-const byId = (id) => document.getElementById(id);
+import { byId, qsa } from "../utils/dom.js";
 
-function initLoader() {
+const SECTION_IDS = [
+  "start",
+  "gallery",
+  "rooms",
+  "attractions",
+  "pricing",
+  "info",
+  "contact",
+];
+
+function setupLoader() {
   const loader = byId("loader");
   if (!loader) return;
   const video = byId("hero-video");
@@ -19,36 +29,41 @@ function initLoader() {
   setTimeout(hide, 3500);
 }
 
-function initParticles(count = 20) {
+function createParticle() {
+  const particle = document.createElement("div");
+  particle.className = "particle";
+  const duration = 9 + Math.random() * 13;
+  const driftX = `${(Math.random() - 0.5) * 160}px`;
+  particle.style.cssText = [
+    `left:${Math.random() * 100}%`,
+    `--dx:${driftX}`,
+    `animation-duration:${duration}s`,
+    `animation-delay:${Math.random() * duration}s`,
+  ].join(";");
+  return particle;
+}
+
+function setupParticles(count = 20) {
   const container = byId("hero-particles-container");
   if (!container) return;
-
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < count; i++) {
-    const particle = document.createElement("div");
-    particle.className = "particle";
-    const duration = 9 + Math.random() * 13;
-    const driftX = `${(Math.random() - 0.5) * 160}px`;
-    particle.style.cssText = `left:${Math.random() * 100}%;--dx:${driftX};animation-duration:${duration}s;animation-delay:${Math.random() * duration}s;`;
-    fragment.appendChild(particle);
-  }
+  for (let i = 0; i < count; i++) fragment.appendChild(createParticle());
   container.appendChild(fragment);
 }
 
-function initReveal() {
+function setupReveal() {
   const observer = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((entry) => {
+    (entries) => {
+      for (const entry of entries) {
         if (entry.isIntersecting) entry.target.classList.add("in");
-      }),
+      }
+    },
     { threshold: 0.1 },
   );
-  document
-    .querySelectorAll(".reveal, .reveal-left")
-    .forEach((el) => observer.observe(el));
+  qsa(".reveal, .reveal-left").forEach((el) => observer.observe(el));
 }
 
-function initNav() {
+function setupHamburger() {
   const burger = byId("hamburger");
   const menu = byId("nav-links");
   if (!burger || !menu) return;
@@ -59,51 +74,53 @@ function initNav() {
     burger.setAttribute("aria-expanded", String(open));
   };
 
-  burger.addEventListener("click", () => setOpen(!menu.classList.contains("open")));
-  menu.querySelectorAll("a").forEach((link) =>
-    link.addEventListener("click", () => setOpen(false)),
+  burger.addEventListener("click", () =>
+    setOpen(!menu.classList.contains("open")),
   );
+  menu
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", () => setOpen(false)));
 }
 
-function initScrollSpy() {
-  const sectionIds = ["start", "gallery", "rooms", "attractions", "pricing", "info", "contact"];
-  const navbar = byId("nav");
-  const links = document.querySelectorAll(".nav-links a");
-  let scheduled = false;
+function activeSectionId() {
+  let id = "";
+  for (const sectionId of SECTION_IDS) {
+    const section = byId(sectionId);
+    if (section && window.scrollY >= section.offsetTop - 100) id = sectionId;
+  }
+  return id;
+}
 
-  const highlight = () => {
-    let activeId = "";
-    for (const id of sectionIds) {
-      const section = byId(id);
-      if (section && window.scrollY >= section.offsetTop - 100) activeId = id;
-    }
+function setupScrollSpy() {
+  const navbar = byId("nav");
+  const links = qsa(".nav-links a");
+
+  const update = () => {
+    const activeId = activeSectionId();
     links.forEach((link) =>
-      link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`),
+      link.classList.toggle("active", link.hash === `#${activeId}`),
     );
     navbar?.classList.toggle("scrolled", window.scrollY > 60);
-    scheduled = false;
   };
 
+  let scheduled = false;
   window.addEventListener("scroll", () => {
     if (scheduled) return;
     scheduled = true;
-    requestAnimationFrame(highlight);
+    requestAnimationFrame(() => {
+      update();
+      scheduled = false;
+    });
   });
-  highlight();
-}
-
-function initYear() {
-  const target = byId("year");
-  if (target) target.textContent = new Date().getFullYear();
+  update();
 }
 
 function init() {
-  initLoader();
-  initParticles();
-  initReveal();
-  initNav();
-  initScrollSpy();
-  initYear();
+  setupLoader();
+  setupParticles();
+  setupReveal();
+  setupHamburger();
+  setupScrollSpy();
 }
 
 export default { init };

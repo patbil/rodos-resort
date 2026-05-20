@@ -4,6 +4,7 @@ import gallery from "../data/gallery.js";
 import pricing from "../data/pricing.js";
 import infoCards from "../data/info.js";
 import social from "../data/social.js";
+import { byId } from "../utils/dom.js";
 
 const FOOTER_NAV = [
   { href: "#start", labelKey: "nav.start" },
@@ -25,7 +26,7 @@ const CONTACT_INFO = {
 const pad2 = (n) => String(n).padStart(2, "0");
 
 function setHtml(id, html) {
-  const el = document.getElementById(id);
+  const el = byId(id);
   if (el) el.innerHTML = html;
 }
 
@@ -148,7 +149,6 @@ function renderPricing() {
         <div class="pricing-card-eyebrow" data-i18n="${room.eyeKey}"></div>
         <div class="pricing-card-name" data-i18n="${room.nameKey}"></div>
         <div class="pricing-card-amount"><sup data-i18n="cn.from"></sup>${season.prices[room.id]}<sub data-i18n="cn.unit"></sub></div>
-        <div class="pricing-card-note" data-i18n="${room.noteKey}"></div>
         <ul class="pricing-card-list">${features}</ul>
         <a href="#contact" class="${btnClass}" data-i18n="cn.reserve"></a>
       </div>`;
