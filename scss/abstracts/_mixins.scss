@@ -1,7 +1,11 @@
 @use "variables" as *;
 
-// Small uppercase letter-spaced label — recurs in eyebrows, tags, tab buttons,
-// nav links, stat labels, ribbon, hero scroll indicator.
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin uppercase-label(
   $size: 0.66rem,
   $tracking: 0.18em,
@@ -15,16 +19,100 @@
   color: $color;
 }
 
-// Card hover effect: subtle lift + soft shadow. Used on rooms, attractions,
-// info, pricing cards.
-@mixin card-lift($y: 4px, $shadow: 0 24px 50px -18px rgba($dark, 0.3)) {
-  transition:
-    transform 0.35s,
-    box-shadow 0.35s,
-    border-color 0.35s;
+@mixin container($max: $container) {
+  max-width: $max;
+  margin-inline: auto;
+}
+
+@mixin section-header($mb: 3rem, $on-dark: false) {
+  text-align: center;
+  margin-bottom: $mb;
+
+  @if $on-dark {
+    .section-heading {
+      color: $white;
+    }
+  }
+
+  .section-paragraph {
+    margin: 0.7rem auto 0;
+    max-width: 500px;
+
+    @if $on-dark {
+      color: rgba($white, 0.5);
+    }
+  }
+}
+
+@mixin crest($size, $font-size) {
+  @include flex-center;
+  width: $size;
+  height: $size;
+  border: 1.5px solid $gold;
+  font-family: $font-display;
+  font-size: $font-size;
+  color: $gold;
+  letter-spacing: 0.05em;
+}
+
+@mixin cover-image($duration: 0.6s) {
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $duration;
+  }
+}
+
+@mixin icon-stroke($w: 1.6) {
+  stroke: currentColor;
+  stroke-width: $w;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@mixin tab($accent, $idle-border, $idle-color, $active-fg) {
+  @include uppercase-label(0.66rem, 0.2em, 500, $idle-color);
+  padding: 0.55rem 1.55rem;
+  border: 1.5px solid $idle-border;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
-    transform: translateY(-$y);
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &.active {
+    background: $accent;
+    border-color: $accent;
+    color: $active-fg;
+  }
+}
+
+@mixin badge {
+  @include uppercase-label(0.57rem, 0.15em, 700, $dark);
+  background: $gold;
+  padding: 0.27rem 0.82rem;
+}
+
+@mixin card-hover($lift: 6px, $shadow: 0 18px 50px -12px rgba($dark, 0.18)) {
+  &:hover {
+    transform: translateY(-$lift);
     box-shadow: $shadow;
   }
+}
+
+%btn-base {
+  display: inline-block;
+  padding: 0.85rem 2.4rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
 }

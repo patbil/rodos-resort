@@ -1,4 +1,3 @@
-// RODOS — i18n via i18next (ESM CDN, JSON resources via import attributes)
 import i18next from "https://esm.sh/i18next@23";
 import pl from "../locales/pl.json" with { type: "json" };
 import en from "../locales/en.json" with { type: "json" };
@@ -16,11 +15,11 @@ function detectLang() {
   return SUPPORTED.includes(browser) ? browser : DEFAULT_LANG;
 }
 
-export function t(key) {
+function t(key) {
   return i18next.t(key);
 }
 
-export function getLang() {
+function getLang() {
   return i18next.language;
 }
 
@@ -70,14 +69,14 @@ function updateFlatpickrLocale(lang) {
   });
 }
 
-export async function setLang(lang) {
+async function setLang(lang) {
   if (!SUPPORTED.includes(lang)) return;
   localStorage.setItem(STORAGE_KEY, lang);
   await i18next.changeLanguage(lang);
   applyDom();
 }
 
-export async function initI18n() {
+async function init() {
   await i18next.init({
     lng: detectLang(),
     fallbackLng: DEFAULT_LANG,
@@ -90,6 +89,8 @@ export async function initI18n() {
     ),
   });
   applyDom();
-  const sel = document.getElementById("lang-select");
-  if (sel) sel.addEventListener("change", (e) => setLang(e.target.value));
+  const select = document.getElementById("lang-select");
+  select?.addEventListener("change", (e) => setLang(e.target.value));
 }
+
+export default { init, t, getLang };

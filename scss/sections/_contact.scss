@@ -1,13 +1,15 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+$line: rgba($ocean, 0.12);
 
 #contact {
-  padding: 5.5rem 3rem;
+  padding: $section-padding;
   background: $sand-light;
 }
 
 .contact-inner {
-  max-width: 1150px;
-  margin: 0 auto;
+  @include container;
 }
 
 .contact-header {
@@ -22,25 +24,25 @@
 }
 
 .contact-info-block {
-  margin-top: 1.8rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+  margin-top: 1.8rem;
   padding: 1.8rem 0 0.4rem;
-  border-top: 1px solid rgba(14, 61, 92, 0.12);
+  border-top: 1px solid $line;
 }
 
 .contact-item {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
 }
 
 .contact-item-value {
   font-size: 0.92rem;
-  color: $ocean;
-  line-height: 1.45;
   font-weight: 500;
+  line-height: 1.45;
+  color: $ocean;
 
   a {
     color: inherit;
@@ -48,39 +50,30 @@
 }
 
 .contact-item-icon {
+  @include flex-center;
+  flex-shrink: 0;
   width: 36px;
   height: 36px;
   color: $gold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
 
   svg {
+    @include icon-stroke;
     width: 22px;
     height: 22px;
-    stroke: currentColor;
-    stroke-width: 1.6;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
 }
 
 .contact-item-label {
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: $text-mid;
+  @include uppercase-label(0.58rem, 0.18em, 600, $text-mid);
   margin-bottom: 0.18rem;
-  font-weight: 600;
 }
 
 .map-wrap {
-  margin-top: 1.8rem;
+  position: relative;
   height: 280px;
+  margin-top: 1.8rem;
   overflow: hidden;
-  border: 1px solid rgba(14, 61, 92, 0.14);
+  border: 1px solid rgba($ocean, 0.14);
 
   iframe {
     width: 100%;
@@ -91,12 +84,12 @@
 }
 
 .contact-foot {
-  margin-top: 1.6rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(14, 61, 92, 0.12);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.4rem;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid $line;
 }
 
 .contact-foot-item {
@@ -106,23 +99,15 @@
 }
 
 .contact-foot-icon {
+  @include icon-stroke;
+  flex-shrink: 0;
   width: 26px;
   height: 26px;
   color: $gold;
-  flex-shrink: 0;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .contact-foot-label {
-  font-size: 0.56rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: $text-mid;
-  font-weight: 600;
+  @include uppercase-label(0.56rem, 0.18em, 600, $text-mid);
   margin-bottom: 0.2rem;
 }
 
@@ -149,19 +134,19 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: #fff;
   padding: 2.4rem 2.2rem;
-  border: 1px solid rgba(14, 61, 92, 0.07);
-  box-shadow: 0 18px 44px -16px rgba(14, 61, 92, 0.14);
+  background: $white;
+  border: 1px solid rgba($ocean, 0.07);
+  box-shadow: 0 18px 44px -16px rgba($ocean, 0.14);
 }
 
 .contact-form-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: $font-display;
   font-size: 1.7rem;
   color: $ocean;
   margin-bottom: 0.4rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(14, 61, 92, 0.08);
+  border-bottom: 1px solid rgba($ocean, 0.08);
 }
 
 .form-row-2 {
@@ -177,51 +162,46 @@
   position: relative;
 
   label {
-    font-size: 0.6rem;
-    letter-spacing: 0.17em;
-    text-transform: uppercase;
-    color: $text-mid;
-    font-weight: 600;
+    @include uppercase-label(0.6rem, 0.17em, 600, $text-mid);
   }
 
   input,
   textarea,
   select {
-    background: #faf9f5;
-    border: 1px solid rgba(14, 61, 92, 0.12);
-    border-radius: 2px;
+    width: 100%;
     padding: 0.82rem 1rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: $font-body;
     font-size: 0.9rem;
     color: $text;
+    background: $sand-light;
+    border: 1px solid rgba($ocean, 0.12);
+    border-radius: 2px;
     outline: none;
+    resize: none;
+    appearance: none;
     transition:
       border-color 0.25s,
       background 0.25s,
       box-shadow 0.25s;
-    resize: none;
-    appearance: none;
-    -webkit-appearance: none;
-    width: 100%;
   }
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(30, 45, 58, 0.32);
+    color: rgba($text, 0.32);
     font-weight: 300;
   }
 
   input:hover,
   textarea:hover,
   select:hover {
-    border-color: rgba(14, 61, 92, 0.25);
+    border-color: rgba($ocean, 0.25);
   }
 
   input:focus,
   textarea:focus,
   select:focus {
     border-color: $gold;
-    background: #fff;
+    background: $white;
     box-shadow: 0 0 0 3px rgba($gold, 0.12);
   }
 

@@ -3,15 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RODOS – Rowy</title>
+
+    <title>
+      RODOS Rowy — Domki i Apartamenty nad Morzem | Ośrodek Wypoczynkowy
+    </title>
     <meta
       name="description"
-      content="RODOS Rowy – komfortowe domki i apartamenty blisko morza. Idealne miejsce na rodzinne wakacje w Rowach. Spokojna okolica, blisko plaży."
+      content="RODOS Rowy – komfortowe domki i apartamenty blisko morza. Idealne miejsce na rodzinne wakacje w Rowach. Spokojna okolica, sosnowy las, blisko plaży."
     />
     <meta
       name="keywords"
       content="RODOS Rowy, domki Rowy, apartamenty Rowy, noclegi Rowy, wakacje Rowy, wynajem domków Rowy, Morze Bałtyckie, Słowiński Park Narodowy"
     />
+    <meta name="author" content="Ośrodek Wypoczynkowy RODOS" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#081824" />
+    <link rel="canonical" href="https://rodos-rowy.pl/" />
+
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg" />
+    <link rel="apple-touch-icon" href="./assets/img/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ośrodek Wypoczynkowy RODOS" />
+    <meta
+      property="og:title"
+      content="RODOS Rowy — Domki i Apartamenty nad Morzem"
+    />
+    <meta
+      property="og:description"
+      content="Komfortowe domki i apartamenty w sercu Rowów — sosnowy las, cisza i bliskość Bałtyku."
+    />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:url" content="https://rodos-rowy.pl/" />
+    <meta
+      property="og:image"
+      content="https://rodos-rowy.pl/assets/img/cottages.jpg"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="RODOS Rowy — Domki i Apartamenty nad Morzem"
+    />
+    <meta
+      name="twitter:description"
+      content="Komfortowe domki i apartamenty w sercu Rowów — sosnowy las, cisza i bliskość Bałtyku."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rodos-rowy.pl/assets/img/cottages.jpg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
@@ -27,16 +75,41 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Resort",
+        "name": "Ośrodek Wypoczynkowy RODOS",
+        "description": "Komfortowe domki i apartamenty w Rowach nad Bałtykiem.",
+        "url": "https://rodos-rowy.pl/",
+        "telephone": "+48505816638",
+        "email": "info@rodos-rowy.pl",
+        "image": "https://rodos-rowy.pl/assets/img/cottages.jpg",
+        "priceRange": "320–650 PLN",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Wczasowa 2",
+          "postalCode": "76-212",
+          "addressLocality": "Rowy",
+          "addressRegion": "pomorskie",
+          "addressCountry": "PL"
+        },
+        "sameAs": [
+          "https://www.facebook.com/RodosOw",
+          "https://www.instagram.com/owrodos",
+          "https://www.tiktok.com/@rodos.rowy"
+        ]
+      }
+    </script>
   </head>
 
   <body>
-    <!-- ══ LOADER ══ -->
     <div id="loader" class="loader">
       <div class="loader-crest">R</div>
       <div class="loader-bar"><span></span></div>
     </div>
 
-    <!-- ══ NAV ══ -->
     <nav id="nav">
       <div class="nav-brand">
         <div class="nav-crest">R</div>
@@ -59,292 +132,411 @@
           <option value="de">DE</option>
         </select>
         <a class="nav-book" href="#contact" data-i18n="nav.book"></a>
-        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </button>
       </div>
     </nav>
 
-    <!-- ══ HERO ══ -->
-    <section id="start">
-      <video
-        class="hero-video"
-        id="hero-video"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-      >
-        <source src="./video/sea.mp4" type="video/mp4" />
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="hero-particles" id="hero-particles-container"></div>
-      <div class="hero-content">
-        <div class="hero-tag" data-i18n-html="hero.tag"></div>
-        <h1 class="hero-title">
-          <span class="small" data-i18n="hero.title.small"></span>
-          <span class="big" data-i18n="hero.title.big"></span>
-        </h1>
-        <p class="hero-desc" data-i18n="hero.desc"></p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn-primary" data-i18n="hero.btnBook"></a>
-          <a href="#gallery" class="btn-outline" data-i18n="hero.btnDiscover"></a>
-        </div>
-      </div>
-      <div class="hero-scroll">
-        <div class="hero-scroll-bar"></div>
-        <span data-i18n="hero.scroll"></span>
-      </div>
-    </section>
-
-    <!-- ══ ABOUT ══ -->
-    <section id="about">
-      <div class="about-image">
-        <img src="./img/cottages.jpg" alt="Domki RODOS w Rowach" />
-      </div>
-      <div class="about-text reveal-left">
-        <span class="eyebrow" data-i18n="about.eyebrow"></span>
-        <h2 class="section-heading" data-i18n-html="about.title"></h2>
-        <div class="about-divider"></div>
-        <p class="section-paragraph" data-i18n-html="about.desc"></p>
-        <div class="stats-row">
-          <div>
-            <div class="stat-num">3</div>
-            <div class="stat-label" data-i18n="about.stat.types"></div>
-          </div>
-          <div>
-            <div class="stat-num">8<sub class="stat-unit">os.</sub></div>
-            <div class="stat-label" data-i18n="about.stat.guests"></div>
-          </div>
-          <div>
-            <div class="stat-num">60<sub class="stat-unit">m²</sub></div>
-            <div class="stat-label" data-i18n="about.stat.area"></div>
-          </div>
-          <div>
-            <div class="stat-num">4.9<sub class="stat-star">★</sub></div>
-            <div class="stat-label" data-i18n="about.stat.reviews"></div>
+    <main>
+      <section id="start">
+        <video
+          class="hero-video"
+          id="hero-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+        >
+          <source src="./assets/video/sea.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="hero-particles-container"></div>
+        <div class="hero-content">
+          <div class="hero-tag" data-i18n-html="hero.tag"></div>
+          <h1 class="hero-title">
+            <span class="small" data-i18n="hero.title.small"></span>
+            <span class="big" data-i18n="hero.title.big"></span>
+          </h1>
+          <p class="hero-desc" data-i18n="hero.desc"></p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn-primary" data-i18n="hero.btnBook"></a>
+            <a
+              href="#gallery"
+              class="btn-outline"
+              data-i18n="hero.btnDiscover"
+            ></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ══ GALERIA ══ -->
-    <section id="gallery">
-      <div class="gallery-header reveal">
-        <span class="eyebrow" data-i18n="gallery.eyebrow"></span>
-        <h2 class="section-heading" data-i18n-html="gallery.title"></h2>
-        <p class="section-paragraph" data-i18n="gallery.desc"></p>
-      </div>
-      <div class="gallery-tabs" id="gallery-tabs"></div>
-      <div class="gallery-wrap" id="gallery-wrap"></div>
-    </section>
-
-    <!-- ══ NOCLEGI ══ -->
-    <section id="rooms">
-      <div class="rooms-header reveal">
-        <span class="eyebrow" data-i18n="rooms.eyebrow"></span>
-        <h2 class="section-heading" data-i18n-html="rooms.title"></h2>
-        <p class="section-paragraph" data-i18n="rooms.desc"></p>
-      </div>
-      <div class="rooms" id="rooms-list"></div>
-    </section>
-
-    <!-- ══ ATRAKCJE ══ -->
-    <section id="attractions">
-      <div class="attractions-inner">
-        <div class="reveal">
-          <span class="eyebrow" data-i18n="atr.eyebrow"></span>
-          <h2 class="section-heading" data-i18n-html="atr.title"></h2>
-          <p class="section-paragraph section-paragraph-mt" data-i18n="atr.desc"></p>
+        <div class="hero-scroll">
+          <div class="hero-scroll-bar"></div>
+          <span data-i18n="hero.scroll"></span>
         </div>
-        <div class="attractions-grid" id="attractions-grid"></div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ══ CENNIK ══ -->
-    <section id="pricing">
-      <div class="pricing-inner">
-        <div class="pricing-header reveal">
-          <span class="eyebrow" data-i18n="cn.eyebrow"></span>
-          <h2 class="section-heading" data-i18n-html="cn.title"></h2>
-          <p class="section-paragraph" data-i18n="cn.desc"></p>
+      <section id="about">
+        <div class="about-image">
+          <img
+            src="./assets/img/cottages.jpg"
+            srcset="
+              ./assets/img/sm/cottages.jpg  640w,
+              ./assets/img/cottages.jpg    1000w
+            "
+            sizes="(max-width: 960px) 100vw, 50vw"
+            alt="Domki RODOS w Rowach"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="season-tabs" id="season-tabs"></div>
-
-        <div id="pricing-panes"></div>
-
-        
-
-        <p class="pricing-notes" data-i18n-html="cn.notes"></p>
-      </div>
-    </section>
-
-    <!-- ══ INFORMACJE ══ -->
-    <section id="info">
-      <div class="info-inner">
-        <div class="info-header reveal">
-          <span class="eyebrow" data-i18n="inf.eyebrow"></span>
-          <h2 class="section-heading" data-i18n-html="inf.title"></h2>
-          <p class="section-paragraph section-paragraph-mt" data-i18n="inf.desc"></p>
-        </div>
-        <div class="info-grid" id="info-grid"></div>
-      </div>
-    </section>
-
-    <!-- ══ KONTAKT ══ -->
-    <section id="contact">
-      <div class="contact-inner">
-        <div class="contact-header reveal">
-          <span class="eyebrow" data-i18n="ko.eyebrow"></span>
-          <h2 class="section-heading" data-i18n-html="ko.title"></h2>
-          <p class="section-paragraph section-paragraph-mt" data-i18n="ko.desc"></p>
-        </div>
-        <div class="contact-grid">
-          <!-- LEFT -->
-          <div class="reveal-left">
-            <div class="contact-info-block">
-              <div class="contact-item">
-                <div class="contact-item-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                  <div class="contact-item-label" data-i18n="ko.addr.lbl"></div>
-                  <div class="contact-item-value" data-i18n-html="ko.addr.val"></div>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-item-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-item-label" data-i18n="ko.tel.lbl"></div>
-                  <div class="contact-item-value">
-                    <a href="tel:+48505816638">+48 505 816 638</a>
-                  </div>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-item-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <div class="contact-item-label" data-i18n="ko.email.lbl"></div>
-                  <div class="contact-item-value">
-                    <a href="mailto:info@rodos-rowy.pl">info@rodos-rowy.pl</a>
-                  </div>
-                </div>
-              </div>
+        <div class="about-text reveal-left">
+          <span class="eyebrow" data-i18n="about.eyebrow"></span>
+          <h2 class="section-heading" data-i18n-html="about.title"></h2>
+          <div class="about-divider"></div>
+          <p class="section-paragraph" data-i18n-html="about.desc"></p>
+          <div class="stats-row">
+            <div>
+              <div class="stat-num">3</div>
+              <div class="stat-label" data-i18n="about.stat.types"></div>
             </div>
-            <div class="map-wrap">
-              <iframe
-                src="https://www.google.com/maps?q=Wczasowa+2,+76-212+Rowy&hl=pl&z=15&output=embed"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                data-i18n-title="ko.mapTitle"
-                title="Mapa – Ośrodek RODOS, ul. Wczasowa 2, Rowy"
-              >
-              </iframe>
+            <div>
+              <div class="stat-num">8<sub class="stat-unit">os.</sub></div>
+              <div class="stat-label" data-i18n="about.stat.guests"></div>
             </div>
-            <div class="contact-foot">
-              <div class="contact-foot-item">
-                <svg class="contact-foot-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-                <div>
-                  <div class="contact-foot-label" data-i18n="ko.foot.pay.lbl"></div>
-                  <div class="contact-foot-value" data-i18n="ko.foot.pay.val"></div>
-                </div>
-              </div>
+            <div>
+              <div class="stat-num">60<sub class="stat-unit">m²</sub></div>
+              <div class="stat-label" data-i18n="about.stat.area"></div>
+            </div>
+            <div>
+              <div class="stat-num">4.9<sub class="stat-star">★</sub></div>
+              <div class="stat-label" data-i18n="about.stat.reviews"></div>
             </div>
           </div>
-          <!-- RIGHT: FORM -->
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="gallery-header reveal">
+          <span class="eyebrow" data-i18n="gallery.eyebrow"></span>
+          <h2 class="section-heading" data-i18n-html="gallery.title"></h2>
+          <p class="section-paragraph" data-i18n="gallery.desc"></p>
+        </div>
+        <div class="gallery-tabs" id="gallery-tabs"></div>
+        <div class="gallery-wrap" id="gallery-wrap"></div>
+      </section>
+
+      <section id="rooms">
+        <div class="rooms-header reveal">
+          <span class="eyebrow" data-i18n="rooms.eyebrow"></span>
+          <h2 class="section-heading" data-i18n-html="rooms.title"></h2>
+          <p class="section-paragraph" data-i18n="rooms.desc"></p>
+        </div>
+        <div class="rooms" id="rooms-list"></div>
+      </section>
+
+      <section id="attractions">
+        <div class="attractions-inner">
           <div class="reveal">
-            <form class="contact-form" id="booking-form" novalidate>
-              <div class="contact-form-title" data-i18n="form.title"></div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="f-name" data-i18n="form.name"></label>
-                  <input id="f-name" name="name" type="text" data-i18n-placeholder="form.name.ph" placeholder="" />
+            <span class="eyebrow" data-i18n="atr.eyebrow"></span>
+            <h2 class="section-heading" data-i18n-html="atr.title"></h2>
+            <p
+              class="section-paragraph section-paragraph-mt"
+              data-i18n="atr.desc"
+            ></p>
+          </div>
+          <div class="attractions-grid" id="attractions-grid"></div>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <div class="pricing-inner">
+          <div class="pricing-header reveal">
+            <span class="eyebrow" data-i18n="cn.eyebrow"></span>
+            <h2 class="section-heading" data-i18n-html="cn.title"></h2>
+            <p class="section-paragraph" data-i18n="cn.desc"></p>
+          </div>
+          <div class="season-tabs" id="season-tabs"></div>
+          <div id="pricing-panes"></div>
+          <p class="pricing-notes" data-i18n-html="cn.notes"></p>
+        </div>
+      </section>
+
+      <section id="info">
+        <div class="info-inner">
+          <div class="info-header reveal">
+            <span class="eyebrow" data-i18n="inf.eyebrow"></span>
+            <h2 class="section-heading" data-i18n-html="inf.title"></h2>
+            <p
+              class="section-paragraph section-paragraph-mt"
+              data-i18n="inf.desc"
+            ></p>
+          </div>
+          <div class="info-grid" id="info-grid"></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-inner">
+          <div class="contact-header reveal">
+            <span class="eyebrow" data-i18n="ko.eyebrow"></span>
+            <h2 class="section-heading" data-i18n-html="ko.title"></h2>
+            <p
+              class="section-paragraph section-paragraph-mt"
+              data-i18n="ko.desc"
+            ></p>
+          </div>
+          <div class="contact-grid">
+            <div class="reveal-left">
+              <div class="contact-info-block">
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      class="contact-item-label"
+                      data-i18n="ko.addr.lbl"
+                    ></div>
+                    <div
+                      class="contact-item-value"
+                      data-i18n-html="ko.addr.val"
+                    ></div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="f-email" data-i18n="form.email"></label>
-                  <input id="f-email" name="email" type="email" data-i18n-placeholder="form.email.ph" placeholder="" />
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      class="contact-item-label"
+                      data-i18n="ko.tel.lbl"
+                    ></div>
+                    <div class="contact-item-value">
+                      <a href="tel:+48505816638">+48 505 816 638</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      class="contact-item-label"
+                      data-i18n="ko.email.lbl"
+                    ></div>
+                    <div class="contact-item-value">
+                      <a href="mailto:info@rodos-rowy.pl">info@rodos-rowy.pl</a>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="f-tel" data-i18n="form.tel"></label>
-                  <input id="f-tel" name="tel" type="tel" data-i18n-placeholder="form.tel.ph" placeholder="" />
-                </div>
-                <div class="form-group">
-                  <label for="f-type" data-i18n="form.type"></label>
-                  <select id="f-type" name="type">
-                    <option value="" data-i18n="form.type.opt.none"></option>
-                    <option data-i18n="form.type.opt.cottage"></option>
-                    <option data-i18n="form.type.opt.apt5"></option>
-                    <option data-i18n="form.type.opt.apt8"></option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="date-in" data-i18n="form.date-in"></label>
-                  <input type="text" class="date-picker-input" id="date-in" name="date-in" data-i18n-placeholder="form.date.ph" placeholder="" readonly />
-                </div>
-                <div class="form-group">
-                  <label for="date-out" data-i18n="form.date-out"></label>
-                  <input type="text" class="date-picker-input" id="date-out" name="date-out" data-i18n-placeholder="form.date.ph" placeholder="" readonly />
+              <div class="map-wrap">
+                <iframe
+                  data-src="https://www.google.com/maps?q=Wczasowa+2,+76-212+Rowy&hl=pl&z=15&output=embed"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  data-i18n-title="ko.mapTitle"
+                  title="Mapa – Ośrodek RODOS, ul. Wczasowa 2, Rowy"
+                >
+                </iframe>
+                <div class="map-placeholder" id="map-placeholder">
+                  <p data-i18n="cookie.mapBlocked"></p>
+                  <button
+                    type="button"
+                    class="btn-outline"
+                    id="map-consent-btn"
+                    data-i18n="cookie.mapEnable"
+                  ></button>
                 </div>
               </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="f-adults" data-i18n="form.adults"></label>
-                  <input id="f-adults" name="adults" type="number" min="1" max="8" placeholder="2" />
-                </div>
-                <div class="form-group">
-                  <label for="f-children" data-i18n="form.children"></label>
-                  <input id="f-children" name="children" type="number" min="0" max="6" placeholder="0" />
-                </div>
-              </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="f-pets" data-i18n="form.pets"></label>
-                  <select id="f-pets" name="pets">
-                    <option value="nie" data-i18n="form.pets.no"></option>
-                    <option value="tak" data-i18n="form.pets.yes"></option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="f-source" data-i18n="form.source"></label>
-                  <select id="f-source" name="source">
-                    <option value="" data-i18n="form.source.opt.none"></option>
-                    <option>Google</option>
-                    <option>Facebook</option>
-                    <option data-i18n="form.source.opt.recommend"></option>
-                    <option>Booking.com</option>
-                    <option data-i18n="form.source.opt.other"></option>
-                  </select>
+              <div class="contact-foot">
+                <div class="contact-foot-item">
+                  <svg
+                    class="contact-foot-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
+                    <line x1="2" y1="10" x2="22" y2="10" />
+                  </svg>
+                  <div>
+                    <div
+                      class="contact-foot-label"
+                      data-i18n="ko.foot.pay.lbl"
+                    ></div>
+                    <div
+                      class="contact-foot-value"
+                      data-i18n="ko.foot.pay.val"
+                    ></div>
+                  </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="f-message" data-i18n="form.message"></label>
-                <textarea
-                  id="f-message"
-                  name="message"
-                  rows="4"
-                  data-i18n-placeholder="form.message.ph"
-                  placeholder="Dodatkowe informacje, życzenia, pytania..."
-                ></textarea>
-              </div>
-              <button type="submit" class="btn-primary form-submit" id="submit-btn" data-i18n="form.submit"></button>
-              <p class="contact-form-note" data-i18n="form.note"></p>
-            </form>
+            </div>
+            <div class="reveal">
+              <form class="contact-form" id="booking-form" novalidate>
+                <div class="contact-form-title" data-i18n="form.title"></div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="f-name" data-i18n="form.name"></label>
+                    <input
+                      id="f-name"
+                      name="name"
+                      type="text"
+                      data-i18n-placeholder="form.name.ph"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-email" data-i18n="form.email"></label>
+                    <input
+                      id="f-email"
+                      name="email"
+                      type="email"
+                      data-i18n-placeholder="form.email.ph"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="f-tel" data-i18n="form.tel"></label>
+                    <input
+                      id="f-tel"
+                      name="tel"
+                      type="tel"
+                      data-i18n-placeholder="form.tel.ph"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-type" data-i18n="form.type"></label>
+                    <select id="f-type" name="type">
+                      <option value="" data-i18n="form.type.opt.none"></option>
+                      <option data-i18n="form.type.opt.cottage"></option>
+                      <option data-i18n="form.type.opt.apt5"></option>
+                      <option data-i18n="form.type.opt.apt8"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="date-in" data-i18n="form.date-in"></label>
+                    <input
+                      type="text"
+                      class="date-picker-input"
+                      id="date-in"
+                      name="date-in"
+                      data-i18n-placeholder="form.date.ph"
+                      placeholder=""
+                      readonly
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="date-out" data-i18n="form.date-out"></label>
+                    <input
+                      type="text"
+                      class="date-picker-input"
+                      id="date-out"
+                      name="date-out"
+                      data-i18n-placeholder="form.date.ph"
+                      placeholder=""
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="f-adults" data-i18n="form.adults"></label>
+                    <input
+                      id="f-adults"
+                      name="adults"
+                      type="number"
+                      min="1"
+                      max="8"
+                      placeholder="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-children" data-i18n="form.children"></label>
+                    <input
+                      id="f-children"
+                      name="children"
+                      type="number"
+                      min="0"
+                      max="6"
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="f-pets" data-i18n="form.pets"></label>
+                    <select id="f-pets" name="pets">
+                      <option value="nie" data-i18n="form.pets.no"></option>
+                      <option value="tak" data-i18n="form.pets.yes"></option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="f-source" data-i18n="form.source"></label>
+                    <select id="f-source" name="source">
+                      <option
+                        value=""
+                        data-i18n="form.source.opt.none"
+                      ></option>
+                      <option>Google</option>
+                      <option>Facebook</option>
+                      <option data-i18n="form.source.opt.recommend"></option>
+                      <option>Booking.com</option>
+                      <option data-i18n="form.source.opt.other"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="f-message" data-i18n="form.message"></label>
+                  <textarea
+                    id="f-message"
+                    name="message"
+                    rows="4"
+                    data-i18n-placeholder="form.message.ph"
+                    placeholder="Dodatkowe informacje, życzenia, pytania..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn-primary form-submit"
+                  id="submit-btn"
+                  data-i18n="form.submit"
+                ></button>
+                <p class="contact-form-note" data-i18n="form.note"></p>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- ══ FOOTER ══ -->
     <footer>
       <div class="footer-inner">
         <div class="footer-brand">
@@ -364,15 +556,29 @@
         </div>
       </div>
       <div class="footer-bar">
-        <span data-i18n-html="foot.copy"
-          ></span> Ośrodek Wypoczynkowy <span>RODOS</span> · Rowy, Polska ·
-          Wszelkie prawa zastrzeżone</span
-        >
+        <span data-i18n-html="foot.copy"></span>
         <span data-i18n="foot.privacy"></span>
       </div>
     </footer>
 
-    <!-- LIGHTBOX -->
+    <div class="cookie-banner" id="cookie-banner" hidden>
+      <p class="cookie-banner__text" data-i18n-html="cookie.text"></p>
+      <div class="cookie-banner__actions">
+        <button
+          type="button"
+          class="btn-outline"
+          id="cookie-decline"
+          data-i18n="cookie.decline"
+        ></button>
+        <button
+          type="button"
+          class="btn-primary"
+          id="cookie-accept"
+          data-i18n="cookie.accept"
+        ></button>
+      </div>
+    </div>
+
     <div class="lightbox" id="lightbox">
       <button class="lightbox-close" id="lightbox-close">✕</button>
       <button class="lightbox-prev" id="lightbox-prev">‹</button>
@@ -385,6 +591,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/de.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>

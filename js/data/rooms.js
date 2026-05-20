@@ -1,8 +1,4 @@
-// Accommodation cards on the "Noclegi" section. `features` is an array of
-// translation-key suffixes resolved as `${i18n}.f${index}`. `badgeMod` is an
-// optional modifier class on the badge.
-
-export const rooms = [
+export default [
   {
     image: "cottages/1.jpg",
     alt: "Domek letniskowy RODOS",

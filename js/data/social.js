@@ -1,6 +1,4 @@
-// External profile links + Booking listing.
-
-export const socials = [
+const socials = [
   {
     name: "facebook",
     icon: "fa-brands fa-facebook-f",
@@ -18,5 +16,7 @@ export const socials = [
   },
 ];
 
-export const bookingUrl =
+const bookingUrl =
   "https://www.booking.com/hotel/pl/rodos-rowy-apartamenty-nad-morzem.pl.html";
+
+export default { socials, bookingUrl };

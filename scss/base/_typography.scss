@@ -8,7 +8,7 @@
 }
 
 .section-heading {
-  font-family: "Cormorant Garamond", serif;
+  font-family: $font-display;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 400;
   color: $ocean;

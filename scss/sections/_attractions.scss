@@ -1,13 +1,13 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 #attractions {
-  padding: 5.5rem 3rem;
+  padding: $section-padding;
   background: $sand-light;
 }
 
 .attractions-inner {
-  max-width: 1150px;
-  margin: 0 auto;
+  @include container;
 }
 
 .attractions-grid {
@@ -18,13 +18,12 @@
 }
 
 .attraction-card {
-  background: #fff;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 3px solid transparent;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: $white;
+  border-bottom: 3px solid transparent;
   transition:
     border-color 0.35s,
     box-shadow 0.35s,
@@ -33,7 +32,7 @@
   &:hover {
     border-color: $gold;
     transform: translateY(-6px);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 18px 50px rgba(#000, 0.09);
 
     .attraction-card-photo img {
       transform: scale(1.06);
@@ -42,39 +41,31 @@
 }
 
 .attraction-card-photo {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
+  @include cover-image;
   position: relative;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
+  height: 200px;
 }
 
 .attraction-card-body {
-  padding: 1.5rem 1.8rem 2rem;
   position: relative;
   flex: 1;
+  padding: 1.5rem 1.8rem 2rem;
 }
 
 .attraction-card-num {
-  font-family: "Cormorant Garamond", serif;
+  font-family: $font-display;
   font-size: 3.2rem;
   font-weight: 700;
-  color: rgba(14, 61, 92, 0.06);
+  line-height: 1;
+  color: rgba($ocean, 0.06);
   position: absolute;
   top: 0.6rem;
   right: 1rem;
-  line-height: 1;
   user-select: none;
 }
 
 .attraction-card-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: $font-display;
   font-size: 1.32rem;
   color: $ocean;
   margin-bottom: 0.55rem;

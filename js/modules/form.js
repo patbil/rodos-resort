@@ -1,95 +1,97 @@
-// RODOS — booking form: flatpickr + EmailJS submit
-import { getLang, t } from "./i18n.js";
-import {
-  EMAILJS_PUBLIC_KEY,
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-} from "../config.js";
+import i18n from "./i18n.js";
+import config from "../config.js";
 
 const emailJsReady = () =>
   Boolean(window.emailjs) &&
-  Boolean(EMAILJS_PUBLIC_KEY) &&
-  Boolean(EMAILJS_SERVICE_ID) &&
-  Boolean(EMAILJS_TEMPLATE_ID);
+  Boolean(config.EMAILJS_PUBLIC_KEY) &&
+  Boolean(config.EMAILJS_SERVICE_ID) &&
+  Boolean(config.EMAILJS_TEMPLATE_ID);
 
-export function initDatepicker() {
+function flatpickrLocale() {
+  const { l10ns } = window.flatpickr;
+  const lang = i18n.getLang();
+  return l10ns[lang] || l10ns.default;
+}
+
+function initDatepicker() {
   if (typeof window.flatpickr === "undefined") return;
-  const fp = window.flatpickr;
-  const lang = getLang();
-  const locale =
-    (lang === "pl" && fp.l10ns.pl) ||
-    (lang === "de" && fp.l10ns.de) ||
-    fp.l10ns.default;
+  const arrivalInput = document.getElementById("date-in");
+  const departureInput = document.getElementById("date-out");
+  if (!arrivalInput || !departureInput) return;
 
-  const inEl = document.getElementById("date-in");
-  const outEl = document.getElementById("date-out");
-  if (!inEl || !outEl) return;
-
-  const fpOut = fp(outEl, {
+  const options = {
     dateFormat: "d.m.Y",
     minDate: "today",
     disableMobile: true,
-    locale,
-  });
-
-  const fpIn = fp(inEl, {
-    dateFormat: "d.m.Y",
-    minDate: "today",
-    disableMobile: true,
-    locale,
-    onChange: (dates) => {
-      if (!dates[0]) return;
-      const next = new Date(dates[0]);
-      next.setDate(next.getDate() + 1);
-      fpOut.set("minDate", next);
+    locale: flatpickrLocale(),
+  };
+  const departure = window.flatpickr(departureInput, options);
+  const arrival = window.flatpickr(arrivalInput, {
+    ...options,
+    onChange: ([date]) => {
+      if (!date) return;
+      const dayAfter = new Date(date);
+      dayAfter.setDate(dayAfter.getDate() + 1);
+      departure.set("minDate", dayAfter);
     },
   });
 
-  window._fpInstances = [fpIn, fpOut];
+  window._fpInstances = [arrival, departure];
 }
 
-function setBtnState(btn, { text, bg, opacity = "1", disabled }) {
-  btn.textContent = text;
-  if (bg) {
-    btn.style.background = bg;
-    btn.style.borderColor = bg;
+function setButtonState(button, { text, color = "", opacity = "1", disabled = false }) {
+  button.textContent = text;
+  button.style.background = color;
+  button.style.borderColor = color;
+  button.style.opacity = opacity;
+  button.disabled = disabled;
+}
+
+function sendEnquiry(form) {
+  if (!emailJsReady()) {
+    return new Promise((resolve) => setTimeout(resolve, 1200)); 
   }
-  btn.style.opacity = opacity;
-  if (typeof disabled === "boolean") btn.disabled = disabled;
+  window.emailjs.init({ publicKey: config.EMAILJS_PUBLIC_KEY });
+  return window.emailjs.sendForm(
+    config.EMAILJS_SERVICE_ID,
+    config.EMAILJS_TEMPLATE_ID,
+    form,
+  );
 }
 
-async function sendViaEmailJs(form) {
-  window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  return window.emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
-}
-
-function simulateSend() {
-  return new Promise((resolve) => setTimeout(resolve, 1200));
-}
-
-export function initForm() {
+function initForm() {
   const form = document.getElementById("booking-form");
   if (!form) return;
-  const btn = document.getElementById("submit-btn");
+  const button = document.getElementById("submit-btn");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    setBtnState(btn, {
-      text: t("form.submit.sending"),
+    setButtonState(button, {
+      text: i18n.t("form.submit.sending"),
       opacity: "0.7",
       disabled: true,
     });
 
     try {
-      await (emailJsReady() ? sendViaEmailJs(form) : simulateSend());
-      setBtnState(btn, { text: t("form.submit.sent"), bg: "#0b7a6e" });
-    } catch (err) {
-      console.error("EmailJS send failed:", err);
-      setBtnState(btn, {
-        text: t("form.submit.error"),
-        bg: "#a14b3b",
-        disabled: false,
+      await sendEnquiry(form);
+      setButtonState(button, {
+        text: i18n.t("form.submit.sent"),
+        color: "#0b7a6e",
+        disabled: true,
       });
+      form.reset();
+    } catch (error) {
+      console.error("EmailJS send failed:", error);
+      setButtonState(button, { text: i18n.t("form.submit.error"), color: "#a14b3b" });
     }
+
+    setTimeout(() => setButtonState(button, { text: i18n.t("form.submit") }), 4000);
   });
 }
+
+function init() {
+  initDatepicker();
+  initForm();
+}
+
+export default { init };

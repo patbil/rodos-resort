@@ -10,13 +10,12 @@ html {
   scroll-behavior: smooth;
 }
 
-section[id],
-#about {
-  scroll-margin-top: 72px;
+section[id] {
+  scroll-margin-top: $nav-height;
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: $font-body;
   background: $sand-light;
   color: $text;
   overflow-x: hidden;
@@ -43,9 +42,11 @@ textarea:focus-visible {
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: $dark;
 }
+
 ::-webkit-scrollbar-thumb {
   background: $gold;
 }

@@ -1,11 +1,10 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 #start {
+  @include flex-center;
   height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -24,9 +23,9 @@
   z-index: 1;
   background: linear-gradient(
     160deg,
-    rgba(4, 15, 23, 0.78) 0%,
-    rgba(14, 61, 92, 0.42) 45%,
-    rgba(4, 15, 23, 0.86) 100%
+    rgba($darker, 0.78) 0%,
+    rgba($ocean, 0.42) 45%,
+    rgba($darker, 0.86) 100%
   );
 }
 
@@ -68,7 +67,7 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  color: #fff;
+  color: $white;
   padding: 2rem;
   max-width: 840px;
   animation: fadeUp 1.2s ease both;
@@ -86,13 +85,10 @@
 }
 
 .hero-tag {
+  @include uppercase-label(0.66rem, 0.32em, 400, $gold-light);
   display: inline-flex;
   align-items: center;
   gap: 0.9rem;
-  font-size: 0.66rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: $gold-light;
   margin-bottom: 1.8rem;
 
   &::before,
@@ -106,7 +102,7 @@
 }
 
 .hero-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: $font-display;
   font-size: clamp(3.8rem, 9vw, 7.8rem);
   line-height: 1;
   font-weight: 300;
@@ -120,18 +116,14 @@
   }
 
   .small {
-    font-size: 0.5em;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 300;
-    color: rgba(#fff, 0.7);
+    @include uppercase-label(0.5em, 0.2em, 300, rgba($white, 0.7));
   }
 }
 
 .hero-desc {
   font-size: 1rem;
   font-weight: 300;
-  color: rgba(#fff, 0.68);
+  color: rgba($white, 0.68);
   line-height: 1.85;
   margin: 1.8rem auto;
   max-width: 520px;
@@ -145,30 +137,8 @@
   margin-bottom: 2.8rem;
 }
 
-.hero-feats {
-  display: flex;
-  gap: 2.8rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hf-num {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.1rem;
-  font-weight: 600;
-  color: $gold-light;
-  line-height: 1;
-}
-
-.hf-lbl {
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(#fff, 0.42);
-  margin-top: 0.3rem;
-}
-
 .hero-scroll {
+  @include uppercase-label(0.58rem, 0.22em, 400, rgba($white, 0.3));
   position: absolute;
   bottom: 2.5rem;
   left: 50%;
@@ -178,10 +148,6 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(#fff, 0.3);
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
 }
 
 .hero-scroll-bar {

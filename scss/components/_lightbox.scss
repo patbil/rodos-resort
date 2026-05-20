@@ -1,16 +1,16 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .lightbox {
+  @include flex-center;
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: rgba(4, 15, 23, 0.95);
+  display: none;
+  padding: 2rem;
+  background: rgba($darker, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
 
   &.open {
     display: flex;
@@ -29,7 +29,7 @@
   position: absolute;
   background: none;
   border: none;
-  color: rgba(#fff, 0.5);
+  color: rgba($white, 0.5);
   cursor: pointer;
   transition: color 0.2s;
 
@@ -62,12 +62,9 @@
 }
 
 .lightbox-caption {
+  @include uppercase-label(0.68rem, 0.18em, 400, rgba($white, 0.4));
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(#fff, 0.4);
 }

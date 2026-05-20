@@ -1,98 +1,97 @@
-# RODOS — Holiday Resort in Rowy, Poland
+# RODOS RESORT
 
-Static landing page for the RODOS holiday resort on the Baltic coast. Plain
-HTML / SCSS / ES modules — no bundler. Repeating sections (gallery, pricing,
-attractions, rooms, info, footer) are rendered from data modules in
-[`js/data/`](./js/data/) by [`js/modules/render.js`](./js/modules/render.js).
-PL / EN / DE translations are served by i18next loaded from a CDN.
+Business-card / landing site for **RODOS** — a holiday resort in Rowy on the
+Polish Baltic coast. A single static page that presents the resort and lets
+guests send a booking enquiry, available in Polish, English and German.
+
+It covers:
+
+- Hero intro with a short "about the resort" section
+- Photo gallery grouped by category (resort, cottages, apartments, playground)
+- Accommodation cards and a season-based price list
+- Nearby attractions
+- Practical info (check-in, deposit, parking, house rules)
+- Contact details, map and a booking-enquiry form
 
 ## Stack
 
-- HTML5 + ES2022 modules (`<script type="module">`)
-- SCSS compiled by [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass) (VSCode) → `css/styles.css`
-- [i18next](https://www.i18next.com/) — translations from JSON
-- [Flatpickr](https://flatpickr.js.org/) — date picker
-- [EmailJS](https://www.emailjs.com/) — booking-form submission
-- [Font Awesome](https://fontawesome.com/) — social icons
+Vanilla ES modules and SCSS — no bundler or framework. External libraries are
+loaded from a CDN:
+
+- **i18next** — translations
+- **Flatpickr** — date picker in the form
+- **EmailJS** — delivers the booking form
+- **Font Awesome** — social icons
+
+Styles are written in SCSS and compiled to `css/styles.css` with Dart Sass
+(for example the Live Sass Compiler extension).
 
 ## Running locally
 
-Native ES modules don't work over `file://`, so open `index.html` through a
-local server (VSCode Live Server, `npx serve`, `python -m http.server`).
+ES modules require HTTP, so serve the folder rather than opening
+`index.html` from disk. Any static server works:
 
-## EmailJS
+- VS Code — the Live Server extension
+- Node — `npx serve`
+- Python — `python -m http.server`
 
-The booking form sends messages through EmailJS. Drop your IDs into
-[`js/config.js`](./js/config.js):
+## Configuration
+
+The booking form is delivered through EmailJS. Add your account IDs to
+[`js/config.js`](js/config.js):
 
 ```js
-export const EMAILJS_PUBLIC_KEY = "...";
-export const EMAILJS_SERVICE_ID = "...";
-export const EMAILJS_TEMPLATE_ID = "...";
+export default {
+  EMAILJS_PUBLIC_KEY: "...",
+  EMAILJS_SERVICE_ID: "...",
+  EMAILJS_TEMPLATE_ID: "...",
+};
 ```
 
-All three identifiers are public by design — the browser SDK exposes them in
-every request. The endpoint is protected by the **Allowed Origins** list in
-the EmailJS dashboard; add your production domain there. While the values
-remain blank, the form falls back to a demo mode (simulated send).
+Notes:
 
-## Translations
+- These IDs are public by design; the endpoint is protected by the
+  **Allowed Origins** list in the EmailJS dashboard, so add your production
+  domain there.
+- While the IDs are blank, the form runs in demo mode and only simulates a
+  send.
 
-Keys live in [`js/locales/{pl,en,de}.json`](./js/locales/). All three locales
-share the same set of ~170 keys. Elements opt into translation via:
+## Languages
 
-- `data-i18n="key"` — `textContent`
-- `data-i18n-html="key"` — `innerHTML` (for strings containing markup)
-- `data-i18n-placeholder="key"` — `placeholder` attribute
-- `data-i18n-title="key"` — `title` attribute
+Translations live in [`js/locales/`](js/locales) as `pl.json`, `en.json` and
+`de.json`, each holding the same set of keys.
 
-i18next imports the JSON via `import attributes` (Chrome 123+, Firefox 145+).
+- The language selector in the header switches the active locale.
+- The choice is saved to `localStorage` and restored on the next visit;
+  otherwise the site follows the browser language and falls back to Polish.
+- To edit copy, change the matching key in all three files.
+- In markup, elements opt in through data attributes:
+  - `data-i18n` — text content
+  - `data-i18n-html` — content that contains markup
+  - `data-i18n-placeholder` — input placeholder
+  - `data-i18n-title` — title attribute
 
-## Images and performance
-
-Full-size images live under `img/gallery/{category}/{n}.jpg` and
-`img/attractions/{file}.webp`. All `<img>` tags render with
-`loading="lazy"` and `decoding="async"`.
-
-To reduce mobile payload, drop in ~600 px variants:
-
-- Gallery: `img/gallery/{category}/sm/{n}.jpg` → set `hasSmall: true` in [`js/data/gallery.js`](./js/data/gallery.js).
-- Attractions / rooms: add a `smallImage: "…"` field to the matching entry in [`js/data/`](./js/data/).
-
-The renderer picks up the small variant and emits `srcset` automatically —
-browsers then choose the lighter file on narrow viewports.
-
-## Layout
+## Project structure
 
 ```
-├── index.html              # entry point, section skeletons + static content
-├── js/
-│   ├── main.js             # bootstrap (render → i18n → behavior)
-│   ├── config.js           # EmailJS IDs
-│   ├── data/               # pure data for repeating sections
-│   │   ├── attractions.js, rooms.js, gallery.js, pricing.js, info.js, social.js
-│   ├── locales/            # JSON translations (pl / en / de)
-│   └── modules/
-│       ├── i18n.js         # i18next + DOM apply
-│       ├── ui.js           # loader, particles, nav, scroll-spy, reveals
-│       ├── gallery.js      # gallery tabs, lightbox, season tabs
-│       ├── form.js         # flatpickr + EmailJS
-│       └── render.js       # injects repeating sections into the DOM
-├── scss/
-│   ├── styles.scss         # entry @use partials
-│   ├── abstracts/          # variables, mixins
-│   ├── base/               # reset, typography
-│   ├── components/         # buttons, loader, lightbox, flatpickr overrides
-│   ├── layout/             # nav, footer, responsive
-│   ├── sections/           # hero, about, gallery, …
-│   └── utilities/          # reveals, helpers
-├── css/
-│   └── styles.css          # Live Sass Compiler output
-└── img/, video/            # assets
+index.html        markup and section containers
+js/
+  index.js        bootstrap (render, then init each module)
+  config.js       EmailJS IDs
+  data/           section content (gallery, rooms, pricing, attractions, info)
+  locales/        pl / en / de translations
+  modules/        i18n, ui, gallery, form, cookies, render
+scss/             styles, compiled to css/styles.css
+assets/           images (with sm/ mobile variants) and video
 ```
 
-## Attribution
+Repeating sections are generated from `js/data/` by `js/modules/render.js`, so
+adding a cottage, an attraction or a price means editing data rather than
+markup.
 
-Code was written in collaboration with an AI assistant — **Claude Opus 4.7**
-(Anthropic). Copy, section structure, photography and business data come
-from the resort owner.
+## A note on AI
+
+Parts of this project were built with AI assistance — boilerplate, repetitive
+data, refactors and cleanup — to speed up and streamline the work. It is not
+fully AI-generated: the concept, content, design decisions and review are
+human.

@@ -1,12 +1,9 @@
-// RODOS — section renderers (data → HTML). Called once on boot, before i18n
-// applies, so `data-i18n` attributes on rendered nodes get translated.
-
-import { attractions } from "../data/attractions.js";
-import { rooms } from "../data/rooms.js";
-import { gallery } from "../data/gallery.js";
-import { seasons, pricingRooms } from "../data/pricing.js";
-import { infoCards } from "../data/info.js";
-import { socials, bookingUrl } from "../data/social.js";
+import attractions from "../data/attractions.js";
+import rooms from "../data/rooms.js";
+import gallery from "../data/gallery.js";
+import pricing from "../data/pricing.js";
+import infoCards from "../data/info.js";
+import social from "../data/social.js";
 
 const FOOTER_NAV = [
   { href: "#start", labelKey: "nav.start" },
@@ -32,43 +29,29 @@ function setHtml(id, html) {
   if (el) el.innerHTML = html;
 }
 
-// Build an <img> with optional srcset for a smaller variant. When `small` is
-// truthy, browsers may pick the lighter file on narrow viewports. Always emits
-// `loading="lazy"` + `decoding="async"` so off-screen images don't block load.
-function img({ src, small, alt, sizes = "(max-width: 768px) 100vw, 33vw" }) {
-  const srcset = small ? ` srcset="${small} 600w, ${src} 1200w" sizes="${sizes}"` : "";
-  return `<img src="${src}" alt="${alt}" loading="lazy" decoding="async"${srcset} />`;
+const IMG_SIZES = "(max-width: 768px) 100vw, 33vw";
+
+const toSmall = (src) => src.replace(/([^/]+)$/, "sm/$1");
+
+function img({ src, alt, smallW = 600, fullW = 1000, sizes = IMG_SIZES }) {
+  return `<img src="${src}" srcset="${toSmall(src)} ${smallW}w, ${src} ${fullW}w" sizes="${sizes}" alt="${alt}" loading="lazy" decoding="async" />`;
 }
 
-// `dir`-based assets follow the convention:
-//   ./img/<base>/<dir>/<n>.<ext>       (full size)
-//   ./img/<base>/<dir>/sm/<n>.<ext>    (small/mobile variant — optional)
 function galleryImg(cat, n) {
-  const full = `./img/gallery/${cat.dir}/${n}.jpg`;
-  const small = cat.hasSmall ? `./img/gallery/${cat.dir}/sm/${n}.jpg` : null;
-  return img({ src: full, small, alt: cat.alt });
+  return img({ src: `./assets/img/gallery/${cat.dir}/${n}.jpg`, alt: cat.alt });
 }
 
 function attractionImg(a) {
-  const full = `./img/attractions/${a.image}`;
-  const small = a.smallImage ? `./img/attractions/${a.smallImage}` : null;
   return img({
-    src: full,
-    small,
+    src: `./assets/img/attractions/${a.image}`,
     alt: a.alt,
-    sizes: "(max-width: 768px) 100vw, 33vw",
+    smallW: 420,
+    fullW: 600,
   });
 }
 
 function roomImg(r) {
-  const full = `./img/gallery/${r.image}`;
-  const small = r.smallImage ? `./img/gallery/${r.smallImage}` : null;
-  return img({
-    src: full,
-    small,
-    alt: r.alt,
-    sizes: "(max-width: 768px) 100vw, 33vw",
-  });
+  return img({ src: `./assets/img/gallery/${r.image}`, alt: r.alt });
 }
 
 function renderAttractions() {
@@ -147,9 +130,9 @@ function renderGallery() {
 }
 
 function renderPricing() {
-  const html = seasons
+  const html = pricing.seasons
     .map((season, sIdx) => {
-      const cards = pricingRooms
+      const cards = pricing.rooms
         .map((room) => {
           const ribbon = room.ribbonKey
             ? `<div class="pricing-card-ribbon" data-i18n="${room.ribbonKey}"></div>`
@@ -181,7 +164,7 @@ function renderPricing() {
     .join("");
   setHtml("pricing-panes", html);
 
-  const tabs = seasons
+  const tabs = pricing.seasons
     .map(
       (s, i) => `
     <button class="season-tab${i === 0 ? " active" : ""}" data-season="${s.id}" data-i18n="cn.tab.${s.id}"></button>`,
@@ -219,12 +202,12 @@ function renderFooter() {
     <li>${CONTACT_INFO.address}</li>
     <li><a href="${CONTACT_INFO.phoneHref}">${CONTACT_INFO.phone}</a></li>
     <li><a href="mailto:${CONTACT_INFO.email}">${CONTACT_INFO.email}</a></li>
-    <li><a href="${bookingUrl}" target="_blank" rel="noopener" data-i18n="foot.booking"></a></li>`,
+    <li><a href="${social.bookingUrl}" target="_blank" rel="noopener" data-i18n="foot.booking"></a></li>`,
   );
 
   setHtml(
     "footer-socials",
-    socials
+    social.socials
       .map(
         (s) =>
           `<li><a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.name}"><i class="${s.icon}"></i></a></li>`,
@@ -233,7 +216,7 @@ function renderFooter() {
   );
 }
 
-export function renderSections() {
+export default function render() {
   renderAttractions();
   renderRooms();
   renderGallery();
