@@ -1,19 +1,22 @@
-import render from "./modules/render.js";
-import i18n from "./modules/i18n.js";
-import ui from "./modules/ui.js";
-import gallery from "./modules/gallery.js";
-import pricing from "./modules/pricing.js";
-import form from "./modules/form.js";
-import cookies from "./modules/cookies.js";
+import { initUi } from "./modules/ui.js";
+import { initNav } from "./modules/nav.js";
+import { render } from "./modules/render.js";
+import { initGallery } from "./modules/gallery.js";
+import { initPricing } from "./modules/pricing.js";
+import { initCookies } from "./modules/cookies.js";
+import { initI18n, onLanguageChange } from "./modules/i18n.js";
+import { initForm, refreshDatepickerLocale } from "./modules/form.js";
 
 async function start() {
   render();
-  await i18n.init();
-  ui.init();
-  gallery.init();
-  pricing.init();
-  form.init();
-  cookies.init();
+  await initI18n();
+  initUi();
+  initNav();
+  initGallery();
+  initPricing();
+  initForm();
+  initCookies();
+  onLanguageChange(refreshDatepickerLocale);
 }
 
 if (document.readyState === "loading") {

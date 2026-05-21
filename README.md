@@ -77,11 +77,11 @@ Translations live in [`js/locales/`](js/locales) as `pl.json`, `en.json` and
 index.html        markup and section containers
 js/
   index.js        bootstrap (render, then init each module)
-  config.js       EmailJS IDs + storage keys
+  config.js       EmailJS IDs, storage keys, languages, shared constants
   data/           section content (gallery, rooms, pricing, attractions, info, social)
   locales/        pl / en / de translations
-  utils/          shared DOM helpers (dom.js)
-  modules/        render, i18n, ui, gallery, pricing, form, cookies
+  utils/          shared helpers (dom, storage, animation)
+  modules/        render, i18n, ui, nav, gallery, pricing, form, cookies
 scss/             styles, compiled to css/styles.css
 assets/           images (with sm/ mobile variants) and video
 ```

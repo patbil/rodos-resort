@@ -1,14 +1,26 @@
-// src/components/BookingForm.js
-import i18n from "../modules/i18n.js";
 import config from "../config.js";
-import { byId } from "../utils/dom.js";
+import { byId, on } from "../utils/dom.js";
+import { translate, getLanguage } from "./i18n.js";
 
-const SUCCESS_COLOR = "#0b7a6e";
-const ERROR_COLOR = "#a14b3b";
-const RESET_DELAY = 4000;
-const DEMO_DELAY = 1200;
+const formConfig = {
+  successColor: "#0b7a6e",
+  errorColor: "#a14b3b",
+  resetDelayMs: 4000,
+  demoSendDelayMs: 1200,
+};
 
-let fpInstances = [];
+const buttonPresets = {
+  sending: { textKey: "form.submit.sending", opacity: "0.7", disabled: true },
+  sent: {
+    textKey: "form.submit.sent",
+    color: formConfig.successColor,
+    disabled: true,
+  },
+  error: { textKey: "form.submit.error", color: formConfig.errorColor },
+  idle: { textKey: "form.submit" },
+};
+
+let flatpickrInstances = [];
 
 function isEmailJsReady() {
   return (
@@ -20,13 +32,16 @@ function isEmailJsReady() {
 }
 
 function initEmailJs() {
-  if (!isEmailJsReady()) return;
-  window.emailjs.init({ publicKey: config.EMAILJS_PUBLIC_KEY });
+  if (isEmailJsReady()) {
+    window.emailjs.init({ publicKey: config.EMAILJS_PUBLIC_KEY });
+  }
 }
 
 function sendEnquiry(form) {
   if (!isEmailJsReady()) {
-    return new Promise((resolve) => setTimeout(resolve, DEMO_DELAY));
+    return new Promise((resolve) =>
+      setTimeout(resolve, formConfig.demoSendDelayMs),
+    );
   }
   return window.emailjs.sendForm(
     config.EMAILJS_SERVICE_ID,
@@ -35,9 +50,9 @@ function sendEnquiry(form) {
   );
 }
 
-function flatpickrLocale() {
+function resolveDatepickerLocale() {
   const { l10ns } = window.flatpickr;
-  return l10ns[i18n.getLang()] ?? l10ns.default;
+  return l10ns[getLanguage()] ?? l10ns.default;
 }
 
 function setupDatepicker() {
@@ -51,28 +66,34 @@ function setupDatepicker() {
     dateFormat: "d.m.Y",
     minDate: "today",
     disableMobile: true,
-    locale: flatpickrLocale(),
+    locale: resolveDatepickerLocale(),
   };
 
   const departure = window.flatpickr(departureInput, baseOptions);
   const arrival = window.flatpickr(arrivalInput, {
     ...baseOptions,
-    onChange([date]) {
-      if (!date) return;
-      const nextDay = new Date(date);
-      nextDay.setDate(nextDay.getDate() + 1);
-      departure.set("minDate", nextDay);
+    onChange([selectedDate]) {
+      if (!selectedDate) return;
+      const dayAfterArrival = new Date(selectedDate);
+      dayAfterArrival.setDate(dayAfterArrival.getDate() + 1);
+      departure.set("minDate", dayAfterArrival);
     },
   });
 
-  fpInstances = [arrival, departure];
+  flatpickrInstances = [arrival, departure];
 }
 
-function setButtonState(
+function refreshDatepickerLocale() {
+  if (!flatpickrInstances.length) return;
+  const locale = resolveDatepickerLocale();
+  flatpickrInstances.forEach((instance) => instance.set("locale", locale));
+}
+
+function applyButtonState(
   button,
-  { text, color = "", opacity = "1", disabled = false },
+  { textKey, color = "", opacity = "1", disabled = false },
 ) {
-  button.textContent = text;
+  button.textContent = translate(textKey);
   if (color) {
     button.style.background = color;
     button.style.borderColor = color;
@@ -81,75 +102,36 @@ function setButtonState(
   button.disabled = disabled;
 }
 
-function buttonStates() {
-  const btn = byId("submit-btn");
-  if (!btn) return;
-
-  return {
-    sending: () =>
-      setButtonState(btn, {
-        text: i18n.t("form.submit.sending"),
-        opacity: "0.7",
-        disabled: true,
-      }),
-    sent: () =>
-      setButtonState(btn, {
-        text: i18n.t("form.submit.sent"),
-        color: SUCCESS_COLOR,
-        disabled: true,
-      }),
-    error: () =>
-      setButtonState(btn, {
-        text: i18n.t("form.submit.error"),
-        color: ERROR_COLOR,
-      }),
-    idle: () =>
-      setButtonState(btn, {
-        text: i18n.t("form.submit"),
-      }),
-  };
-}
-
-async function handleSubmit(form, event) {
+async function handleSubmit(form, button, event) {
   event.preventDefault();
-  const states = buttonStates();
-  if (!states) return;
-
-  states.sending();
+  applyButtonState(button, buttonPresets.sending);
 
   try {
     await sendEnquiry(form);
-    states.sent();
+    applyButtonState(button, buttonPresets.sent);
     form.reset();
   } catch (error) {
     console.error("EmailJS send failed:", error);
-    states.error();
+    applyButtonState(button, buttonPresets.error);
   } finally {
-    setTimeout(() => states.idle(), RESET_DELAY);
+    setTimeout(
+      () => applyButtonState(button, buttonPresets.idle),
+      formConfig.resetDelayMs,
+    );
   }
 }
 
 function setupForm() {
   const form = byId("booking-form");
-  if (!form) return;
-
-  form.addEventListener("submit", (event) => handleSubmit(form, event));
+  const button = byId("submit-btn");
+  if (!form || !button) return;
+  on(form, "submit", (event) => handleSubmit(form, button, event));
 }
 
-function init() {
+function initForm() {
   initEmailJs();
   setupDatepicker();
   setupForm();
 }
 
-function refreshDatepickerLocale() {
-  if (fpInstances.length === 0) return;
-  const locale =
-    window.flatpickr?.l10ns[i18n.getLang()] || window.flatpickr?.l10ns.default;
-  fpInstances.forEach((instance) => instance.set("locale", locale));
-}
-
-export default {
-  init,
-  refreshDatepickerLocale,
-};
+export { initForm, refreshDatepickerLocale };

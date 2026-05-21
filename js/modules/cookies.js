@@ -1,6 +1,6 @@
 import config from "../config.js";
 import { storage } from "../utils/storage.js";
-import { byId, qs, show, hide } from "../utils/dom.js";
+import { byId, qs, on, show, hide } from "../utils/dom.js";
 
 let banner = null;
 
@@ -24,12 +24,12 @@ function handleDecline() {
 }
 
 function bindEvents() {
-  byId("cookie-accept")?.addEventListener("click", handleAccept);
-  byId("map-consent-btn")?.addEventListener("click", handleAccept);
-  byId("cookie-decline")?.addEventListener("click", handleDecline);
+  on(byId("cookie-accept"), "click", handleAccept);
+  on(byId("map-consent-btn"), "click", handleAccept);
+  on(byId("cookie-decline"), "click", handleDecline);
 }
 
-function init() {
+export function initCookies() {
   const consent = storage.get(config.COOKIES_STORAGE_KEY);
 
   if (consent === config.CONSENT_ACCEPTED) {
@@ -44,5 +44,3 @@ function init() {
     bindEvents();
   }
 }
-
-export default { init };

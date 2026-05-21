@@ -1,103 +1,123 @@
+
+import config from "../config.js";
+import { storage } from "../utils/storage.js";
 import i18next from "https://esm.sh/i18next@23";
+import { byId, qs, qsa, on } from "../utils/dom.js";
 import pl from "../locales/pl.json" with { type: "json" };
 import en from "../locales/en.json" with { type: "json" };
 import de from "../locales/de.json" with { type: "json" };
-import { byId, qs, qsa } from "../utils/dom.js";
-import config from "../config.js";
 
-const RESOURCES = { pl, en, de };
+const translations = { pl, en, de };
 
-const DOM_BINDINGS = [
-  ["data-i18n", (el, value) => (el.textContent = value)],
-  ["data-i18n-html", (el, value) => (el.innerHTML = value)],
-  [
-    "data-i18n-placeholder",
-    (el, value) => el.setAttribute("placeholder", value),
-  ],
-  ["data-i18n-title", (el, value) => el.setAttribute("title", value)],
+const translationBindings = [
+  {
+    attribute: "data-i18n",
+    apply: (element, value) => (element.textContent = value),
+  },
+  {
+    attribute: "data-i18n-html",
+    apply: (element, value) => (element.innerHTML = value),
+  },
+  {
+    attribute: "data-i18n-placeholder",
+    apply: (element, value) => element.setAttribute("placeholder", value),
+  },
+  {
+    attribute: "data-i18n-title",
+    apply: (element, value) => element.setAttribute("title", value),
+  },
 ];
 
-const t = (key) => i18next.t(key);
-const getLang = () => i18next.language;
+const languageChangeListeners = new Set();
 
-function detectLang() {
-  const saved = localStorage.getItem(config.LANG_STORAGE_KEY);
-  if (saved && config.SUPPORTED_LANGS.includes(saved)) return saved;
-  const browser = (navigator.language || config.DEFAULT_LANG)
+function translate(key) {
+  return i18next.t(key);
+}
+
+function getLanguage() {
+  return i18next.language;
+}
+
+function onLanguageChange(listener) {
+  languageChangeListeners.add(listener);
+}
+
+function detectLanguage() {
+  const savedLanguage = storage.get(config.LANG_STORAGE_KEY);
+  if (savedLanguage && config.SUPPORTED_LANGS.includes(savedLanguage)) {
+    return savedLanguage;
+  }
+  const browserLanguage = (navigator.language || config.DEFAULT_LANG)
     .slice(0, 2)
     .toLowerCase();
-  return config.SUPPORTED_LANGS.includes(browser)
-    ? browser
+  return config.SUPPORTED_LANGS.includes(browserLanguage)
+    ? browserLanguage
     : config.DEFAULT_LANG;
 }
 
 function applyTranslations() {
-  for (const [attr, apply] of DOM_BINDINGS) {
-    qsa(`[${attr}]`).forEach((el) => apply(el, t(el.getAttribute(attr))));
+  for (const { attribute, apply } of translationBindings) {
+    qsa(`[${attribute}]`).forEach((element) =>
+      apply(element, translate(element.getAttribute(attribute))),
+    );
   }
 }
 
 function applyMeta() {
-  document.title = t("meta.title");
+  document.title = translate("meta.title");
   qs('meta[name="description"]')?.setAttribute(
     "content",
-    t("meta.description"),
+    translate("meta.description"),
   );
 }
 
-function syncLangSelect() {
+function syncLanguageSelect() {
   const select = byId("lang-select");
-  if (select) select.value = getLang();
+  if (select) select.value = getLanguage();
 }
 
-// foot.copy is re-rendered via innerHTML, which wipes the year span — reset it.
 function refreshYear() {
-  const el = byId("year");
-  if (el) el.textContent = new Date().getFullYear();
+  const yearElement = byId("year");
+  if (yearElement) yearElement.textContent = new Date().getFullYear();
 }
 
-function syncFlatpickr() {
-  const fp = window.flatpickr;
-  if (!fp || !window._fpInstances) return;
-  const locale = fp.l10ns[getLang()] || fp.l10ns.default;
-  window._fpInstances.forEach((instance) => instance.set("locale", locale));
-}
-
-function apply() {
-  document.documentElement.lang = getLang();
+function applyLanguage() {
+  document.documentElement.lang = getLanguage();
   applyTranslations();
   applyMeta();
-  syncLangSelect();
+  syncLanguageSelect();
   refreshYear();
-  syncFlatpickr();
 }
 
-async function setLang(lang) {
-  if (!config.SUPPORTED_LANGS.includes(lang)) return;
-  localStorage.setItem(config.LANG_STORAGE_KEY, lang);
-  await i18next.changeLanguage(lang);
-  apply();
+async function setLanguage(language) {
+  if (!config.SUPPORTED_LANGS.includes(language)) return;
+  storage.set(config.LANG_STORAGE_KEY, language);
+  await i18next.changeLanguage(language);
+  applyLanguage();
+  languageChangeListeners.forEach((listener) => listener(getLanguage()));
 }
 
-async function init() {
+function buildResources() {
+  return Object.fromEntries(
+    config.SUPPORTED_LANGS.map((language) => [
+      language,
+      { translation: translations[language] },
+    ]),
+  );
+}
+
+async function initI18n() {
   await i18next.init({
-    lng: detectLang(),
+    lng: detectLanguage(),
     fallbackLng: config.DEFAULT_LANG,
     supportedLngs: config.SUPPORTED_LANGS,
     keySeparator: false,
     nsSeparator: false,
     interpolation: { escapeValue: false },
-    resources: Object.fromEntries(
-      config.SUPPORTED_LANGS.map((lang) => [
-        lang,
-        { translation: RESOURCES[lang] },
-      ]),
-    ),
+    resources: buildResources(),
   });
-  apply();
-  byId("lang-select")?.addEventListener("change", (e) =>
-    setLang(e.target.value),
-  );
+  applyLanguage();
+  on(byId("lang-select"), "change", (event) => setLanguage(event.target.value));
 }
 
-export default { init, t, getLang };
+export { initI18n, translate, getLanguage, onLanguageChange };

@@ -1,22 +1,15 @@
-import { byId, qs, qsa, toggleActive } from "../utils/dom.js";
+import { byId, qs, delegate, toggleActive } from "../utils/dom.js";
+import { replayReveals } from "../utils/animation.js";
 
-function replayReveals(pane) {
-  qsa(".reveal", pane).forEach((el) => {
-    el.classList.remove("in");
-    requestAnimationFrame(() => el.classList.add("in"));
-  });
+function selectSeason(tab) {
+  const { season } = tab.dataset;
+  toggleActive(".season-tab", (element) => element === tab);
+  toggleActive(".pricing-pane", (element) => element.dataset.season === season);
+  replayReveals(qs(`.pricing-pane[data-season="${season}"]`));
 }
 
-function init() {
-  byId("season-tabs")?.addEventListener("click", (event) => {
-    const tab = event.target.closest(".season-tab");
-    if (!tab) return;
-    const { season } = tab.dataset;
-    toggleActive(".season-tab", (el) => el === tab);
-    toggleActive(".pricing-pane", (el) => el.dataset.season === season);
-    const pane = qs(`.pricing-pane[data-season="${season}"]`);
-    if (pane) replayReveals(pane);
-  });
+export function initPricing() {
+  delegate(byId("season-tabs"), ".season-tab", "click", (event) =>
+    selectSeason(event.target.closest(".season-tab")),
+  );
 }
-
-export default { init };
