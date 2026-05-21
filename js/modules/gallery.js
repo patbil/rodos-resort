@@ -14,6 +14,8 @@ const KEYBOARD = {
   escape: "Escape",
   arrowLeft: "ArrowLeft",
   arrowRight: "ArrowRight",
+  enter: "Enter",
+  space: " ",
 };
 
 function setupTabs() {
@@ -45,6 +47,7 @@ function setupLightbox() {
   const captionElement = byId("lightbox-caption");
   let images = [];
   let currentIndex = 0;
+  let lastFocusedElement = null;
 
   function renderCurrent() {
     imageElement.src = images[currentIndex].src;
@@ -57,13 +60,16 @@ function setupLightbox() {
     images = collectedImages;
     currentIndex = startIndex;
     renderCurrent();
+    lastFocusedElement = galleryItem;
     addClass(lightbox, "open");
     document.body.style.overflow = "hidden";
+    byId("lightbox-close")?.focus();
   }
 
   function closeLightbox() {
     removeClass(lightbox, "open");
     document.body.style.overflow = "";
+    lastFocusedElement?.focus();
   }
 
   function step(offset) {
@@ -81,6 +87,11 @@ function setupLightbox() {
   delegate(document, ".gallery-item", "click", (event) =>
     openLightbox(event.target.closest(".gallery-item")),
   );
+  delegate(document, ".gallery-item", "keydown", (event) => {
+    if (event.key !== KEYBOARD.enter && event.key !== KEYBOARD.space) return;
+    event.preventDefault();
+    openLightbox(event.target.closest(".gallery-item"));
+  });
   on(byId("lightbox-close"), "click", closeLightbox);
   on(byId("lightbox-prev"), "click", () => step(-1));
   on(byId("lightbox-next"), "click", () => step(1));

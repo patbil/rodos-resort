@@ -190,6 +190,7 @@
             "
             sizes="(max-width: 960px) 100vw, 50vw"
             alt="Domki RODOS w Rowach"
+            data-i18n-alt="about.image.alt"
             loading="lazy"
             decoding="async"
           />
@@ -603,7 +604,6 @@
       </div>
       <div class="footer-bar">
         <span data-i18n-html="foot.copy"></span>
-        <span data-i18n="foot.privacy"></span>
       </div>
     </footer>
 
@@ -625,11 +625,42 @@
       </div>
     </div>
 
-    <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" id="lightbox-close">✕</button>
-      <button class="lightbox-prev" id="lightbox-prev">‹</button>
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Galeria zdjęć"
+      data-i18n-aria-label="lightbox.label"
+    >
+      <button
+        type="button"
+        class="lightbox-close"
+        id="lightbox-close"
+        aria-label="Zamknij"
+        data-i18n-aria-label="lightbox.close"
+      >
+        ✕
+      </button>
+      <button
+        type="button"
+        class="lightbox-prev"
+        id="lightbox-prev"
+        aria-label="Poprzednie zdjęcie"
+        data-i18n-aria-label="lightbox.prev"
+      >
+        ‹
+      </button>
       <img id="lightbox-image" src="" alt="" />
-      <button class="lightbox-next" id="lightbox-next">›</button>
+      <button
+        type="button"
+        class="lightbox-next"
+        id="lightbox-next"
+        aria-label="Następne zdjęcie"
+        data-i18n-aria-label="lightbox.next"
+      >
+        ›
+      </button>
       <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 

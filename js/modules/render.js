@@ -42,15 +42,17 @@ function toSmallImage(source) {
   return source.replace(/([^/]+)$/, "sm/$1");
 }
 
-function imageTag({ src, alt, widths, sizes = imageConfig.sizes }) {
+function imageTag({ src, alt, altKey, widths, sizes = imageConfig.sizes }) {
   const srcset = `${toSmallImage(src)} ${widths.small}w, ${src} ${widths.full}w`;
-  return `<img src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}" loading="lazy" decoding="async" />`;
+  const localisedAlt = altKey ? ` data-i18n-alt="${altKey}"` : "";
+  return `<img src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}"${localisedAlt} loading="lazy" decoding="async" />`;
 }
 
 function galleryImage(category, imageNumber) {
   return imageTag({
     src: `./assets/img/gallery/${category.dir}/${imageNumber}.jpg`,
     alt: category.alt,
+    altKey: category.altKey,
     widths: imageConfig.galleryWidths,
   });
 }
@@ -59,6 +61,7 @@ function attractionImage(attraction) {
   return imageTag({
     src: `./assets/img/attractions/${attraction.image}`,
     alt: attraction.alt,
+    altKey: `${attraction.i18n}.title`,
     widths: imageConfig.attractionWidths,
   });
 }
@@ -67,6 +70,7 @@ function roomImage(room) {
   return imageTag({
     src: `./assets/img/gallery/${room.image}`,
     alt: room.alt,
+    altKey: `${room.i18n}.name`,
     widths: imageConfig.galleryWidths,
   });
 }
@@ -140,7 +144,7 @@ function renderGallery() {
       )
         .map(
           (imageNumber) => `
-      <div class="gallery-item">${galleryImage(category, imageNumber)}<div class="gallery-overlay"><span data-i18n="${category.labelKey}"></span><span> — ${padTwoDigits(imageNumber)}</span></div></div>`,
+      <div class="gallery-item" role="button" tabindex="0">${galleryImage(category, imageNumber)}<div class="gallery-overlay"><span data-i18n="${category.labelKey}"></span><span> — ${padTwoDigits(imageNumber)}</span></div></div>`,
         )
         .join("");
       return `

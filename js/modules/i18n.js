@@ -26,6 +26,14 @@ const translationBindings = [
     attribute: "data-i18n-title",
     apply: (element, value) => element.setAttribute("title", value),
   },
+  {
+    attribute: "data-i18n-alt",
+    apply: (element, value) => element.setAttribute("alt", value),
+  },
+  {
+    attribute: "data-i18n-aria-label",
+    apply: (element, value) => element.setAttribute("aria-label", value),
+  },
 ];
 
 const languageChangeListeners = new Set();

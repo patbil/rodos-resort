@@ -1072,11 +1072,15 @@ footer {
   background: #e8dcc4;
   cursor: pointer;
 }
-.gallery-item:hover img {
+.gallery-item:hover img, .gallery-item:focus-visible img {
   transform: scale(1.06);
 }
-.gallery-item:hover .gallery-overlay {
+.gallery-item:hover .gallery-overlay, .gallery-item:focus-visible .gallery-overlay {
   opacity: 1;
+}
+.gallery-item:focus-visible {
+  outline: 2px solid #b8883a;
+  outline-offset: 3px;
 }
 
 .gallery-overlay {
