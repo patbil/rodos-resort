@@ -25,6 +25,26 @@ const delegate = (parent, selector, event, handler) => {
   });
 };
 
+const SWIPE_THRESHOLD = 40;
+
+const onSwipe = (element, { onLeft, onRight, threshold = SWIPE_THRESHOLD } = {}) => {
+  let startX = 0;
+  on(element, "touchstart", (e) => (startX = e.changedTouches[0].clientX), {
+    passive: true,
+  });
+  on(
+    element,
+    "touchend",
+    (e) => {
+      const deltaX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(deltaX) < threshold) return;
+      if (deltaX < 0) onLeft?.();
+      else onRight?.();
+    },
+    { passive: true },
+  );
+};
+
 const toggleActive = (selector, predicate, root = document) => {
   qsa(selector, root).forEach((el) => {
     el.classList.toggle("active", predicate(el));
@@ -42,5 +62,6 @@ export {
   removeClass,
   on,
   delegate,
+  onSwipe,
   toggleActive,
 };

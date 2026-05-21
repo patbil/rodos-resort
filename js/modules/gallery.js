@@ -4,6 +4,7 @@ import {
   qsa,
   on,
   delegate,
+  onSwipe,
   addClass,
   removeClass,
   toggleActive,
@@ -87,6 +88,7 @@ function setupLightbox() {
     if (event.target === lightbox) closeLightbox();
   });
   on(document, "keydown", handleKeydown);
+  onSwipe(lightbox, { onLeft: () => step(1), onRight: () => step(-1) });
 }
 
 export function initGallery() {

@@ -7,11 +7,12 @@ guests send a booking enquiry, available in Polish, English and German.
 It covers:
 
 - Hero intro with a short "about the resort" section
-- Photo gallery grouped by category (resort, cottages, apartments, playground)
+- Photo gallery grouped by category (resort, cottages, apartments, playground),
+  with a lightbox that supports keyboard arrows and swipe on mobile
 - Accommodation cards and a season-based price list
 - Nearby attractions
 - Practical info (check-in, deposit, parking, house rules)
-- Contact details, map and a booking-enquiry form
+- Contact details, map and a validated booking-enquiry form
 
 ## Stack
 
@@ -51,10 +52,13 @@ export default {
 Notes:
 
 - These IDs are public by design; the endpoint is protected by the
-  **Allowed Origins** list in the EmailJS dashboard, so add your production
-  domain there.
+  **Allowed Origins** list in the EmailJS dashboard.
 - While the IDs are blank, the form runs in demo mode and only simulates a
   send.
+- The EmailJS template receives these variables (the form field `name`s):
+  `name`, `email`, `phone`, `accommodationType`, `dateFrom`, `dateTo`,
+  `adultsCount`, `childrenCount`, `pets`, `recommendation`, `message`. Empty
+  optional fields arrive as `Brak danych`.
 
 ## Languages
 
@@ -92,7 +96,4 @@ markup.
 
 ## A note on AI
 
-Parts of this project were built with AI assistance — boilerplate, repetitive
-data, refactors and cleanup — to speed up and streamline the work. It is not
-fully AI-generated: the concept, content, design decisions and review are
-human.
+The project work was supported by AI tools, which were mainly used for handling trivial, repetitive, and low-effort tasks. This helped speed up work on routine tasks that were not interesting or engaging. Key conceptual and design decisions, content creation, as well as overall supervision and verification were carried out by a human.

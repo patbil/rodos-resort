@@ -205,7 +205,9 @@
               <div class="stat-label" data-i18n="about.stat.types"></div>
             </div>
             <div>
-              <div class="stat-num">8<sub class="stat-unit">os.</sub></div>
+              <div class="stat-num">
+                8<sub class="stat-unit" data-i18n="about.stat.guests.unit"></sub>
+              </div>
               <div class="stat-label" data-i18n="about.stat.guests"></div>
             </div>
             <div>
@@ -399,69 +401,107 @@
                 <div class="contact-form-title" data-i18n="form.title"></div>
                 <div class="form-row-2">
                   <div class="form-group">
-                    <label for="f-name" data-i18n="form.name"></label>
+                    <label
+                      for="f-name"
+                      class="required"
+                      data-i18n="form.name"
+                    ></label>
                     <input
                       id="f-name"
                       name="name"
                       type="text"
                       data-i18n-placeholder="form.name.ph"
                       placeholder=""
+                      required
                     />
                   </div>
                   <div class="form-group">
-                    <label for="f-email" data-i18n="form.email"></label>
+                    <label
+                      for="f-email"
+                      class="required"
+                      data-i18n="form.email"
+                    ></label>
                     <input
                       id="f-email"
                       name="email"
                       type="email"
                       data-i18n-placeholder="form.email.ph"
                       placeholder=""
+                      required
                     />
                   </div>
                 </div>
                 <div class="form-row-2">
                   <div class="form-group">
-                    <label for="f-tel" data-i18n="form.tel"></label>
+                    <label
+                      for="f-tel"
+                      class="required"
+                      data-i18n="form.tel"
+                    ></label>
                     <input
                       id="f-tel"
-                      name="tel"
+                      name="phone"
                       type="tel"
                       data-i18n-placeholder="form.tel.ph"
                       placeholder=""
+                      required
                     />
                   </div>
                   <div class="form-group">
-                    <label for="f-type" data-i18n="form.type"></label>
-                    <select id="f-type" name="type">
+                    <label
+                      for="f-type"
+                      class="required"
+                      data-i18n="form.type"
+                    ></label>
+                    <select id="f-type" name="accommodationType" required>
                       <option value="" data-i18n="form.type.opt.none"></option>
-                      <option data-i18n="form.type.opt.cottage"></option>
-                      <option data-i18n="form.type.opt.apt5"></option>
-                      <option data-i18n="form.type.opt.apt8"></option>
+                      <option
+                        value="Domek letniskowy (do 4 os.)"
+                        data-i18n="form.type.opt.cottage"
+                      ></option>
+                      <option
+                        value="Apartament 5-osobowy"
+                        data-i18n="form.type.opt.apt5"
+                      ></option>
+                      <option
+                        value="Apartament 8-osobowy"
+                        data-i18n="form.type.opt.apt8"
+                      ></option>
                     </select>
                   </div>
                 </div>
                 <div class="form-row-2">
                   <div class="form-group">
-                    <label for="date-in" data-i18n="form.date-in"></label>
+                    <label
+                      for="date-in"
+                      class="required"
+                      data-i18n="form.date-in"
+                    ></label>
                     <input
                       type="text"
                       class="date-picker-input"
                       id="date-in"
-                      name="date-in"
+                      name="dateFrom"
                       data-i18n-placeholder="form.date.ph"
                       placeholder=""
+                      required
                       readonly
                     />
                   </div>
                   <div class="form-group">
-                    <label for="date-out" data-i18n="form.date-out"></label>
+                    <label
+                      for="date-out"
+                      class="required"
+                      data-i18n="form.date-out"
+                    ></label>
                     <input
                       type="text"
                       class="date-picker-input"
                       id="date-out"
-                      name="date-out"
+                      name="dateTo"
                       data-i18n-placeholder="form.date.ph"
                       placeholder=""
+                      required
                       readonly
                     />
                   </div>
@@ -471,7 +511,7 @@
                     <label for="f-adults" data-i18n="form.adults"></label>
                     <input
                       id="f-adults"
-                      name="adults"
+                      name="adultsCount"
                       type="number"
                       min="1"
                       max="8"
@@ -482,7 +522,7 @@
                     <label for="f-children" data-i18n="form.children"></label>
                     <input
                       id="f-children"
-                      name="children"
+                      name="childrenCount"
                       type="number"
                       min="0"
                       max="6"
@@ -494,22 +534,28 @@
                   <div class="form-group">
                     <label for="f-pets" data-i18n="form.pets"></label>
                     <select id="f-pets" name="pets">
-                      <option value="nie" data-i18n="form.pets.no"></option>
-                      <option value="tak" data-i18n="form.pets.yes"></option>
+                      <option value="Nie" data-i18n="form.pets.no"></option>
+                      <option value="Tak" data-i18n="form.pets.yes"></option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="f-source" data-i18n="form.source"></label>
-                    <select id="f-source" name="source">
+                    <select id="f-source" name="recommendation">
                       <option
                         value=""
                         data-i18n="form.source.opt.none"
                       ></option>
-                      <option>Google</option>
-                      <option>Facebook</option>
-                      <option data-i18n="form.source.opt.recommend"></option>
-                      <option>Booking.com</option>
-                      <option data-i18n="form.source.opt.other"></option>
+                      <option value="Google">Google</option>
+                      <option value="Facebook">Facebook</option>
+                      <option
+                        value="Polecenie znajomych"
+                        data-i18n="form.source.opt.recommend"
+                      ></option>
+                      <option value="Booking.com">Booking.com</option>
+                      <option
+                        value="Inne"
+                        data-i18n="form.source.opt.other"
+                      ></option>
                     </select>
                   </div>
                 </div>

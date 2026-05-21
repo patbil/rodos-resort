@@ -165,6 +165,16 @@ $line: rgba($ocean, 0.12);
     @include uppercase-label(0.6rem, 0.17em, 600, $text-mid);
   }
 
+  label.required::after {
+    content: "*";
+    margin-left: 0.3rem;
+    color: $error;
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 0;
+    vertical-align: middle;
+  }
+
   input,
   textarea,
   select {
@@ -203,6 +213,30 @@ $line: rgba($ocean, 0.12);
     border-color: $gold;
     background: $white;
     box-shadow: 0 0 0 3px rgba($gold, 0.12);
+  }
+
+  // Error styling kicks in only after the user interacts or tries to submit,
+  // so empty required fields aren't flagged red on first paint.
+  // `.field-error` is the manual equivalent for readonly date inputs, which
+  // are barred from native constraint validation.
+  input:user-invalid,
+  textarea:user-invalid,
+  select:user-invalid,
+  input.field-error {
+    border-color: $error;
+    background: rgba($error, 0.05);
+  }
+
+  input:user-invalid:focus,
+  textarea:user-invalid:focus,
+  select:user-invalid:focus,
+  input.field-error:focus {
+    border-color: $error;
+    box-shadow: 0 0 0 3px rgba($error, 0.15);
+  }
+
+  .field-shake {
+    animation: field-shake 0.4s $ease-out;
   }
 
   select {
@@ -249,4 +283,23 @@ $line: rgba($ocean, 0.12);
   color: $text-light;
   margin-top: 0.8rem;
   line-height: 1.65;
+}
+
+@keyframes field-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
 }

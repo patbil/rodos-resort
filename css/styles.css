@@ -201,8 +201,7 @@ textarea:focus-visible {
 .lightbox img {
   max-width: 90vw;
   max-height: 85vh;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .lightbox-close,
@@ -299,18 +298,47 @@ textarea:focus-visible {
   height: 38px;
   line-height: 38px;
 }
-.flatpickr-current-month .flatpickr-monthDropdown-months {
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month .flatpickr-year-select {
   font-family: "Cormorant Garamond", serif;
   font-size: 1.3rem;
   font-weight: 600;
   color: #0e3d5c;
-  background: transparent;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid rgba(184, 136, 58, 0.25);
+  border-radius: 4px;
+  cursor: pointer;
+  appearance: none;
+  padding: 0 1.45rem 0 0.5rem;
+  background-color: rgba(184, 136, 58, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230e3d5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.45rem center;
+  background-size: 0.72rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
-.flatpickr-current-month input.cur-year {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #0e3d5c;
+.flatpickr-current-month .flatpickr-monthDropdown-months:hover,
+.flatpickr-current-month .flatpickr-year-select:hover {
+  color: #b8883a;
+  background-color: rgba(184, 136, 58, 0.14);
+  border-color: rgba(184, 136, 58, 0.55);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23b8883a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.45rem center;
+  background-size: 0.72rem;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months:focus-visible,
+.flatpickr-current-month .flatpickr-year-select:focus-visible {
+  outline: none;
+  border-color: #b8883a;
+  box-shadow: 0 0 0 3px rgba(184, 136, 58, 0.18);
+}
+.flatpickr-current-month .flatpickr-year-select {
+  margin-left: 0.45rem;
+}
+.flatpickr-current-month .flatpickr-year-select option {
+  font-size: 1.1rem;
 }
 
 .flatpickr-weekdays {
@@ -554,9 +582,7 @@ span.flatpickr-weekday {
 }
 
 .lang-select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   background-color: transparent;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='%23b8883a' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   background-repeat: no-repeat;
@@ -732,8 +758,7 @@ footer {
   inset: 0;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   z-index: 0;
 }
 
@@ -901,8 +926,7 @@ footer {
 .about-image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 8s;
 }
 .about-image {
@@ -1039,8 +1063,7 @@ footer {
 .gallery-item img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 0.55s;
 }
 .gallery-item {
@@ -1127,8 +1150,7 @@ footer {
 .room-card-img img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 0.6s;
 }
 .room-card-img {
@@ -1269,8 +1291,7 @@ footer {
 .attraction-card-photo img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 0.6s;
 }
 .attraction-card-photo {
@@ -1293,9 +1314,7 @@ footer {
   position: absolute;
   top: 0.6rem;
   right: 1rem;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .attraction-card-title {
@@ -1760,6 +1779,15 @@ footer {
   font-weight: 600;
   color: #4a6070;
 }
+.form-group label.required::after {
+  content: "*";
+  margin-left: 0.3rem;
+  color: #a14b3b;
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 0;
+  vertical-align: middle;
+}
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -1773,14 +1801,8 @@ footer {
   border-radius: 2px;
   outline: none;
   resize: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-}
-.form-group input::-moz-placeholder, .form-group textarea::-moz-placeholder {
-  color: rgba(30, 45, 58, 0.32);
-  font-weight: 300;
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder {
@@ -1798,6 +1820,23 @@ footer {
   border-color: #b8883a;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(184, 136, 58, 0.12);
+}
+.form-group input:user-invalid,
+.form-group textarea:user-invalid,
+.form-group select:user-invalid,
+.form-group input.field-error {
+  border-color: #a14b3b;
+  background: rgba(161, 75, 59, 0.05);
+}
+.form-group input:user-invalid:focus,
+.form-group textarea:user-invalid:focus,
+.form-group select:user-invalid:focus,
+.form-group input.field-error:focus {
+  border-color: #a14b3b;
+  box-shadow: 0 0 0 3px rgba(161, 75, 59, 0.15);
+}
+.form-group .field-shake {
+  animation: field-shake 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .form-group select {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e3d5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
@@ -1826,8 +1865,7 @@ footer {
 }
 .form-group input[type=number] {
   -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-          appearance: textfield;
+  appearance: textfield;
 }
 
 .form-submit {
@@ -1842,6 +1880,23 @@ footer {
   line-height: 1.65;
 }
 
+@keyframes field-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
 .reveal,
 .reveal-left {
   opacity: 0;
@@ -2072,4 +2127,6 @@ footer {
     padding: 0.45rem 0.9rem;
     font-size: 0.6rem;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */
